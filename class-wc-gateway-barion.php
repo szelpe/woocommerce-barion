@@ -64,7 +64,6 @@ class WC_Gateway_Barion extends WC_Payment_Gateway {
 	}
 
     function process_payment($order_id) {
-		global $woocommerce;
         $order = new WC_Order($order_id);
         
         require_once('class-wc-gateway-barion-request.php');
