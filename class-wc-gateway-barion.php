@@ -5,6 +5,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 require_once 'barion-library/library/BarionClient.php';
+require_once 'class-wc-gateway-barion-ipn-handler.php';
 
 class WC_Gateway_Barion extends WC_Payment_Gateway {
 
@@ -38,11 +39,10 @@ class WC_Gateway_Barion extends WC_Payment_Gateway {
         
         $this->barion_client = new BarionClient($this->poskey, 2, $this->barion_environment, true);
 
-		
         $this->msg['message']	= '';
         $this->msg['class'] 	= '';
         
-        add_action('woocommerce_api_' . strtolower(get_class($this)), array($this, 'check_barion_ipn'));
+		$callback_handler = new WC_Gateway_Barion_IPN_Handler($this->barion_client);
 		
         add_action('woocommerce_update_options_payment_gateways_' . $this->id, array($this, 'process_admin_options'));
         add_action('woocommerce_receipt_barion', array(&$this, 'receipt_page'));	
@@ -105,9 +105,4 @@ class WC_Gateway_Barion extends WC_Payment_Gateway {
     	}
     	return $page_list;
 	}
-    
-    function check_barion_ipn() {
-        require_once('class-wc-gateway-barion-ipn-handler.php');
-    }
-
 }

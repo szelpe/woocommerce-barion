@@ -29,7 +29,7 @@ class WC_Gateway_Barion_Request {
         $paymentRequest->OrderNumber = $order->get_order_number();
         $paymentRequest->ShippingAddress = "12345 NJ, Example ave. 6.";
         $paymentRequest->RedirectUrl = $this->gateway->get_return_url($order);
-        $paymentRequest->CallbackUrl = get_home_url() + "/wc-api/WC_Gateway_Barion/";
+        $paymentRequest->CallbackUrl = WC()->api_request_url('WC_Gateway_Barion');
         $paymentRequest->AddTransaction($transaction);
         
         $this->payment = $this->barion_client->PreparePayment($paymentRequest);
