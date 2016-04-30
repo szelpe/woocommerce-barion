@@ -27,7 +27,7 @@ class WC_Gateway_Barion_Request {
         $paymentRequest->PayerHint = $order->billing_email;
         $paymentRequest->Locale = UILocale::EN;
         $paymentRequest->OrderNumber = $order->get_order_number();
-        $paymentRequest->ShippingAddress = "12345 NJ, Example ave. 6.";
+        $paymentRequest->ShippingAddress = "";
         $paymentRequest->RedirectUrl = $this->gateway->get_return_url($order);
         $paymentRequest->CallbackUrl = WC()->api_request_url('WC_Gateway_Barion');
         $paymentRequest->AddTransaction($transaction);

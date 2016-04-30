@@ -14,6 +14,10 @@ class WC_Gateway_Barion extends WC_Payment_Gateway {
 		$this->method_title 		= 'Barion';
 		$this->method_description	= 'Barion Payment Gateway';
 		$this->has_fields 			= false;
+		$this->order_button_text  = __( 'Proceed to Barion', 'woocommerce' );
+		$this->supports           = array(
+			'products'
+		);
 		
 		$this->init_form_fields();
 		$this->init_settings();
@@ -38,9 +42,6 @@ class WC_Gateway_Barion extends WC_Payment_Gateway {
 		$this->redirect_page = $this->settings['redirect_page'];
         
         $this->barion_client = new BarionClient($this->poskey, 2, $this->barion_environment, true);
-
-        $this->msg['message']	= '';
-        $this->msg['class'] 	= '';
         
 		$callback_handler = new WC_Gateway_Barion_IPN_Handler($this->barion_client);
 		
