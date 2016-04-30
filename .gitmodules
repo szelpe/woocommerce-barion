@@ -1,0 +1,3 @@
+[submodule "barion-library"]
+	path = barion-library
+	url = git@github.com:barion/barion-web-php.git
