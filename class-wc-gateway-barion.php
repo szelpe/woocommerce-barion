@@ -35,6 +35,9 @@ class WC_Gateway_Barion extends WC_Payment_Gateway {
         $this->poskey = $this->settings['poskey'];
         $this->payee = $this->settings['payee'];
 		$this->redirect_page = $this->settings['redirect_page'];
+        
+        $this->barion_client = new BarionClient($this->poskey, 2, $this->barion_environment, true);
+
 		
         $this->msg['message']	= '';
         $this->msg['class'] 	= '';
@@ -66,9 +69,9 @@ class WC_Gateway_Barion extends WC_Payment_Gateway {
         
         require_once('class-wc-gateway-barion-request.php');
         
-        $request = new WC_Gateway_Barion_Request($order);
+        $request = new WC_Gateway_Barion_Request($this->barion_client, $this);
         
-        $request->prepare_payment();
+        $request->prepare_payment($order);
         
         if(!$request->is_prepared) {
             return array(
