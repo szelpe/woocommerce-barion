@@ -18,14 +18,14 @@ class WC_Gateway_Barion_Request {
         $transaction->Comment = "";
         
         $this->prepare_items($order, $transaction);
-        
+		
         $paymentRequest = new PreparePaymentRequestModel();
         $paymentRequest->GuestCheckout = true;
         $paymentRequest->PaymentType = PaymentType::Immediate;
         $paymentRequest->FundingSources = array(FundingSourceType::All);
         $paymentRequest->PaymentRequestId = $order->id;
         $paymentRequest->PayerHint = $order->billing_email;
-        $paymentRequest->Locale = UILocale::EN;
+        $paymentRequest->Locale = $this->get_barion_locale();
         $paymentRequest->OrderNumber = $order->get_order_number();
         $paymentRequest->ShippingAddress = "";
         $paymentRequest->RedirectUrl = $this->gateway->get_return_url($order);
@@ -46,7 +46,7 @@ class WC_Gateway_Barion_Request {
             $itemModel = new ItemModel();
             $itemModel->Name = $item['name'];
             $itemModel->Description = $itemModel->Name;
-            $itemModel->Unit = 'piece';
+            $itemModel->Unit = __('piece');
         
 			if ('fee' === $item['type']) {
 				$item_line_total  = $this->number_format( $item['line_total'], $order );
@@ -78,6 +78,14 @@ class WC_Gateway_Barion_Request {
 		}
 		
 		return true;
+	}
+	
+	function get_barion_locale() {
+		if(get_locale() == "hu_HU") {
+			return UILocale::HU;
+		}
+		
+		return UILocale::EN;
 	}
     
     public function get_redirect_url() {
