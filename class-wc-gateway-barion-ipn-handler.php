@@ -31,9 +31,12 @@ class WC_Gateway_Barion_IPN_Handler {
         if($payment_details->Status == PaymentStatus::Canceled) {
             $order->update_status('failed', __('Payment canceled via IPN.', 'woocommerce'));
             
+            WC_Gateway_Barion::log('Payment failed. Payment details: ' + json_encode($payment_details));
+            
             return;
         }
         
         $order->update_status('failed', __('Payment failed via IPN.', 'woocommerce'));
+        WC_Gateway_Barion::log('Payment failed. Payment details: ' + json_encode($payment_details));
     }
 }

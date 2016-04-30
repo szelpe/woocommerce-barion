@@ -37,6 +37,9 @@ class WC_Gateway_Barion_Request {
         if($this->payment->RequestSuccessful) {
             $this->is_prepared = true;
         }
+        else {
+            WC_Gateway_Barion::log('PreparePayment failed. Errors array: ' + json_encode($this->payment->Errors));
+        }
     }
     
     protected function prepare_items($order, $transaction) {
@@ -59,7 +62,8 @@ class WC_Gateway_Barion_Request {
             }
             else if ('fee' === $item['type']) {
                 $itemModel->SKU = '';
-            } else {
+            } 
+            else {
                 $product          = $order->get_product_from_item($item);
                 $itemModel->SKU = $product->get_sku();
             }

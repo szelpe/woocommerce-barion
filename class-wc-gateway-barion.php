@@ -48,6 +48,25 @@ class WC_Gateway_Barion extends WC_Payment_Gateway {
         add_action('woocommerce_update_options_payment_gateways_' . $this->id, array($this, 'process_admin_options'));
     }
     
+    /** @var boolean */
+    static $debug_mode = false;
+    
+	/** @var WC_Logger Logger instance */
+	static $log = null;
+    
+    public static function log($message, $level = 'error') {
+		if ($level != 'error' && !self::$debug_mode) {
+            return;
+        }
+        
+		if (empty(self::$log)) {
+			self::$log = new WC_Logger();
+		}
+        
+		self::$log->add('barion', $message);
+	}
+
+    
     function init_form_fields() {
         $this->form_fields = include('settings-barion.php');
     }
