@@ -4,6 +4,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
+require_once 'barion-library/library/BarionClient.php';
+
 class WC_Gateway_Barion extends WC_Payment_Gateway {
 
 	public function __construct() {
@@ -15,11 +17,11 @@ class WC_Gateway_Barion extends WC_Payment_Gateway {
 		$this->init_form_fields();
 		$this->init_settings();
         
-		$this->barion_base_address = 'https://secure.barion.com';
 		$this->title = $this->settings['title'];
 		$this->description = $this->settings['description'];
+        $this->barion_environment = BarionEnvironment::Prod;
         
-		if ( $this->settings['test_mode'] == 'test' ) {
+		if ( $this->settings['environment'] == 'test' ) {
 			$this->title .= ' [TEST MODE]';
 			$this->description .= '<br/><br/><u>Test Mode is <strong>ACTIVE</strong>, use following Credit Card details:-</u><br/>'."\n"
 								 .'Test Card Name: <strong><em>any name</em></strong><br/>'."\n"
@@ -27,7 +29,7 @@ class WC_Gateway_Barion extends WC_Payment_Gateway {
 								 .'Test Card CVV: <strong>823</strong><br/>'."\n"
 								 .'Test Card Expiry: <strong>Future date</strong>';	
 
-            $this->barion_base_address = 'https://test.barion.com';                                     
+            $this->barion_environment = BarionEnvironment::Test;                                   
 		}
 
         $this->poskey = $this->settings['poskey'];
@@ -76,7 +78,7 @@ class WC_Gateway_Barion extends WC_Payment_Gateway {
                 
         return array(
 			'result' => 'success', 
-			'redirect' => $request->get_redirect_url();
+			'redirect' => $request->get_redirect_url()
 		);
 	}
 
@@ -105,4 +107,4 @@ class WC_Gateway_Barion extends WC_Payment_Gateway {
         require_once('class-wc-gateway-barion-ipn-handler.php');
     }
 
-} //END-class
+}

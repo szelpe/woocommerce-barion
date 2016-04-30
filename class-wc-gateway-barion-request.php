@@ -11,7 +11,7 @@ class WC_Gateway_Barion_Request {
     
     public function get_redirect_url() {
         if(!$this->is_prepared)
-            throw new Exception('Should call `prepare_payment` first.');
+            throw new Exception('`prepare_payment` should have been called before `get_redirect_url`.');
         
         return 'https://example.com';
     }

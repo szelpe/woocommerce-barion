@@ -33,7 +33,7 @@ return array(
 		'type' 			=> 'text',
 		'description' 	=> __('Given to Merchant by Barion'),
 		'desc_tip' 		=> true
-	)
+	),
 	'payee' => array(
 		'title' 			=> __('Barion e-mail', 'woocommerce'),
 		'type' 			=> 'text',
@@ -49,13 +49,13 @@ return array(
 		'description' 	=> __('URL of success page', 'woocommerce'),
 		'desc_tip' 		=> true
     ),
-	'test_mode' => array(
-		'title' 			=> __('Mode', 'woocommerce'),
+	'environment' => array(
+		'title' 			=> __('Environment', 'woocommerce'),
 		'type' 			=> 'select',
-		'label' 			=> __('Barion Tranasction Mode.', 'woocommerce'),
-		'options' 		=> array('test'=>'Test Mode', 'secure'=>'Live Mode'),
+		'label' 			=> __('Barion Environment.', 'woocommerce'),
+		'options' 		=> array('test' => 'Test', 'live' => 'Live'),
 		'default' 		=> 'test',
-		'description' 	=> __('Mode of Barion activities'),
+		'description' 	=> __('Environment of Barion activities'),
 		'desc_tip' 		=> true
     )
 );
