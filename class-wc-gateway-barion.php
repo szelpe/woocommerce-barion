@@ -46,7 +46,6 @@ class WC_Gateway_Barion extends WC_Payment_Gateway {
 		$callback_handler = new WC_Gateway_Barion_IPN_Handler($this->barion_client);
 		
         add_action('woocommerce_update_options_payment_gateways_' . $this->id, array($this, 'process_admin_options'));
-        add_action('woocommerce_receipt_barion', array(&$this, 'receipt_page'));	
 	}
 	
 	function init_form_fields() {
@@ -58,10 +57,6 @@ class WC_Gateway_Barion extends WC_Payment_Gateway {
 		echo '<table class="form-table">';
 		$this->generate_settings_html();
 		echo '</table>';
-	}
-	
-	function receipt_page($order) {
-		echo '<p><strong>' . __('Thank you for your order.', 'woocommerce').'</strong></p>';
 	}
 
     function process_payment($order_id) {
@@ -83,26 +78,5 @@ class WC_Gateway_Barion extends WC_Payment_Gateway {
 			'result' => 'success', 
 			'redirect' => $request->get_redirect_url()
 		);
-	}
-
-	function barion_get_pages($title = false, $indent = true) {
-		$wp_pages = get_pages('sort_column=menu_order');
-		$page_list = array();
-		if ($title) $page_list[] = $title;
-		foreach ($wp_pages as $page) {
-			$prefix = '';
-			// show indented child pages?
-			if ($indent) {
-            	$has_parent = $page->post_parent;
-            	while($has_parent) {
-                	$prefix .=  ' - ';
-                	$next_page = get_post($has_parent);
-                	$has_parent = $next_page->post_parent;
-            	}
-        	}
-            
-        	$page_list[$page->ID] = $prefix . $page->post_title;
-    	}
-    	return $page_list;
 	}
 }

@@ -48,7 +48,7 @@ class WC_Gateway_Barion_Request {
             $itemModel->Description = $itemModel->Name;
             $itemModel->Unit = 'piece';
         
-			if ( 'fee' === $item['type'] ) {
+			if ('fee' === $item['type']) {
 				$item_line_total  = $this->number_format( $item['line_total'], $order );
                 
                 $itemModel->Quantity = 1;
@@ -73,9 +73,10 @@ class WC_Gateway_Barion_Request {
 		}
         
 		// Check for mismatched totals.
-		if ( $this->number_format( $calculated_total + $order->get_total_tax() + $this->round( $order->get_total_shipping(), $order ) - $this->round( $order->get_total_discount(), $order ), $order ) != $this->number_format( $order->get_total(), $order ) ) {
+		if ($this->number_format( $calculated_total + $order->get_total_tax() + $this->round( $order->get_total_shipping(), $order ) - $this->round( $order->get_total_discount(), $order ), $order ) != $this->number_format( $order->get_total(), $order )) {
 			return false;
 		}
+		
 		return true;
 	}
     

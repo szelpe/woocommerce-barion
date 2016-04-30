@@ -42,13 +42,6 @@ return array(
         'default'       => get_option( 'admin_email' ),
 		'placeholder'   => 'you@youremail.com'
 	),
-	'redirect_page' => array(
-		'title' 			=> __('Return Page', 'woocommerce'),
-		'type' 			=> 'select',
-		'options' 		=> $this->barion_get_pages('Select Page'),
-		'description' 	=> __('URL of success page', 'woocommerce'),
-		'desc_tip' 		=> true
-    ),
 	'environment' => array(
 		'title' 			=> __('Environment', 'woocommerce'),
 		'type' 			=> 'select',
