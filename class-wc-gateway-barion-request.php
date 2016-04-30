@@ -27,7 +27,7 @@ class WC_Gateway_Barion_Request {
         $paymentRequest->PayerHint = $order->billing_email;
         $paymentRequest->Locale = $this->get_barion_locale();
         $paymentRequest->OrderNumber = $order->get_order_number();
-        $paymentRequest->ShippingAddress = "";
+        $paymentRequest->ShippingAddress = $order->get_formatted_shipping_address();
         $paymentRequest->RedirectUrl = $this->gateway->get_return_url($order);
         $paymentRequest->CallbackUrl = WC()->api_request_url('WC_Gateway_Barion');
         $paymentRequest->AddTransaction($transaction);
@@ -47,37 +47,20 @@ class WC_Gateway_Barion_Request {
             $itemModel->Name = $item['name'];
             $itemModel->Description = $itemModel->Name;
             $itemModel->Unit = __('piece');
+            $itemModel->Quantity = empty($item['qty']) ? 1 : $item['qty'];
         
+            $itemModel->UnitPrice = $order->get_item_total($item, true);
+            $itemModel->ItemTotal = $order->get_line_total($item, true);
+
 			if ('fee' === $item['type']) {
-				$item_line_total  = $this->number_format( $item['line_total'], $order );
-                
-                $itemModel->Quantity = 1;
-                $itemModel->UnitPrice = $item_line_total;
-                $itemModel->ItemTotal = $item_line_total;
                 $itemModel->SKU = '';
-                
-				$calculated_total += $item_line_total;
 			} else {
-				$product          = $order->get_product_from_item( $item );
-				$item_line_total  = $this->number_format( $order->get_item_subtotal( $item, false ), $order );
-                
-                $itemModel->Quantity = $item['qty'];
-                $itemModel->UnitPrice = $item_line_total;
-                $itemModel->ItemTotal = $item_line_total * $item['qty'];
+				$product          = $order->get_product_from_item($item);
                 $itemModel->SKU = $product->get_sku();
-                
-				$calculated_total += $item_line_total * $item['qty'];
 			}
             
             $transaction->AddItem($itemModel);
 		}
-        
-		// Check for mismatched totals.
-		if ($this->number_format( $calculated_total + $order->get_total_tax() + $this->round( $order->get_total_shipping(), $order ) - $this->round( $order->get_total_discount(), $order ), $order ) != $this->number_format( $order->get_total(), $order )) {
-			return false;
-		}
-		
-		return true;
 	}
 	
 	function get_barion_locale() {

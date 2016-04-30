@@ -67,7 +67,7 @@ class WC_Gateway_Barion extends WC_Payment_Gateway {
         $request = new WC_Gateway_Barion_Request($this->barion_client, $this);
         
         $request->prepare_payment($order);
-        
+		
         if(!$request->is_prepared) {
             return array(
                 'result' => 'failure'
