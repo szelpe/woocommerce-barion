@@ -15,6 +15,13 @@ class WC_Gateway_Barion_IPN_Handler {
             return;
         
         $payment_details = $this->barion_client->GetPaymentState($_GET['paymentId']);
+        
+        if(!empty($payment_details->Errors)) {
+            WC_Gateway_Barion::log('GetPaymentState returned errors. Payment details: ' + json_encode($payment_details));
+            
+            return;
+        }
+        
         $order = new WC_Order($payment_details->PaymentRequestId);
         
         if($payment_details->Status == PaymentStatus::Succeeded) {
