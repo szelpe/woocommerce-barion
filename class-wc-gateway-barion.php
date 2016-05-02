@@ -5,7 +5,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 require_once 'barion-library/library/BarionClient.php';
-require_once 'class-wc-gateway-barion-ipn-handler.php';
+require_once 'includes/class-wc-gateway-barion-ipn-handler.php';
 
 class WC_Gateway_Barion extends WC_Payment_Gateway {
 
@@ -68,7 +68,7 @@ class WC_Gateway_Barion extends WC_Payment_Gateway {
 
     
     function init_form_fields() {
-        $this->form_fields = include('settings-barion.php');
+        $this->form_fields = include('includes/settings-barion.php');
     }
     
     public function admin_options() {
@@ -81,7 +81,7 @@ class WC_Gateway_Barion extends WC_Payment_Gateway {
     function process_payment($order_id) {
         $order = new WC_Order($order_id);
         
-        require_once('class-wc-gateway-barion-request.php');
+        require_once('includes/class-wc-gateway-barion-request.php');
         
         $request = new WC_Gateway_Barion_Request($this->barion_client, $this);
         
