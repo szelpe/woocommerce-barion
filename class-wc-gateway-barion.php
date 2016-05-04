@@ -92,10 +92,14 @@ class WC_Gateway_Barion extends WC_Payment_Gateway {
                 'result' => 'failure'
             );
         }
-                
+        
+        $redirectUrl = $request->get_redirect_url();
+        
+        $order->add_order_note('User redirected to the Barion payment page. redirectUrl: "' . $redirectUrl . '"');
+        
         return array(
             'result' => 'success', 
-            'redirect' => $request->get_redirect_url()
+            'redirect' => $redirectUrl
         );
     }
 }

@@ -35,10 +35,11 @@ class WC_Gateway_Barion_Request {
         $this->payment = $this->barion_client->PreparePayment($paymentRequest);
         
         if($this->payment->RequestSuccessful) {
+            update_post_meta($order->id, 'paymentId', $this->payment->PaymentId);
             $this->is_prepared = true;
         }
         else {
-            WC_Gateway_Barion::log('PreparePayment failed. Errors array: ' + json_encode($this->payment->Errors));
+            WC_Gateway_Barion::log('PreparePayment failed. Errors array: ' . json_encode($this->payment->Errors));
         }
     }
     
@@ -57,7 +58,7 @@ class WC_Gateway_Barion_Request {
 
             if('shipping' === $item['type']) {
                 $itemModel->UnitPrice = $order->get_total_shipping() + $order->get_shipping_tax();
-                $itemModel->ItemTotal = $order->get_total_shipping() + $order->get_shipping_tax();
+                $itemModel->ItemTotal = $itemModel->UnitPrice;
                 $itemModel->SKU = '';
             }
             else if ('fee' === $item['type']) {
