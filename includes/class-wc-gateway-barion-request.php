@@ -14,7 +14,7 @@ class WC_Gateway_Barion_Request {
         $transaction = new PaymentTransactionModel();
         $transaction->POSTransactionId = $order->id;
         $transaction->Payee = $this->gateway->payee;
-        $transaction->Total = $order->get_total();
+        $transaction->Total = $this->round($order->get_total(), $order->get_order_currency());
         $transaction->Comment = "";
         
         $this->prepare_items($order, $transaction);
@@ -63,7 +63,7 @@ class WC_Gateway_Barion_Request {
             }
             else if ('fee' === $item['type']) {
                 $itemModel->SKU = '';
-            } 
+            }
             else {
                 $product          = $order->get_product_from_item($item);
                 $itemModel->SKU = $product->get_sku();
@@ -89,42 +89,30 @@ class WC_Gateway_Barion_Request {
     }
     
     /**
-     * Check if currency has decimals.
-     * @param  string $currency
-     * @return bool
-     */
-    protected function currency_has_decimals( $currency ) {
-        if ( in_array( $currency, array( 'HUF', 'JPY', 'TWD' ) ) ) {
-            return false;
-        }
-        return true;
-    }
-    
-    /**
      * Round prices.
      * @param  double $price
      * @param  WC_Order $order
      * @return double
      */
-    protected function round( $price, $order ) {
+    protected function round($price, $currency) {
         $precision = 2;
-        if ( ! $this->currency_has_decimals( $order->get_order_currency() ) ) {
+        if (!$this->currency_has_decimals($currency)) {
             $precision = 0;
         }
-        return round( $price, $precision );
+        
+        return round($price, $precision);
     }
     
     /**
-     * Format prices.
-     * @param  float|int $price
-     * @param  WC_Order $order
-     * @return string
+     * Check if currency has decimals.
+     * @param  string $currency
+     * @return bool
      */
-    protected function number_format( $price, $order ) {
-        $decimals = 2;
-        if ( ! $this->currency_has_decimals( $order->get_order_currency() ) ) {
-            $decimals = 0;
+    protected function currency_has_decimals($currency) {
+        if(in_array($currency, array('HUF'))) {
+            return false;
         }
-        return number_format( $price, $decimals, '.', '' );
+        
+        return true;
     }
 }
