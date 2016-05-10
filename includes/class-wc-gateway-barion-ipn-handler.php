@@ -31,26 +31,26 @@ class WC_Gateway_Barion_IPN_Handler {
             return;
         }
         
-        $order->add_order_note('Barion callback received with paymentId: "' . $_GET['paymentId'] . '"');
+        $order->add_order_note(__('Barion callback received.', 'woocommerce') . ' paymentId: "' . $_GET['paymentId'] . '"');
         
         if($payment_details->Status == PaymentStatus::Succeeded) {
             if($order->has_status('completed')) {
                 return;
             }
             
-            $order->add_order_note('Barion payment succeeded');
+            $order->add_order_note(__('Payment succeeded via Barion.', 'woocommerce'));
             $order->payment_complete();
             
             return;
         }
         
         if($payment_details->Status == PaymentStatus::Canceled) {
-            $order->update_status('failed', __('Payment canceled via Barion IPN.', 'woocommerce'));
+            $order->update_status('failed', __('Payment canceled via Barion.', 'woocommerce'));
             
             return;
         }
         
-        $order->update_status('failed', __('Payment failed via Barion IPN.', 'woocommerce'));
+        $order->update_status('failed', __('Payment failed via Barion.', 'woocommerce'));
         WC_Gateway_Barion::log('Payment failed. Payment details: ' . json_encode($payment_details));
     }
 }

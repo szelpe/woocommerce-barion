@@ -35,7 +35,7 @@ class WC_Gateway_Barion_Request {
         $this->payment = $this->barion_client->PreparePayment($paymentRequest);
         
         if($this->payment->RequestSuccessful) {
-            update_post_meta($order->id, 'paymentId', $this->payment->PaymentId);
+            update_post_meta($order->id, 'Barion paymentId', $this->payment->PaymentId);
             $this->is_prepared = true;
         }
         else {

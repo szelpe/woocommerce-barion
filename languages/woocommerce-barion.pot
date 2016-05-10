@@ -1,0 +1,126 @@
+# Copyright (C) 2016 Peter Szel <szelpeter@szelpeter.hu>
+# This file is distributed under the GNU General Public License v3.0.
+msgid ""
+msgstr ""
+"Project-Id-Version: Barion Payment Gateway for WooCommerce 0.5.0\n"
+"Report-Msgid-Bugs-To: https://github.com/szelpe/woocommerce-barion/issues\n"
+"POT-Creation-Date: 2016-05-10 22:40:05+00:00\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"PO-Revision-Date: 2016-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
+"X-Generator: grunt-wp-i18n 0.5.4\n"
+
+#: class-wc-gateway-barion.php:17
+msgid "Proceed to Barion"
+msgstr ""
+
+#: class-wc-gateway-barion.php:75 includes/settings-barion.php:20
+msgid "Barion"
+msgstr ""
+
+#: class-wc-gateway-barion.php:98
+msgid "User redirected to the Barion payment page."
+msgstr ""
+
+#: includes/class-wc-gateway-barion-ipn-handler.php:34
+msgid "Barion callback received."
+msgstr ""
+
+#: includes/class-wc-gateway-barion-ipn-handler.php:41
+msgid "Payment succeeded via Barion."
+msgstr ""
+
+#: includes/class-wc-gateway-barion-ipn-handler.php:48
+msgid "Payment canceled via Barion."
+msgstr ""
+
+#: includes/class-wc-gateway-barion-ipn-handler.php:53
+msgid "Payment failed via Barion."
+msgstr ""
+
+#: includes/class-wc-gateway-barion-request.php:53
+msgid "piece"
+msgstr ""
+
+#: includes/settings-barion.php:12
+msgid "Enable/Disable"
+msgstr ""
+
+#: includes/settings-barion.php:14
+msgid "Enable Barion"
+msgstr ""
+
+#: includes/settings-barion.php:18
+msgid "Title"
+msgstr ""
+
+#: includes/settings-barion.php:21
+msgid "This controls the title which the user sees during checkout."
+msgstr ""
+
+#: includes/settings-barion.php:25
+msgid "Description"
+msgstr ""
+
+#: includes/settings-barion.php:27
+msgid ""
+"Pay via Barion; you can pay with your credit card if you don't have a "
+"Barion account."
+msgstr ""
+
+#: includes/settings-barion.php:28
+msgid "This controls the description which the user sees during checkout."
+msgstr ""
+
+#: includes/settings-barion.php:32
+msgid "Secret key (POSKey)"
+msgstr ""
+
+#: includes/settings-barion.php:34
+msgid "The secret key of the online store registered in Barion (called POSKey)"
+msgstr ""
+
+#: includes/settings-barion.php:38
+msgid "Payee (Barion Email address)"
+msgstr ""
+
+#: includes/settings-barion.php:40
+msgid "Your Barion email address"
+msgstr ""
+
+#: includes/settings-barion.php:46
+msgid "Environment"
+msgstr ""
+
+#: includes/settings-barion.php:48
+msgid "Barion Environment"
+msgstr ""
+
+#: includes/settings-barion.php:51
+msgid ""
+"The Barion environment to connect to. This can be the test system, or the "
+"production environment."
+msgstr ""
+
+#. Plugin Name of the plugin/theme
+msgid "Barion Payment Gateway for WooCommerce"
+msgstr ""
+
+#. Plugin URI of the plugin/theme
+msgid "http://github.com/szelpe/woocommerce-barion"
+msgstr ""
+
+#. Description of the plugin/theme
+msgid "Adds the ability to WooCommerce to pay via Barion"
+msgstr ""
+
+#. Author of the plugin/theme
+msgid "Peter Szel <szelpeter@szelpeter.hu>"
+msgstr ""
+
+#. Author URI of the plugin/theme
+msgid "http://szelpeter.hu"
+msgstr ""

@@ -95,7 +95,7 @@ class WC_Gateway_Barion extends WC_Payment_Gateway {
         
         $redirectUrl = $request->get_redirect_url();
         
-        $order->add_order_note('User redirected to the Barion payment page. redirectUrl: "' . $redirectUrl . '"');
+        $order->add_order_note(__('User redirected to the Barion payment page.', 'woocommerce') . ' redirectUrl: "' . $redirectUrl . '"');
         
         return array(
             'result' => 'success', 
