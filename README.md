@@ -13,7 +13,8 @@ This plugin allows your customers to pay via [Barion Smart Gateway](https://www.
 
 ## Installation
 
-1. Upload 'woocommerce-barion' to the '/wp-content/plugins/' directory
+1. Navigate to the [latest release](https://github.com/szelpe/woocommerce-barion/releases/latest) and download `woocommerce-barion.zip`
+1. Extract and upload 'woocommerce-barion' to the '/wp-content/plugins/' directory
 1. Activate the plugin through the 'Plugins' menu in WordPress
 1. Click on the menu item "WooCommerce" then select the "Checkout" tab
 1. Click on new submenu item named "Barion"
