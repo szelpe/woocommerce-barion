@@ -22,7 +22,7 @@ This plugin allows your customers to pay via [Barion Smart Gateway](https://www.
 1. Should you want to use the test envorinment, select it from the Barion Environment dropdown. You'll need to create a shop on the [Barion test page](https://test.barion.com).
 1. Enable the payment method if you're ready to use Barion
 
-![](checkout-settings.png)
+![](assets/screenshot-1.png)
 
 ## Feedback
 
