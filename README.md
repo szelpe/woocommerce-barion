@@ -7,7 +7,7 @@ This plugin allows your customers to pay via [Barion Smart Gateway](https://www.
 - Adds Barion as a payment option to the WooCommerce checkout page
 - Redirects the user to the Barion payment page after checkout
 - Handles the callback from Barion after payment
-  - sets the order status to "Succeeded" or "Failed" respectively
+  - sets the order status to "processing", "completed" or "failed" respectively
 
 **Refunds are not supported yet.**
 
