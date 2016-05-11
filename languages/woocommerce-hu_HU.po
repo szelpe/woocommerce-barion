@@ -4,48 +4,48 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Barion Payment Gateway for WooCommerce 0.5.0\n"
 "Report-Msgid-Bugs-To: https://github.com/szelpe/woocommerce-barion/issues\n"
-"POT-Creation-Date: 2016-05-11 00:24+0200\n"
+"POT-Creation-Date: 2016-05-11 19:24+0200\n"
+"PO-Revision-Date: 2016-05-11 19:25+0200\n"
+"Last-Translator: \n"
+"Language-Team: EMAIL@ADDRESS\n"
+"Language: hu_HU\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"PO-Revision-Date: 2016-05-11 00:25+0200\n"
-"Language-Team: EMAIL@ADDRESS\n"
 "X-Generator: Poedit 1.8.7\n"
-"Last-Translator: \n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"Language: hu_HU\n"
 
 #: class-wc-gateway-barion.php:17
 msgid "Proceed to Barion"
-msgstr ""
+msgstr "Fizetés Barionnal"
 
 #: class-wc-gateway-barion.php:75 includes/settings-barion.php:20
 msgid "Barion"
-msgstr ""
+msgstr "Barion"
 
 #: class-wc-gateway-barion.php:98
 msgid "User redirected to the Barion payment page."
-msgstr ""
+msgstr "A felhasználó át lesz irányítva a Barion fizetési oldalára."
 
 #: includes/class-wc-gateway-barion-ipn-handler.php:34
 msgid "Barion callback received."
-msgstr ""
+msgstr "Barion visszahívás."
 
 #: includes/class-wc-gateway-barion-ipn-handler.php:41
 msgid "Payment succeeded via Barion."
-msgstr ""
+msgstr "Sikeres fizetés a Barionon keresztül."
 
 #: includes/class-wc-gateway-barion-ipn-handler.php:48
 msgid "Payment canceled via Barion."
-msgstr ""
+msgstr "Visszamondott vásárlás a Barion oldalán."
 
 #: includes/class-wc-gateway-barion-ipn-handler.php:53
 msgid "Payment failed via Barion."
-msgstr ""
+msgstr "Meghiúsult vásárlás a Barion oldalán."
 
 #: includes/class-wc-gateway-barion-request.php:53
 msgid "piece"
-msgstr ""
+msgstr "darab"
 
 #: includes/settings-barion.php:12
 msgid "Enable/Disable"
@@ -72,6 +72,7 @@ msgid ""
 "Pay via Barion; you can pay with your credit card if you don't have a Barion "
 "account."
 msgstr ""
+"Fizess Barionon keresztül. Fizess bankkártyával, nem kötelező regisztrálni!"
 
 #: includes/settings-barion.php:28
 msgid "This controls the description which the user sees during checkout."
@@ -79,33 +80,31 @@ msgstr ""
 
 #: includes/settings-barion.php:32
 msgid "Secret key (POSKey)"
-msgstr ""
+msgstr "Titkos Kulcs (POSKey)"
 
 #: includes/settings-barion.php:34
 msgid "The secret key of the online store registered in Barion (called POSKey)"
-msgstr ""
+msgstr "A Barionon regisztrált bolt titkos kulcsa (POSKey)"
 
 #: includes/settings-barion.php:38
-msgid "Payee (Barion Email address)"
+msgid "Barion Email"
 msgstr ""
 
 #: includes/settings-barion.php:40
 msgid "Your Barion email address"
-msgstr ""
+msgstr "Barionon regisztrált e-mail címed."
 
 #: includes/settings-barion.php:46
-msgid "Environment"
-msgstr ""
-
-#: includes/settings-barion.php:48
 msgid "Barion Environment"
-msgstr ""
+msgstr "Barion Környezet"
 
-#: includes/settings-barion.php:51
+#: includes/settings-barion.php:50
 msgid ""
-"The Barion environment to connect to. This can be the test system, or the "
-"production environment."
+"You can select the Test environment to test payments. You'll need to create "
+"a shop on the <a href=\"%s\" target=\"_blank\">Barion test site</a>."
 msgstr ""
+"A Test környezet választásával tesztelheted a fizetéseket. Ehhez boltot kell "
+"nyitnod a <a href=\"%s\" target=\"_blank\">Barion teszt oldalon</a>."
 
 #. Plugin Name of the plugin/theme
 msgid "Barion Payment Gateway for WooCommerce"
