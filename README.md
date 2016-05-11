@@ -14,12 +14,13 @@ This plugin allows your customers to pay via [Barion Smart Gateway](https://www.
 ## Installation
 
 1. Navigate to the [latest release](https://github.com/szelpe/woocommerce-barion/releases/latest) and download `woocommerce-barion.zip`
-1. Extract and upload 'woocommerce-barion' to the '/wp-content/plugins/' directory
-1. Activate the plugin through the 'Plugins' menu in WordPress
+1. Extract and upload "woocommerce-barion" to the "/wp-content/plugins/" directory
+1. Activate the plugin through the "Plugins" menu in WordPress
 1. Click on the menu item "WooCommerce" then select the "Checkout" tab
-1. Click on new submenu item named "Barion"
-1. On this page you should set the POSKey and the Payee e-mail address 
-1. Select the Barion environment and enable the payment method if you're ready to use Barion
+1. Click on the new submenu item named "Barion"
+1. On this page you should set the POSKey of the shop and your Barion email address 
+1. Should you want to use the test envorinment, select it from the Barion Environment dropdown. You'll need to create a shop on the [Barion test page](https://test.barion.com).
+1. Enable the payment method if you're ready to use Barion
 
 ![](checkout-settings.png)
 

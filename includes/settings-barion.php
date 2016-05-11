@@ -35,7 +35,7 @@ return array(
         'desc_tip'        => true
     ),
     'payee' => array(
-        'title'           => __('Payee (Barion Email address)', 'woocommerce'),
+        'title'           => __('Barion Email', 'woocommerce'),
         'type'            => 'text',
         'description'     => __('Your Barion email address'),
         'desc_tip'        => true,
@@ -43,12 +43,11 @@ return array(
         'placeholder'     => 'you@youremail.com'
     ),
     'environment' => array(
-        'title'           => __('Environment', 'woocommerce'),
+        'title'           => __('Barion Environment', 'woocommerce'),
         'type'            => 'select',
-        'label'           => __('Barion Environment', 'woocommerce'),
-        'options'         => array('test' => 'Test', 'live' => 'Live'),
-        'default'         => 'test',
-        'description'     => __('The Barion environment to connect to. This can be the test system, or the production environment.'),
-        'desc_tip'        => true
+        'options'         => array('test' => 'Test (https://test.barion.com/)', 'live' => 'Live'),
+        'default'         => 'live',
+        'description'     => sprintf(__('You can select the Test environment to test payments. You\'ll need to create a shop on the <a href="%s" target="_blank">Barion test site</a>.', 'woocommerce'), 'https://test.barion.com/'),
+        'desc_tip'        => false
     )
 );

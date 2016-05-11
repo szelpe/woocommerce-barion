@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Barion Payment Gateway for WooCommerce 0.5.0\n"
 "Report-Msgid-Bugs-To: https://github.com/szelpe/woocommerce-barion/issues\n"
-"POT-Creation-Date: 2016-05-10 22:40:05+00:00\n"
+"POT-Creation-Date: 2016-05-11 17:20:57+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -84,7 +84,7 @@ msgid "The secret key of the online store registered in Barion (called POSKey)"
 msgstr ""
 
 #: includes/settings-barion.php:38
-msgid "Payee (Barion Email address)"
+msgid "Barion Email"
 msgstr ""
 
 #: includes/settings-barion.php:40
@@ -92,17 +92,13 @@ msgid "Your Barion email address"
 msgstr ""
 
 #: includes/settings-barion.php:46
-msgid "Environment"
-msgstr ""
-
-#: includes/settings-barion.php:48
 msgid "Barion Environment"
 msgstr ""
 
-#: includes/settings-barion.php:51
+#: includes/settings-barion.php:50
 msgid ""
-"The Barion environment to connect to. This can be the test system, or the "
-"production environment."
+"You can select the Test environment to test payments. You'll need to create "
+"a shop on the <a href=\"%s\" target=\"_blank\">Barion test site</a>."
 msgstr ""
 
 #. Plugin Name of the plugin/theme
