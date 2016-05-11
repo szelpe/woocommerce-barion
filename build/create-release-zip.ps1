@@ -16,7 +16,7 @@ rm Gruntfile.js
 
 cd ..
 
-$env:Path += $env:Path + ";C:\Program Files\7-Zip"
+$env:Path = $env:Path + ";C:\Program Files\7-Zip"
 7z a woocommerce-barion.zip woocommerce-barion
 
 rm -Force -Recurse woocommerce-barion
