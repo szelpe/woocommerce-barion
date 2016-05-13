@@ -34,6 +34,9 @@ You're welcome to contribute to this open source plugin by creating pull-request
 
 [Please report bugs as Github issues.](https://github.com/szelpe/woocommerce-barion/issues)
 
+Barion and the Barion logo are trademarks or registered trademarks of Sense/Net Inc.
+WooCommerce and the WooCommerce logo are trademarks or registered trademarks of Bubblestorm Management (Proprietary) Limited trading as WooThemes.
+
 == Installation ==
 
 1. Navigate to the [latest release](https://github.com/szelpe/woocommerce-barion/releases/latest) and download `woocommerce-barion.zip`
