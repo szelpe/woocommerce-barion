@@ -34,3 +34,6 @@ $encoding = New-Object System.Text.UTF8Encoding($False)
 git add index.php
 git commit -m "Version number increased: $newVersion"
 git push
+
+# Returning the new version as the result of the script
+new-object psobject -Property @{ version = $newVersion }
