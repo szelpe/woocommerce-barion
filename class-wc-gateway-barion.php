@@ -10,11 +10,12 @@ require_once 'includes/class-wc-gateway-barion-ipn-handler.php';
 class WC_Gateway_Barion extends WC_Payment_Gateway {
 
     public function __construct() {
-        $this->id                     = 'barion';
-        $this->method_title         = 'Barion';
-        $this->method_description    = 'Barion Payment Gateway';
-        $this->has_fields             = false;
+        $this->id                 = 'barion';
+        $this->method_title       = 'Barion';
+        $this->method_description = 'Barion Payment Gateway';
+        $this->has_fields         = false;
         $this->order_button_text  = __( 'Proceed to Barion', 'woocommerce' );
+        $this->icon               = $this->plugin_url() . '/assets/barion-card-payment-banner-2016-300x35px.png';
         $this->supports           = array(
             'products'
         );
@@ -47,6 +48,10 @@ class WC_Gateway_Barion extends WC_Payment_Gateway {
         
         add_action('woocommerce_update_options_payment_gateways_' . $this->id, array($this, 'process_admin_options'));
     }
+    
+    public function plugin_url() {
+		return untrailingslashit(plugins_url('/', __FILE__));
+	}
     
     /** @var boolean */
     static $debug_mode = false;
