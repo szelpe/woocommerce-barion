@@ -46,7 +46,7 @@ class WC_Gateway_Barion_Request {
     protected function prepare_items($order, $transaction) {
         $calculated_total = 0;
         
-        foreach ( $order->get_items( array( 'line_item', 'fee', 'shipping' ) ) as $item ) {
+        foreach ( $order->get_items( array( 'line_item', 'fee', 'shipping' ) ) as $item_id => $item ) {
             $itemModel = new ItemModel();
             $itemModel->Name = $item['name'];
             $itemModel->Description = $itemModel->Name;
@@ -57,8 +57,13 @@ class WC_Gateway_Barion_Request {
             $itemModel->ItemTotal = $order->get_line_total($item, true);
 
             if('shipping' === $item['type']) {
-                $itemModel->UnitPrice = $order->get_total_shipping() + $order->get_shipping_tax();
-                $itemModel->ItemTotal = $itemModel->UnitPrice;
+                $shipping_cost = wc_get_order_item_meta($item_id, 'cost');
+                $shipping_taxes = wc_get_order_item_meta($item_id, 'taxes');
+                if(!empty($shipping_taxes)) {
+                    $shipping_cost += array_sum($shipping_taxes);
+                }
+                $itemModel->UnitPrice = $shipping_cost;
+                $itemModel->ItemTotal = $shipping_cost;
                 $itemModel->SKU = '';
             }
             else if ('fee' === $item['type']) {
