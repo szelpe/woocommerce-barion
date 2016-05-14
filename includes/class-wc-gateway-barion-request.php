@@ -46,17 +46,31 @@ class WC_Gateway_Barion_Request {
     protected function prepare_items($order, $transaction) {
         $calculated_total = 0;
         
-        foreach ( $order->get_items( array( 'line_item', 'fee', 'shipping' ) ) as $item_id => $item ) {
+        foreach ( $order->get_items( array( 'line_item', 'fee', 'shipping', 'coupon' ) ) as $item_id => $item ) {
             $itemModel = new ItemModel();
             $itemModel->Name = $item['name'];
             $itemModel->Description = $itemModel->Name;
             $itemModel->Unit = __('piece', 'woocommerce');
             $itemModel->Quantity = empty($item['qty']) ? 1 : $item['qty'];
         
-            $itemModel->UnitPrice = $order->get_item_total($item, true);
-            $itemModel->ItemTotal = $order->get_line_total($item, true);
+            $itemModel->UnitPrice = $order->get_item_subtotal($item, true);
+            $itemModel->ItemTotal = $order->get_line_subtotal($item, true);
 
-            if('shipping' === $item['type']) {
+            if('coupon' === $item['type']) {
+                $itemModel->Name = __('Coupon', 'woocommerce') . ' (' . $item['name'] . ')';
+                
+                $discount_amount = wc_get_order_item_meta($item_id, 'discount_amount');
+                $discount_amount_tax = wc_get_order_item_meta($item_id, 'discount_amount_tax');
+                
+                if(!empty($discount_amount_tax)) {
+                    $discount_amount += $discount_amount_tax;
+                }
+                
+                $itemModel->UnitPrice = -1 * $discount_amount;
+                $itemModel->ItemTotal = -1 * $discount_amount;
+                $itemModel->SKU = '';
+            }
+            elseif('shipping' === $item['type']) {
                 $shipping_cost = wc_get_order_item_meta($item_id, 'cost');
                 $shipping_taxes = wc_get_order_item_meta($item_id, 'taxes');
                 if(!empty($shipping_taxes)) {
@@ -66,7 +80,7 @@ class WC_Gateway_Barion_Request {
                 $itemModel->ItemTotal = $shipping_cost;
                 $itemModel->SKU = '';
             }
-            else if ('fee' === $item['type']) {
+            elseif ('fee' === $item['type']) {
                 $itemModel->SKU = '';
             }
             else {
