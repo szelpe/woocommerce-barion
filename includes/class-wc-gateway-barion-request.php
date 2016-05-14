@@ -84,7 +84,12 @@ class WC_Gateway_Barion_Request {
                 $itemModel->SKU = '';
             }
             else {
-                $product          = $order->get_product_from_item($item);
+                $product = $order->get_product_from_item($item);
+                
+                if(!empty($product->variation_id)) {
+                    $itemModel->Name .= ' (' . $product->get_formatted_variation_attributes(true) . ')';
+                }
+                
                 $itemModel->SKU = $product->get_sku();
             }
             
