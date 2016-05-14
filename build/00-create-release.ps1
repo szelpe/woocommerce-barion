@@ -1,5 +1,9 @@
-$result = .\version-bump.ps1
-.\create-release-zip.ps1 
-.\create-github-release.ps1 $result.version
-.\wordpress.org-helper.ps1 $result.version
-.\clean-up.ps1
+param (
+    [string]$type
+)
+
+$result = & $PSScriptRoot"\version-bump.ps1" $type
+& $PSScriptRoot"\create-release-zip.ps1" 
+& $PSScriptRoot"\create-github-release.ps1" $result.version
+& $PSScriptRoot"\wordpress.org-helper.ps1" $result.version
+& $PSScriptRoot"\clean-up.ps1"
