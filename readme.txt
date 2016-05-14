@@ -51,3 +51,4 @@ WooCommerce and the WooCommerce logo are trademarks or registered trademarks of 
 == Screenshots ==
 
 1. Settings on the WooCommerce Settings > Checkout page
+2. Barion as a payment method
