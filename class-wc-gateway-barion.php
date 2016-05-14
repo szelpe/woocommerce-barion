@@ -11,8 +11,8 @@ class WC_Gateway_Barion extends WC_Payment_Gateway {
 
     public function __construct() {
         $this->id                 = 'barion';
-        $this->method_title       = 'Barion';
-        $this->method_description = 'Barion Payment Gateway';
+        $this->method_title       = __('Barion', 'woocommerce');
+        $this->method_description = sprintf( __( 'Barion payment gateway sends customers to Barion to enter their payment information. Barion callback requires cURL support to update order statuses after payment. Check the %ssystem status%s page for more details.', 'woocommerce' ), '<a href="' . admin_url( 'admin.php?page=wc-status' ) . '">', '</a>' );
         $this->has_fields         = false;
         $this->order_button_text  = __( 'Proceed to Barion', 'woocommerce' );
         $this->icon               = $this->plugin_url() . '/assets/barion-card-payment-banner-2016-300x35px.png';
@@ -70,17 +70,9 @@ class WC_Gateway_Barion extends WC_Payment_Gateway {
         
 		self::$log->add('barion', $message);
 	}
-
     
     function init_form_fields() {
         $this->form_fields = include('includes/settings-barion.php');
-    }
-    
-    public function admin_options() {
-        echo '<h3>'.__('Barion', 'woocommerce').'</h3>';
-        echo '<table class="form-table">';
-        $this->generate_settings_html();
-        echo '</table>';
     }
 
     function process_payment($order_id) {

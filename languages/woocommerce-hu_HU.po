@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Barion Payment Gateway for WooCommerce 0.5.0\n"
 "Report-Msgid-Bugs-To: https://github.com/szelpe/woocommerce-barion/issues\n"
-"POT-Creation-Date: 2016-05-11 19:24+0200\n"
-"PO-Revision-Date: 2016-05-11 19:25+0200\n"
+"POT-Creation-Date: 2016-05-14 23:40+0200\n"
+"PO-Revision-Date: 2016-05-14 23:44+0200\n"
 "Last-Translator: \n"
 "Language-Team: EMAIL@ADDRESS\n"
 "Language: hu_HU\n"
@@ -15,15 +15,26 @@ msgstr ""
 "X-Generator: Poedit 1.8.7\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
+#: class-wc-gateway-barion.php:14 includes/settings-barion.php:20
+msgid "Barion"
+msgstr "Barion"
+
+#: class-wc-gateway-barion.php:15
+msgid ""
+"Barion payment gateway sends customers to Barion to enter their payment "
+"information. Barion callback requires cURL support to update order statuses "
+"after payment. Check the %ssystem status%s page for more details."
+msgstr ""
+"A Barion payment gateway átküldi a vásárlókat a Barion oldalára a fizetési "
+"adataik megadásához. Ahhoz, hogy fizetés után a Barion visszahívás "
+"frissíteni tudja a rendelések állapotát, cURL támogatás szükséges. További "
+"információkért tekintsd meg a %srendszerállapot%s oldalt."
+
 #: class-wc-gateway-barion.php:17
 msgid "Proceed to Barion"
 msgstr "Fizetés Barionnal"
 
-#: class-wc-gateway-barion.php:75 includes/settings-barion.php:20
-msgid "Barion"
-msgstr "Barion"
-
-#: class-wc-gateway-barion.php:98
+#: class-wc-gateway-barion.php:95
 msgid "User redirected to the Barion payment page."
 msgstr "A felhasználó át lesz irányítva a Barion fizetési oldalára."
 
@@ -46,6 +57,10 @@ msgstr "Meghiúsult vásárlás a Barion oldalán."
 #: includes/class-wc-gateway-barion-request.php:53
 msgid "piece"
 msgstr "darab"
+
+#: includes/class-wc-gateway-barion-request.php:60
+msgid "Coupon"
+msgstr ""
 
 #: includes/settings-barion.php:12
 msgid "Enable/Disable"
