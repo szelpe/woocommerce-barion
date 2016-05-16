@@ -52,3 +52,36 @@ WooCommerce and the WooCommerce logo are trademarks or registered trademarks of 
 
 1. Settings on the WooCommerce Settings > Checkout page
 2. Barion as a payment method
+
+== Changelog ==
+
+= 0.8.0 =
+
+- Disabling the gateway in case of unsupported currency selected.
+- Sending variation attributes to Barion in case of Variable product.
+
+= 0.7.2 =
+
+- Cleanup + added a more descriptive description to the admin page.
+- Added coupons as items to the Barion transaction.
+- Modified shipping cost calculation to allow multiple shipping items.
+
+= 0.7.1 =
+
+- Added Barion card payment banner to the checkout page.
+- Various small bugfixes
+- Fixed missing localization realm for order unit.
+
+= 0.6.1 =
+
+- Made the plugin wordpress.org ready by adding a readme.txt and moving stuff around.
+- Added build script to create release and upload zip file.
+- Added build scripts to make the release process easier.
+
+= 0.6.0 =
+
+- Added Barion payment gateway
+- Added Barion prepare and redirect calls done.
+- Created project structure
+- Added Barion PHP library as a submodule.
+- Available in English and Hungarian
