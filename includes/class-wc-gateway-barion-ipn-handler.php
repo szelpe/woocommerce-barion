@@ -39,7 +39,7 @@ class WC_Gateway_Barion_IPN_Handler {
             }
             
             $order->add_order_note(__('Payment succeeded via Barion.', 'woocommerce'));
-            $order->payment_complete();
+            $order->payment_complete($this->find_transaction_id($payment_details, $order));
             
             return;
         }
@@ -52,5 +52,13 @@ class WC_Gateway_Barion_IPN_Handler {
         
         $order->update_status('failed', __('Payment failed via Barion.', 'woocommerce'));
         WC_Gateway_Barion::log('Payment failed. Payment details: ' . json_encode($payment_details));
+    }
+    
+    function find_transaction_id($payment_details, $order) {
+        foreach($payment_details->Transactions as $transaction) {
+            if($transaction->POSTransactionId == $order->id) {
+                return $transaction->TransactionId;
+            }
+        }
     }
 }
