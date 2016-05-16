@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Barion Payment Gateway for WooCommerce 0.5.0\n"
 "Report-Msgid-Bugs-To: https://github.com/szelpe/woocommerce-barion/issues\n"
-"POT-Creation-Date: 2016-05-14 23:40+0200\n"
-"PO-Revision-Date: 2016-05-14 23:44+0200\n"
+"POT-Creation-Date: 2016-05-16 17:05+0200\n"
+"PO-Revision-Date: 2016-05-16 17:06+0200\n"
 "Last-Translator: \n"
 "Language-Team: EMAIL@ADDRESS\n"
 "Language: hu_HU\n"
@@ -34,7 +34,15 @@ msgstr ""
 msgid "Proceed to Barion"
 msgstr "Fizetés Barionnal"
 
-#: class-wc-gateway-barion.php:95
+#: class-wc-gateway-barion.php:89
+msgid "Gateway Disabled"
+msgstr ""
+
+#: class-wc-gateway-barion.php:90
+msgid "Barion does not support your store currency. Supported currencies: %s"
+msgstr "A Barion nem támogatja az üzleted pénznemét. Támogatott pénznemek: %s"
+
+#: class-wc-gateway-barion.php:114
 msgid "User redirected to the Barion payment page."
 msgstr "A felhasználó át lesz irányítva a Barion fizetési oldalára."
 

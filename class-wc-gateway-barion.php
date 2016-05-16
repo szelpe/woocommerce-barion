@@ -19,6 +19,7 @@ class WC_Gateway_Barion extends WC_Payment_Gateway {
         $this->supports           = array(
             'products'
         );
+        $this->supported_currencies = array('USD', 'EUR', 'HUF');
         
         $this->init_form_fields();
         $this->init_settings();
@@ -42,11 +43,14 @@ class WC_Gateway_Barion extends WC_Payment_Gateway {
         $this->payee = $this->settings['payee'];
         $this->redirect_page = $this->settings['redirect_page'];
         
-        $this->barion_client = new BarionClient($this->poskey, 2, $this->barion_environment, true);
-        
-        $callback_handler = new WC_Gateway_Barion_IPN_Handler($this->barion_client);
-        
         add_action('woocommerce_update_options_payment_gateways_' . $this->id, array($this, 'process_admin_options'));
+        
+        if (!$this->is_selected_currency_supported()) {
+			$this->enabled = 'no';
+		} else {
+            $this->barion_client = new BarionClient($this->poskey, 2, $this->barion_environment, true);
+            $callback_handler = new WC_Gateway_Barion_IPN_Handler($this->barion_client);
+		}
     }
     
     public function plugin_url() {
@@ -74,6 +78,21 @@ class WC_Gateway_Barion extends WC_Payment_Gateway {
     function init_form_fields() {
         $this->form_fields = include('includes/settings-barion.php');
     }
+    
+	public function admin_options() {
+		if ($this->is_selected_currency_supported()) {
+			parent::admin_options();
+		} else {
+			?>
+			<div class="inline error">
+                <p>
+                    <strong><?php _e('Gateway Disabled', 'woocommerce'); ?></strong>: 
+                    <?php echo sprintf(__('Barion does not support your store currency. Supported currencies: %s', 'woocommerce'), implode(', ', $this->supported_currencies)); ?>
+                </p>
+            </div>
+			<?php
+		}
+	}
 
     function process_payment($order_id) {
         $order = new WC_Order($order_id);
@@ -99,4 +118,12 @@ class WC_Gateway_Barion extends WC_Payment_Gateway {
             'redirect' => $redirectUrl
         );
     }
+    
+    /**
+	 * Check if this gateway is available for the user's currency.
+	 * @return bool
+	 */
+	public function is_selected_currency_supported() {
+		return in_array(get_woocommerce_currency(), apply_filters('woocommerce_barion_supported_currencies', $this->supported_currencies));
+	}
 }
