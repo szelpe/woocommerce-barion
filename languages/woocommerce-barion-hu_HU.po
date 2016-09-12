@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Barion Payment Gateway for WooCommerce 0.5.0\n"
 "Report-Msgid-Bugs-To: https://github.com/szelpe/woocommerce-barion/issues\n"
-"POT-Creation-Date: 2016-05-16 17:05+0200\n"
-"PO-Revision-Date: 2016-05-16 17:06+0200\n"
+"POT-Creation-Date: 2016-09-12 23:27+0200\n"
+"PO-Revision-Date: 2016-09-12 23:29+0200\n"
 "Last-Translator: \n"
 "Language-Team: EMAIL@ADDRESS\n"
 "Language: hu_HU\n"
@@ -42,9 +42,21 @@ msgstr ""
 msgid "Barion does not support your store currency. Supported currencies: %s"
 msgstr "A Barion nem támogatja az üzleted pénznemét. Támogatott pénznemek: %s"
 
-#: class-wc-gateway-barion.php:114
+#: class-wc-gateway-barion.php:118
 msgid "User redirected to the Barion payment page."
 msgstr "A felhasználó át lesz irányítva a Barion fizetési oldalára."
+
+#: class-wc-gateway-barion.php:138
+msgid "Refund Failed: No transaction ID"
+msgstr "Visszatérítés sikertelen. Nincs transaction ID."
+
+#: class-wc-gateway-barion.php:146
+msgid "Refunded %s - Refund ID: %s"
+msgstr "%s visszatérítve - Refund ID: %s"
+
+#: class-wc-gateway-barion.php:151
+msgid "Barion refund failed."
+msgstr "Barion visszatérítés sikertelen."
 
 #: includes/class-wc-gateway-barion-ipn-handler.php:34
 msgid "Barion callback received."
