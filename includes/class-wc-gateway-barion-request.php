@@ -50,7 +50,7 @@ class WC_Gateway_Barion_Request {
             $itemModel = new ItemModel();
             $itemModel->Name = $item['name'];
             $itemModel->Description = $itemModel->Name;
-            $itemModel->Unit = __('piece', 'woocommerce');
+            $itemModel->Unit = __('piece', 'woocommerce-barion');
             $itemModel->Quantity = empty($item['qty']) ? 1 : $item['qty'];
         
             $itemModel->UnitPrice = $order->get_item_subtotal($item, true);
