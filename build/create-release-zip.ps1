@@ -9,7 +9,7 @@ git submodule --quiet update
 
 rm -Force -Recurse .git
 rm -Force -Recurse build
-rm barion-library\.git
+rm barion-library\.git -ErrorAction SilentlyContinue
 rm .gitignore
 rm .gitmodules
 rm Gruntfile.js

@@ -8,15 +8,14 @@ This plugin allows your customers to pay via [Barion Smart Gateway](https://www.
 - Redirects the user to the Barion payment page after checkout
 - Handles the callback from Barion after payment
   - sets the order status to "processing", "completed" or "failed" respectively
-
-**Refunds are not supported yet.**
+- Refund payments via Barion
 
 ## Installation
 
-1. Navigate to the [latest release](https://github.com/szelpe/woocommerce-barion/releases/latest) and download `woocommerce-barion.zip`
-1. Extract and upload "woocommerce-barion" to the "/wp-content/plugins/" directory
-1. Activate the plugin through the "Plugins" menu in WordPress
-1. Click on the menu item "WooCommerce" then select the "Checkout" tab
+1. The recommended way to install the plugin is through the "Plugins" menu in WordPress
+  - Navigate to Plugins > Add New > Search for "barion", you should already see this plugin
+  - Hit "Install Now", then enable the plugin
+1. Click on the menu item "WooCommerce", then select the "Checkout" tab
 1. Click on the new submenu item named "Barion"
 1. On this page you should set the POSKey of the shop and your Barion email address 
 1. Should you want to use the test envorinment, select it from the Barion Environment dropdown. You'll need to create a shop on the [Barion test page](https://test.barion.com).
