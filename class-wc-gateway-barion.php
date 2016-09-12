@@ -42,7 +42,6 @@ class WC_Gateway_Barion extends WC_Payment_Gateway {
 
         $this->poskey = $this->settings['poskey'];
         $this->payee = $this->settings['payee'];
-        $this->redirect_page = $this->settings['redirect_page'];
         
         add_action('woocommerce_update_options_payment_gateways_' . $this->id, array($this, 'process_admin_options'));
         
