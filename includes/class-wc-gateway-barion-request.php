@@ -30,6 +30,7 @@ class WC_Gateway_Barion_Request {
         $paymentRequest->ShippingAddress = $order->get_formatted_shipping_address();
         $paymentRequest->RedirectUrl = $this->gateway->get_return_url($order);
         $paymentRequest->CallbackUrl = WC()->api_request_url('WC_Gateway_Barion');
+        $paymentRequest->Currency = $order->get_order_currency();
         $paymentRequest->AddTransaction($transaction);
         
         $this->payment = $this->barion_client->PreparePayment($paymentRequest);
