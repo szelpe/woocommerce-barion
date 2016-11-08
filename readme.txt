@@ -34,6 +34,7 @@ You're welcome to contribute to this open source plugin by creating pull-request
 [Please report bugs as Github issues.](https://github.com/szelpe/woocommerce-barion/issues)
 
 Barion and the Barion logo are trademarks or registered trademarks of Sense/Net Inc.
+
 WooCommerce and the WooCommerce logo are trademarks or registered trademarks of Bubblestorm Management (Proprietary) Limited trading as WooThemes.
 
 == Installation ==
@@ -53,6 +54,10 @@ WooCommerce and the WooCommerce logo are trademarks or registered trademarks of 
 2. Barion as a payment method
 
 == Changelog ==
+
+= 1.0.0 =
+
+- Added support for EUR/USD payment
 
 = 0.9.0 =
 
