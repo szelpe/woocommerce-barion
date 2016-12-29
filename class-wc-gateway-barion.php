@@ -15,7 +15,6 @@ class WC_Gateway_Barion extends WC_Payment_Gateway {
         $this->method_description = sprintf( __( 'Barion payment gateway sends customers to Barion to enter their payment information. Barion callback requires cURL support to update order statuses after payment. Check the %ssystem status%s page for more details.', 'woocommerce-barion' ), '<a href="' . admin_url( 'admin.php?page=wc-status' ) . '">', '</a>' );
         $this->has_fields         = false;
         $this->order_button_text  = __( 'Proceed to Barion', 'woocommerce-barion' );
-        $this->icon               = $this->plugin_url() . '/assets/barion-card-payment-banner-2016-300x35px.png';
         $this->supports           = array(
             'products',
             'refunds'
@@ -73,6 +72,25 @@ class WC_Gateway_Barion extends WC_Payment_Gateway {
         }
         
         self::$log->add('barion', $message);
+    }
+    
+    /**
+    * Get gateway icon.
+    * @return string
+     */
+    public function get_icon() {
+        $icon      = $this->plugin_url() . '/assets/barion-card-payment-banner-2016-300x35px.png';
+        $info_link = $this->get_icon_info_link();
+        $icon_html = '<a href="' . esc_attr( $info_link ) . '" target="_blank"><img src="' . esc_attr( $icon ) . '" alt="' . esc_attr__( 'Barion acceptance mark', 'woocommerce-barion' ) . '" style="display: inline" /></a>';
+        return apply_filters( 'woocommerce_gateway_icon', $icon_html, $this->id );
+    }
+    
+    function get_icon_info_link() {
+        if(get_locale() == "hu_HU") {
+            return 'https://www.barion.com/hu/tajekoztato-biztonsagos-online-fizetesrol';
+        }
+        
+        return 'https://www.barion.com/en/about-secure-online-payment';
     }
     
     function init_form_fields() {
