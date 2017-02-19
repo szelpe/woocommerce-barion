@@ -3,7 +3,7 @@
 Plugin Name: Barion Payment Gateway for WooCommerce
 Plugin URI: http://github.com/szelpe/woocommerce-barion
 Description: Adds the ability to WooCommerce to pay via Barion
-Version: 1.0.2
+Version: 1.0.3
 Author: Peter Szel <szelpeter@szelpeter.hu>
 Author URI: http://szelpeter.hu
 License: GNU General Public License v3.0
