@@ -2,8 +2,8 @@
 Contributors: szelpe
 Tags: woocommerce, barion, gateway, payment
 Requires at least: 4.0
-Tested up to: 4.7.0
-Stable tag: 1.0.1
+Tested up to: 4.7.2
+Stable tag: 1.0.2
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -54,6 +54,10 @@ WooCommerce and the WooCommerce logo are trademarks or registered trademarks of 
 2. Barion as a payment method
 
 == Changelog ==
+
+= 1.0.2 =
+
+- Updated Barion Library to the latest version
 
 = 1.0.1 =
 
