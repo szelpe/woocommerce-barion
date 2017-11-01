@@ -31,7 +31,11 @@ $indexContent[$versionRow] = "Version: $newVersion"
 $encoding = New-Object System.Text.UTF8Encoding($False)
 [System.IO.File]::WriteAllLines('index.php', $indexContent, $encoding)
 
-git add index.php
+$readMeContent = Get-Content 'readme.txt' -Encoding UTF8 -Raw
+$readMeContent = $readMeContent -replace 'Stable tag: \d+.\d+.\d+', "Stable tag: $newVersion"
+[System.IO.File]::WriteAllText('readme.txt', $readMeContent, $encoding)
+
+git add index.php readme.txt
 git commit -m "Version number increased: $newVersion"
 git push
 
