@@ -48,7 +48,7 @@ class WC_Gateway_Barion extends WC_Payment_Gateway {
             $this->enabled = 'no';
         } else {
             $this->barion_client = new BarionClient($this->poskey, 2, $this->barion_environment, true);
-            $callback_handler = new WC_Gateway_Barion_IPN_Handler($this->barion_client);
+            $callback_handler = new WC_Gateway_Barion_IPN_Handler($this->barion_client, $this->settings);
         }
     }
     

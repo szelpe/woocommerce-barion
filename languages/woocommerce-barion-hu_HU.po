@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Barion Payment Gateway for WooCommerce 0.5.0\n"
 "Report-Msgid-Bugs-To: https://github.com/szelpe/woocommerce-barion/issues\n"
-"POT-Creation-Date: 2016-12-29 10:24+0100\n"
-"PO-Revision-Date: 2016-12-29 10:26+0100\n"
+"POT-Creation-Date: 2017-11-01 13:50+0100\n"
+"PO-Revision-Date: 2017-11-01 13:53+0100\n"
 "Last-Translator: \n"
 "Language-Team: EMAIL@ADDRESS\n"
 "Language: hu_HU\n"
@@ -62,21 +62,25 @@ msgstr "%s visszatérítve - Refund ID: %s"
 msgid "Barion refund failed."
 msgstr "Barion visszatérítés sikertelen."
 
-#: includes/class-wc-gateway-barion-ipn-handler.php:34
+#: includes/class-wc-gateway-barion-ipn-handler.php:35
 msgid "Barion callback received."
 msgstr "Barion visszahívás."
 
-#: includes/class-wc-gateway-barion-ipn-handler.php:41
+#: includes/class-wc-gateway-barion-ipn-handler.php:42
 msgid "Payment succeeded via Barion."
 msgstr "Sikeres fizetés a Barionon keresztül."
 
-#: includes/class-wc-gateway-barion-ipn-handler.php:48
+#: includes/class-wc-gateway-barion-ipn-handler.php:51
 msgid "Payment canceled via Barion."
 msgstr "Visszamondott vásárlás a Barion oldalán."
 
-#: includes/class-wc-gateway-barion-ipn-handler.php:53
+#: includes/class-wc-gateway-barion-ipn-handler.php:56
 msgid "Payment failed via Barion."
 msgstr "Meghiúsult vásárlás a Barion oldalán."
+
+#: includes/class-wc-gateway-barion-ipn-handler.php:75
+msgid "Order status updated based on the settings."
+msgstr "A rendelés állapota a beállításoknak megfelelően frissítve lett."
 
 #: includes/class-wc-gateway-barion-request.php:54
 msgid "piece"
@@ -134,10 +138,23 @@ msgid "Your Barion email address"
 msgstr "Barionon regisztrált e-mail címed."
 
 #: includes/settings-barion.php:46
+msgid "Order status after payment"
+msgstr "Rendelés állapota a fizetés után"
+
+#: includes/settings-barion.php:48
+msgid "Automatic (recommended)"
+msgstr "Automatikus (javasolt)"
+
+#: includes/settings-barion.php:50
+msgid "Choose the status of the order after successful Barion payment."
+msgstr ""
+"Kiválaszthatod, hogy fizetés után milyen állapotba kerüljön a rendelés."
+
+#: includes/settings-barion.php:54
 msgid "Barion Environment"
 msgstr "Barion Környezet"
 
-#: includes/settings-barion.php:50
+#: includes/settings-barion.php:58
 msgid ""
 "You can select the Test environment to test payments. You'll need to create "
 "a shop on the <a href=\"%s\" target=\"_blank\">Barion test site</a>."
@@ -163,4 +180,19 @@ msgstr ""
 
 #. Author URI of the plugin/theme
 msgid "http://szelpeter.hu"
+msgstr ""
+
+#: includes/settings-barion.php:48
+msgctxt "Order status"
+msgid "Completed"
+msgstr ""
+
+#: includes/settings-barion.php:48
+msgctxt "Order status"
+msgid "Processing"
+msgstr ""
+
+#: includes/settings-barion.php:48
+msgctxt "Order status"
+msgid "Pending payment"
 msgstr ""

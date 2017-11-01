@@ -1,17 +1,17 @@
-# Copyright (C) 2016 Peter Szel <szelpeter@szelpeter.hu>
+# Copyright (C) 2017 Peter Szel <szelpeter@szelpeter.hu>
 # This file is distributed under the GNU General Public License v3.0.
 msgid ""
 msgstr ""
-"Project-Id-Version: Barion Payment Gateway for WooCommerce 1.0.0\n"
+"Project-Id-Version: Barion Payment Gateway for WooCommerce 1.1.0\n"
 "Report-Msgid-Bugs-To: https://github.com/szelpe/woocommerce-barion/issues\n"
-"POT-Creation-Date: 2016-12-29 09:22:57+00:00\n"
+"POT-Creation-Date: 2017-11-01 12:46:55+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"PO-Revision-Date: 2016-MO-DA HO:MI+ZONE\n"
+"PO-Revision-Date: 2017-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
-"X-Generator: grunt-wp-i18n 0.5.4\n"
+"X-Generator: grunt-wp-i18n1.0.1\n"
 
 #: class-wc-gateway-barion.php:14 includes/settings-barion.php:20
 msgid "Barion"
@@ -56,20 +56,24 @@ msgstr ""
 msgid "Barion refund failed."
 msgstr ""
 
-#: includes/class-wc-gateway-barion-ipn-handler.php:34
+#: includes/class-wc-gateway-barion-ipn-handler.php:35
 msgid "Barion callback received."
 msgstr ""
 
-#: includes/class-wc-gateway-barion-ipn-handler.php:41
+#: includes/class-wc-gateway-barion-ipn-handler.php:42
 msgid "Payment succeeded via Barion."
 msgstr ""
 
-#: includes/class-wc-gateway-barion-ipn-handler.php:48
+#: includes/class-wc-gateway-barion-ipn-handler.php:51
 msgid "Payment canceled via Barion."
 msgstr ""
 
-#: includes/class-wc-gateway-barion-ipn-handler.php:53
+#: includes/class-wc-gateway-barion-ipn-handler.php:56
 msgid "Payment failed via Barion."
+msgstr ""
+
+#: includes/class-wc-gateway-barion-ipn-handler.php:75
+msgid "Order status updated based on the settings."
 msgstr ""
 
 #: includes/class-wc-gateway-barion-request.php:54
@@ -127,10 +131,22 @@ msgid "Your Barion email address"
 msgstr ""
 
 #: includes/settings-barion.php:46
-msgid "Barion Environment"
+msgid "Order status after payment"
+msgstr ""
+
+#: includes/settings-barion.php:48
+msgid "Automatic (recommended)"
 msgstr ""
 
 #: includes/settings-barion.php:50
+msgid "Choose the status of the order after successful Barion payment."
+msgstr ""
+
+#: includes/settings-barion.php:54
+msgid "Barion Environment"
+msgstr ""
+
+#: includes/settings-barion.php:58
 msgid ""
 "You can select the Test environment to test payments. You'll need to create "
 "a shop on the <a href=\"%s\" target=\"_blank\">Barion test site</a>."
@@ -154,4 +170,19 @@ msgstr ""
 
 #. Author URI of the plugin/theme
 msgid "http://szelpeter.hu"
+msgstr ""
+
+#: includes/settings-barion.php:48
+msgctxt "Order status"
+msgid "Completed"
+msgstr ""
+
+#: includes/settings-barion.php:48
+msgctxt "Order status"
+msgid "Processing"
+msgstr ""
+
+#: includes/settings-barion.php:48
+msgctxt "Order status"
+msgid "Pending payment"
 msgstr ""

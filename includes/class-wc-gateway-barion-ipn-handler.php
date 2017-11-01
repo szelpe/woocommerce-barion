@@ -5,8 +5,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 class WC_Gateway_Barion_IPN_Handler {
-    public function __construct($barion_client) {
+    public function __construct($barion_client, $settings) {
         $this->barion_client = $barion_client;
+        $this->settings = $settings;
         add_action('woocommerce_api_wc_gateway_barion', array($this, 'check_barion_ipn'));
     }
     
@@ -41,6 +42,8 @@ class WC_Gateway_Barion_IPN_Handler {
             $order->add_order_note(__('Payment succeeded via Barion.', 'woocommerce-barion'));
             $order->payment_complete($this->find_transaction_id($payment_details, $order));
             
+            $this->update_order_status($order);
+            
             return;
         }
         
@@ -59,6 +62,17 @@ class WC_Gateway_Barion_IPN_Handler {
             if($transaction->POSTransactionId == $order->get_id()) {
                 return $transaction->TransactionId;
             }
+        }
+    }
+    
+    function update_order_status($order) {
+        if(empty($this->settings) || empty($this->settings['order_status'])) {
+            WC_Gateway_Barion::log("settings['order_status'] is empty");
+            return;
+        }
+        
+        if($this->settings['order_status'] != 'automatic') {
+            $order->update_status($this->settings['order_status'], __('Order status updated based on the settings.', 'woocommerce-barion'));
         }
     }
 }

@@ -61,6 +61,11 @@ WooCommerce and the WooCommerce logo are trademarks or registered trademarks of 
 
 == Changelog ==
 
+= 1.2.0 =
+
+- Added option to select the order state after a successful payment
+- Fixed dropdown heigh issue
+
 = 1.1.0 =
 
 - Updated Barion Library to the latest version

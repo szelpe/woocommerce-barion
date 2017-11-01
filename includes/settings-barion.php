@@ -42,12 +42,27 @@ return array(
         'default'         => get_option('admin_email'),
         'placeholder'     => 'you@youremail.com'
     ),
+    'order_status' => array(
+        'title'           => __('Order status after payment', 'woocommerce-barion'),
+        'type'            => 'select',
+        'options'         => array(
+                                'automatic' => __('Automatic (recommended)', 'woocommerce-barion'),
+                                'completed' => _x('Completed', 'Order status', 'woocommerce'),
+                                'processing' => _x('Processing', 'Order status', 'woocommerce'),
+                                'pending' => _x('Pending payment', 'Order status', 'woocommerce'),
+                             ),
+        'default'         => 'automatic',
+        'description'     => __('Choose the status of the order after successful Barion payment.', 'woocommerce-barion'),
+        'desc_tip'        => true,
+        'class'           => 'wc-enhanced-select'
+    ),
     'environment' => array(
         'title'           => __('Barion Environment', 'woocommerce-barion'),
         'type'            => 'select',
         'options'         => array('test' => 'Test (https://test.barion.com/)', 'live' => 'Live'),
         'default'         => 'live',
         'description'     => sprintf(__('You can select the Test environment to test payments. You\'ll need to create a shop on the <a href="%s" target="_blank">Barion test site</a>.', 'woocommerce-barion'), 'https://test.barion.com/'),
-        'desc_tip'        => false
+        'desc_tip'        => false,
+        'class'           => 'wc-enhanced-select'
     )
 );

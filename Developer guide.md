@@ -16,3 +16,12 @@ git submodule update
 ## Barion callback
 
 Note that Barion callback won't work in your local environment, so you'll need to call `/wc-api/WC_Gateway_Barion/?paymentId=<paymentId>` manually.
+
+## How to generate POT file?
+
+POT file can be generated using Grunt.
+
+``` bash
+npm install grunt grunt-wp-i18n
+grunt 
+```
