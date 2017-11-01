@@ -11,10 +11,10 @@ class WC_Gateway_Barion extends WC_Payment_Gateway {
 
     public function __construct() {
         $this->id                 = 'barion';
-        $this->method_title       = __('Barion', 'woocommerce-barion');
-        $this->method_description = sprintf( __( 'Barion payment gateway sends customers to Barion to enter their payment information. Barion callback requires cURL support to update order statuses after payment. Check the %ssystem status%s page for more details.', 'woocommerce-barion' ), '<a href="' . admin_url( 'admin.php?page=wc-status' ) . '">', '</a>' );
+        $this->method_title       = __('Barion', 'pay-via-barion-for-woocommerce');
+        $this->method_description = sprintf( __( 'Barion payment gateway sends customers to Barion to enter their payment information. Barion callback requires cURL support to update order statuses after payment. Check the %ssystem status%s page for more details.', 'pay-via-barion-for-woocommerce' ), '<a href="' . admin_url( 'admin.php?page=wc-status' ) . '">', '</a>' );
         $this->has_fields         = false;
-        $this->order_button_text  = __( 'Proceed to Barion', 'woocommerce-barion' );
+        $this->order_button_text  = __( 'Proceed to Barion', 'pay-via-barion-for-woocommerce' );
         $this->supports           = array(
             'products',
             'refunds'
@@ -81,7 +81,7 @@ class WC_Gateway_Barion extends WC_Payment_Gateway {
     public function get_icon() {
         $icon      = $this->plugin_url() . '/assets/barion-card-payment-banner-2016-300x35px.png';
         $info_link = $this->get_icon_info_link();
-        $icon_html = '<a href="' . esc_attr( $info_link ) . '" target="_blank"><img src="' . esc_attr( $icon ) . '" alt="' . esc_attr__( 'Barion acceptance mark', 'woocommerce-barion' ) . '" style="display: inline" /></a>';
+        $icon_html = '<a href="' . esc_attr( $info_link ) . '" target="_blank"><img src="' . esc_attr( $icon ) . '" alt="' . esc_attr__( 'Barion acceptance mark', 'pay-via-barion-for-woocommerce' ) . '" style="display: inline" /></a>';
         return apply_filters( 'woocommerce_gateway_icon', $icon_html, $this->id );
     }
     
@@ -105,7 +105,7 @@ class WC_Gateway_Barion extends WC_Payment_Gateway {
             <div class="inline error">
                 <p>
                     <strong><?php _e('Gateway Disabled', 'woocommerce'); ?></strong>: 
-                    <?php echo sprintf(__('Barion does not support your store currency. Supported currencies: %s', 'woocommerce-barion'), implode(', ', $this->supported_currencies)); ?>
+                    <?php echo sprintf(__('Barion does not support your store currency. Supported currencies: %s', 'pay-via-barion-for-woocommerce'), implode(', ', $this->supported_currencies)); ?>
                 </p>
             </div>
             <?php
@@ -133,7 +133,7 @@ class WC_Gateway_Barion extends WC_Payment_Gateway {
         
         $redirectUrl = $request->get_redirect_url();
         
-        $order->add_order_note(__('User redirected to the Barion payment page.', 'woocommerce-barion') . ' redirectUrl: "' . $redirectUrl . '"');
+        $order->add_order_note(__('User redirected to the Barion payment page.', 'pay-via-barion-for-woocommerce') . ' redirectUrl: "' . $redirectUrl . '"');
         
         return array(
             'result' => 'success', 
@@ -153,7 +153,7 @@ class WC_Gateway_Barion extends WC_Payment_Gateway {
         
         if(!$this->can_refund_order($order)) {
             $this->log('Refund Failed: No transaction ID');
-            return new WP_Error('error', __('Refund Failed: No transaction ID', 'woocommerce-barion'));
+            return new WP_Error('error', __('Refund Failed: No transaction ID', 'pay-via-barion-for-woocommerce'));
         }
         
         include_once('includes/class-wc-gateway-barion-refund.php');
@@ -161,12 +161,12 @@ class WC_Gateway_Barion extends WC_Payment_Gateway {
         $result = $barionRefund->refund_order($order, $amount, $reason);
         
         if($barionRefund->refund_succeeded) {
-            $order->add_order_note(sprintf(__('Refunded %s - Refund ID: %s', 'woocommerce-barion' ), wc_price($barionRefund->refund_amount), $barionRefund->refund_transaction_id));
+            $order->add_order_note(sprintf(__('Refunded %s - Refund ID: %s', 'pay-via-barion-for-woocommerce' ), wc_price($barionRefund->refund_amount), $barionRefund->refund_transaction_id));
             
             return true;
         }
         
-        $wp_error = new WP_Error('barion_refund', __('Barion refund failed.', 'woocommerce-barion'));
+        $wp_error = new WP_Error('barion_refund', __('Barion refund failed.', 'pay-via-barion-for-woocommerce'));
         
         if(!empty($result->Errors)) {
             foreach($result->Errors as $error) {

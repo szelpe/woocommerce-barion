@@ -1,23 +1,21 @@
-# Copyright (C) 2016 Peter Szel <szelpeter@szelpeter.hu>
+# Copyright (C) 2017 Peter Szel <szelpeter@szelpeter.hu>
 # This file is distributed under the GNU General Public License v3.0.
 msgid ""
 msgstr ""
-"Project-Id-Version: Barion Payment Gateway for WooCommerce 0.5.0\n"
+"Project-Id-Version: Barion Payment Gateway for WooCommerce 1.2.0\n"
 "Report-Msgid-Bugs-To: https://github.com/szelpe/woocommerce-barion/issues\n"
-"POT-Creation-Date: 2017-11-01 13:50+0100\n"
-"PO-Revision-Date: 2017-11-01 13:53+0100\n"
-"Last-Translator: \n"
-"Language-Team: EMAIL@ADDRESS\n"
-"Language: hu_HU\n"
+"POT-Creation-Date: 2017-11-01 16:13:36+00:00\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.8.11\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"PO-Revision-Date: 2017-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
+"X-Generator: grunt-wp-i18n1.0.1\n"
 
 #: class-wc-gateway-barion.php:14 includes/settings-barion.php:20
 msgid "Barion"
-msgstr "Barion"
+msgstr ""
 
 #: class-wc-gateway-barion.php:15
 msgid ""
@@ -25,18 +23,14 @@ msgid ""
 "information. Barion callback requires cURL support to update order statuses "
 "after payment. Check the %ssystem status%s page for more details."
 msgstr ""
-"A Barion payment gateway átküldi a vásárlókat a Barion oldalára a fizetési "
-"adataik megadásához. Ahhoz, hogy fizetés után a Barion visszahívás "
-"frissíteni tudja a rendelések állapotát, cURL támogatás szükséges. További "
-"információkért tekintsd meg a %srendszerállapot%s oldalt."
 
 #: class-wc-gateway-barion.php:17
 msgid "Proceed to Barion"
-msgstr "Fizetés Barionnal"
+msgstr ""
 
 #: class-wc-gateway-barion.php:84
 msgid "Barion acceptance mark"
-msgstr "Barion védjegy"
+msgstr ""
 
 #: class-wc-gateway-barion.php:107
 msgid "Gateway Disabled"
@@ -44,47 +38,47 @@ msgstr ""
 
 #: class-wc-gateway-barion.php:108
 msgid "Barion does not support your store currency. Supported currencies: %s"
-msgstr "A Barion nem támogatja az üzleted pénznemét. Támogatott pénznemek: %s"
+msgstr ""
 
 #: class-wc-gateway-barion.php:136
 msgid "User redirected to the Barion payment page."
-msgstr "A felhasználó át lesz irányítva a Barion fizetési oldalára."
+msgstr ""
 
 #: class-wc-gateway-barion.php:156
 msgid "Refund Failed: No transaction ID"
-msgstr "Visszatérítés sikertelen. Nincs transaction ID."
+msgstr ""
 
 #: class-wc-gateway-barion.php:164
 msgid "Refunded %s - Refund ID: %s"
-msgstr "%s visszatérítve - Refund ID: %s"
+msgstr ""
 
 #: class-wc-gateway-barion.php:169
 msgid "Barion refund failed."
-msgstr "Barion visszatérítés sikertelen."
+msgstr ""
 
 #: includes/class-wc-gateway-barion-ipn-handler.php:35
 msgid "Barion callback received."
-msgstr "Barion visszahívás."
+msgstr ""
 
 #: includes/class-wc-gateway-barion-ipn-handler.php:42
 msgid "Payment succeeded via Barion."
-msgstr "Sikeres fizetés a Barionon keresztül."
+msgstr ""
 
 #: includes/class-wc-gateway-barion-ipn-handler.php:51
 msgid "Payment canceled via Barion."
-msgstr "Visszamondott vásárlás a Barion oldalán."
+msgstr ""
 
 #: includes/class-wc-gateway-barion-ipn-handler.php:56
 msgid "Payment failed via Barion."
-msgstr "Meghiúsult vásárlás a Barion oldalán."
+msgstr ""
 
 #: includes/class-wc-gateway-barion-ipn-handler.php:75
 msgid "Order status updated based on the settings."
-msgstr "A rendelés állapota a beállításoknak megfelelően frissítve lett."
+msgstr ""
 
 #: includes/class-wc-gateway-barion-request.php:54
 msgid "piece"
-msgstr "darab"
+msgstr ""
 
 #: includes/class-wc-gateway-barion-request.php:61
 msgid "Coupon"
@@ -96,7 +90,7 @@ msgstr ""
 
 #: includes/settings-barion.php:14
 msgid "Enable Barion"
-msgstr "Barion engedélyezése"
+msgstr ""
 
 #: includes/settings-barion.php:18
 msgid "Title"
@@ -112,10 +106,9 @@ msgstr ""
 
 #: includes/settings-barion.php:27
 msgid ""
-"Pay via Barion; you can pay with your credit card if you don't have a Barion "
-"account."
+"Pay via Barion; you can pay with your credit card if you don't have a "
+"Barion account."
 msgstr ""
-"Fizess Barionon keresztül. Fizess bankkártyával, nem kötelező regisztrálni!"
 
 #: includes/settings-barion.php:28
 msgid "This controls the description which the user sees during checkout."
@@ -123,11 +116,11 @@ msgstr ""
 
 #: includes/settings-barion.php:32
 msgid "Secret key (POSKey)"
-msgstr "Titkos Kulcs (POSKey)"
+msgstr ""
 
 #: includes/settings-barion.php:34
 msgid "The secret key of the online store registered in Barion (called POSKey)"
-msgstr "A Barionon regisztrált bolt titkos kulcsa (POSKey)"
+msgstr ""
 
 #: includes/settings-barion.php:38
 msgid "Barion Email"
@@ -135,32 +128,29 @@ msgstr ""
 
 #: includes/settings-barion.php:40
 msgid "Your Barion email address"
-msgstr "Barionon regisztrált e-mail címed."
+msgstr ""
 
 #: includes/settings-barion.php:46
 msgid "Order status after payment"
-msgstr "Rendelés állapota a fizetés után"
+msgstr ""
 
-#: includes/settings-barion.php:48
+#: includes/settings-barion.php:49
 msgid "Automatic (recommended)"
-msgstr "Automatikus (javasolt)"
+msgstr ""
 
-#: includes/settings-barion.php:50
+#: includes/settings-barion.php:55
 msgid "Choose the status of the order after successful Barion payment."
 msgstr ""
-"Kiválaszthatod, hogy fizetés után milyen állapotba kerüljön a rendelés."
 
-#: includes/settings-barion.php:54
+#: includes/settings-barion.php:60
 msgid "Barion Environment"
-msgstr "Barion Környezet"
+msgstr ""
 
-#: includes/settings-barion.php:58
+#: includes/settings-barion.php:64
 msgid ""
 "You can select the Test environment to test payments. You'll need to create "
 "a shop on the <a href=\"%s\" target=\"_blank\">Barion test site</a>."
 msgstr ""
-"A Test környezet választásával tesztelheted a fizetéseket. Ehhez boltot kell "
-"nyitnod a <a href=\"%s\" target=\"_blank\">Barion teszt oldalon</a>."
 
 #. Plugin Name of the plugin/theme
 msgid "Barion Payment Gateway for WooCommerce"
@@ -182,17 +172,17 @@ msgstr ""
 msgid "http://szelpeter.hu"
 msgstr ""
 
-#: includes/settings-barion.php:48
+#: includes/settings-barion.php:50
 msgctxt "Order status"
 msgid "Completed"
 msgstr ""
 
-#: includes/settings-barion.php:48
+#: includes/settings-barion.php:51
 msgctxt "Order status"
 msgid "Processing"
 msgstr ""
 
-#: includes/settings-barion.php:48
+#: includes/settings-barion.php:52
 msgctxt "Order status"
 msgid "Pending payment"
 msgstr ""

@@ -32,14 +32,14 @@ class WC_Gateway_Barion_IPN_Handler {
             return;
         }
         
-        $order->add_order_note(__('Barion callback received.', 'woocommerce-barion') . ' paymentId: "' . $_GET['paymentId'] . '"');
+        $order->add_order_note(__('Barion callback received.', 'pay-via-barion-for-woocommerce') . ' paymentId: "' . $_GET['paymentId'] . '"');
         
         if($payment_details->Status == PaymentStatus::Succeeded) {
             if($order->has_status('completed')) {
                 return;
             }
             
-            $order->add_order_note(__('Payment succeeded via Barion.', 'woocommerce-barion'));
+            $order->add_order_note(__('Payment succeeded via Barion.', 'pay-via-barion-for-woocommerce'));
             $order->payment_complete($this->find_transaction_id($payment_details, $order));
             
             $this->update_order_status($order);
@@ -48,12 +48,12 @@ class WC_Gateway_Barion_IPN_Handler {
         }
         
         if($payment_details->Status == PaymentStatus::Canceled) {
-            $order->update_status('failed', __('Payment canceled via Barion.', 'woocommerce-barion'));
+            $order->update_status('failed', __('Payment canceled via Barion.', 'pay-via-barion-for-woocommerce'));
             
             return;
         }
         
-        $order->update_status('failed', __('Payment failed via Barion.', 'woocommerce-barion'));
+        $order->update_status('failed', __('Payment failed via Barion.', 'pay-via-barion-for-woocommerce'));
         WC_Gateway_Barion::log('Payment failed. Payment details: ' . json_encode($payment_details));
     }
     
@@ -72,7 +72,7 @@ class WC_Gateway_Barion_IPN_Handler {
         }
         
         if($this->settings['order_status'] != 'automatic') {
-            $order->update_status($this->settings['order_status'], __('Order status updated based on the settings.', 'woocommerce-barion'));
+            $order->update_status($this->settings['order_status'], __('Order status updated based on the settings.', 'pay-via-barion-for-woocommerce'));
         }
     }
 }

@@ -9,7 +9,7 @@ Author URI: http://szelpeter.hu
 License: GNU General Public License v3.0
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
-Text Domain: woocommerce-barion
+Text Domain: pay-via-barion-for-woocommerce
 Domain Path: /languages/
 
 */
@@ -20,7 +20,7 @@ function woocommerce_gateway_barion_init() {
     if (!class_exists('WC_Payment_Gateway'))
         return;
     
-    load_plugin_textdomain('woocommerce-barion', false, plugin_basename(dirname(__FILE__)) . "/languages");
+    load_plugin_textdomain('pay-via-barion-for-woocommerce', false, plugin_basename(dirname(__FILE__)) . "/languages");
     
     require_once('class-wc-gateway-barion.php');
     

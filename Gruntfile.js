@@ -15,7 +15,7 @@ module.exports = function( grunt ) {
 			},
 			dist: {
 				options: {
-					potFilename: 'woocommerce-barion.pot'
+					potFilename: 'pay-via-barion-for-woocommerce.pot'
 				}
 			}
 		}
