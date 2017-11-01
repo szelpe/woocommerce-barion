@@ -99,11 +99,23 @@ class WC_Gateway_Barion_Request {
     }
     
     function get_barion_locale() {
-        if(get_locale() == "hu_HU") {
-            return UILocale::HU;
+        switch(get_locale()) {
+            case "hu_HU":
+                return UILocale::HU;
+            case "de_DE":
+                return UILocale::DE;
+            case "sl_SI":
+                // This doesn't work due to a bug in the Barion library
+                //return UILocale::SL;
+                return "sl-SI";
+            case "sk_SK":
+                return UILocale::SK;
+            case "fr_FR":
+                return UILocale::FR;
+
+            default:
+                return UILocale::EN;
         }
-        
-        return UILocale::EN;
     }
     
     public function get_redirect_url() {
