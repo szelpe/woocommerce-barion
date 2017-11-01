@@ -12,6 +12,11 @@ This plugin allows your customers to pay via [Barion Smart Gateway](https://www.
 
 ## Installation
 
+### Minimum Requirements
+
+- WooCommerce 3.0 or later
+- WordPress 4.0 or later
+
 1. The recommended way to install the plugin is through the "Plugins" menu in WordPress
   - Navigate to Plugins > Add New > Search for "barion", you should already see this plugin
   - Hit "Install Now", then enable the plugin

@@ -14,7 +14,7 @@ class WC_Gateway_Barion_Refund {
     public function refund_order($order, $amount = null, $reason = '') {
         $transaction = new TransactionToRefundModel();
         $transaction->TransactionId = $order->get_transaction_id();
-        $transaction->POSTransactionId = $order->id;
+        $transaction->POSTransactionId = $order->get_id();
         $transaction->AmountToRefund = $amount;
         
         // Comment must be at most 640 character long

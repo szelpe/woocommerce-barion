@@ -183,7 +183,7 @@ class WC_Gateway_Barion extends WC_Payment_Gateway {
     
     const BARION_PAYMENT_ID_META_KEY = 'Barion paymentId';
     public function get_barion_payment_id($order) {
-        $paymentMeta = get_post_meta($order->id, self::BARION_PAYMENT_ID_META_KEY);
+        $paymentMeta = get_post_meta($order->get_id(), self::BARION_PAYMENT_ID_META_KEY);
         
         if(empty($paymentMeta)) {
             return null;
@@ -193,6 +193,6 @@ class WC_Gateway_Barion extends WC_Payment_Gateway {
     }
     
     public function set_barion_payment_id($order, $paymentId) {
-        update_post_meta($order->id, self::BARION_PAYMENT_ID_META_KEY, $paymentId);
+        update_post_meta($order->get_id(), self::BARION_PAYMENT_ID_META_KEY, $paymentId);
     }
 }

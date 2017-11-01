@@ -3,6 +3,7 @@ Contributors: szelpe
 Tags: woocommerce, barion, gateway, payment
 Requires at least: 4.0
 Tested up to: 4.8.3
+Requires PHP: 5.6
 Stable tag: 1.0.3
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -39,6 +40,11 @@ WooCommerce and the WooCommerce logo are trademarks or registered trademarks of 
 
 == Installation ==
 
+= Minimum Requirements =
+
+* WooCommerce 3.0 or later
+* WordPress 4.0 or later
+
 1. The recommended way to install the plugin is through the "Plugins" menu in WordPress
   - Navigate to Plugins > Add New > Search for "barion", you should already see this plugin
   - Hit "Install Now", then enable the plugin
@@ -59,6 +65,7 @@ WooCommerce and the WooCommerce logo are trademarks or registered trademarks of 
 
 - Updated Barion Library to the latest version
 - Added supported languages (DE, SL, SK, FR)
+- Substituted deprecated function calls with current ones
 
 = 1.0.2 =
 

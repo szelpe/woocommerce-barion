@@ -56,7 +56,7 @@ class WC_Gateway_Barion_IPN_Handler {
     
     function find_transaction_id($payment_details, $order) {
         foreach($payment_details->Transactions as $transaction) {
-            if($transaction->POSTransactionId == $order->id) {
+            if($transaction->POSTransactionId == $order->get_id()) {
                 return $transaction->TransactionId;
             }
         }

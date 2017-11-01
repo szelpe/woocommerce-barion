@@ -12,9 +12,9 @@ class WC_Gateway_Barion_Request {
     
     public function prepare_payment($order) {
         $transaction = new PaymentTransactionModel();
-        $transaction->POSTransactionId = $order->id;
+        $transaction->POSTransactionId = $order->get_id();
         $transaction->Payee = $this->gateway->payee;
-        $transaction->Total = $this->round($order->get_total(), $order->get_order_currency());
+        $transaction->Total = $this->round($order->get_total(), $order->get_currency());
         $transaction->Comment = "";
         
         $this->prepare_items($order, $transaction);
@@ -23,14 +23,14 @@ class WC_Gateway_Barion_Request {
         $paymentRequest->GuestCheckout = true;
         $paymentRequest->PaymentType = PaymentType::Immediate;
         $paymentRequest->FundingSources = array(FundingSourceType::All);
-        $paymentRequest->PaymentRequestId = $order->id;
-        $paymentRequest->PayerHint = $order->billing_email;
+        $paymentRequest->PaymentRequestId = $order->get_id();
+        $paymentRequest->PayerHint = $order->get_billing_email();
         $paymentRequest->Locale = $this->get_barion_locale();
         $paymentRequest->OrderNumber = $order->get_order_number();
         $paymentRequest->ShippingAddress = $order->get_formatted_shipping_address();
         $paymentRequest->RedirectUrl = $this->gateway->get_return_url($order);
         $paymentRequest->CallbackUrl = WC()->api_request_url('WC_Gateway_Barion');
-        $paymentRequest->Currency = $order->get_order_currency();
+        $paymentRequest->Currency = $order->get_currency();
         $paymentRequest->AddTransaction($transaction);
         
         $this->payment = $this->barion_client->PreparePayment($paymentRequest);
@@ -87,7 +87,7 @@ class WC_Gateway_Barion_Request {
             else {
                 $product = $order->get_product_from_item($item);
                 
-                if(!empty($product->variation_id)) {
+                if($product->is_type('variable')) {
                     $itemModel->Name .= ' (' . $product->get_formatted_variation_attributes(true) . ')';
                 }
                 
