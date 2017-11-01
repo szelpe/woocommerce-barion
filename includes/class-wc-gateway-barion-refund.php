@@ -28,7 +28,7 @@ class WC_Gateway_Barion_Refund {
         
         if (!$refundResult->RequestSuccessful) {
             $this->refund_succeeded = false;
-            WC_Gateway_Barion::log('Refund Failed: ' . json_encode($refundResult->Errors));
+            WC_Gateway_Barion::log("Refund Failed for transactionId `$transaction->TransactionId`: " . json_encode($refundResult->Errors));
             
             return $refundResult;
         }
