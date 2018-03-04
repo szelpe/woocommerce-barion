@@ -2,7 +2,9 @@
 Contributors: szelpe
 Tags: woocommerce, barion, gateway, payment
 Requires at least: 4.0
-Tested up to: 4.9.0
+Tested up to: 4.9.4
+WC requires at least: 3.0.0
+WC tested up to: 3.3.3
 Requires PHP: 5.6
 Stable tag: 2.1.0
 License: GPLv3 or later
@@ -24,7 +26,7 @@ This plugin allows your customers to pay via [Barion Smart Gateway](https://www.
 
 = Feedback =
 
-I'd be happy to hear your feedback! Feel free to contact me at szelpeter@szelpeter.hu 
+I'd be happy to hear your feedback! Feel free to contact me at szelpeter@szelpeter.hu
 
 = Contribution =
 
@@ -50,7 +52,7 @@ WooCommerce and the WooCommerce logo are trademarks or registered trademarks of 
   - Hit "Install Now", then enable the plugin
 1. Click on the menu item "WooCommerce" then select the "Checkout" tab
 1. Click on the new submenu item named "Barion"
-1. On this page you should set the POSKey of the shop and your Barion email address 
+1. On this page you should set the POSKey of the shop and your Barion email address
 1. Should you want to use the test envorinment, select it from the Barion Environment dropdown. You'll need to create a shop on the [Barion test page](https://test.barion.com).
 1. Enable the payment method if you're ready to use Barion
 
@@ -60,6 +62,11 @@ WooCommerce and the WooCommerce logo are trademarks or registered trademarks of 
 2. Barion as a payment method
 
 == Changelog ==
+
+= 2.1.0 =
+
+- Cancelling payment on the Barion page will redirect the customer to the cart page (default) instead of the order received page
+- Updated test credit card details
 
 = 1.3.1 =
 
