@@ -25,6 +25,8 @@ $headers = @{
     Authorization = $basicAuthValue
 }
 
+[Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
+
 $result = Invoke-RestMethod -Method Post -Uri "https://api.github.com/repos/szelpe/woocommerce-barion/releases" -Body (ConvertTo-Json $body) -Headers $headers
 
 $zipFile = [System.IO.File]::ReadAllBytes("woocommerce-barion.zip")
