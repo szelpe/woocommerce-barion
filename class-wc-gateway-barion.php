@@ -31,11 +31,8 @@ class WC_Gateway_Barion extends WC_Payment_Gateway {
 
         if ( $this->settings['environment'] == 'test' ) {
             $this->title .= ' [TEST MODE]';
-            $this->description .= '<br/><br/><u>Test Mode is <strong>ACTIVE</strong>, use following Credit Card details:-</u><br/>'."\n"
-                                 .'Test Card Name: <strong><em>any name</em></strong><br/>'."\n"
-                                 .'Test Card Number: <strong>4908 3660 9990 0425</strong><br/>'."\n"
-                                 .'Test Card CVV: <strong>823</strong><br/>'."\n"
-                                 .'Test Card Expiry: <strong>Future date</strong>';
+            $this->description .= '<br/><br/>Test mode is <strong>active</strong>.' . "\n"
+                                . 'Test credit card details: <a href="https://docs.barion.com/Sandbox#Test_cards">https://docs.barion.com/Sandbox#Test_cards</a>';
 
             $this->barion_environment = BarionEnvironment::Test;
         }
