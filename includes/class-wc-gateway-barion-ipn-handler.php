@@ -53,7 +53,7 @@ class WC_Gateway_Barion_IPN_Handler {
         }
         
         if($payment_details->Status == PaymentStatus::Canceled) {
-            $order->update_status('failed', __('Payment canceled via Barion.', 'pay-via-barion-for-woocommerce'));
+            $order->update_status('cancelled', __('Payment canceled via Barion.', 'pay-via-barion-for-woocommerce'));
             
             return;
         }
