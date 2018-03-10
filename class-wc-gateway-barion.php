@@ -48,6 +48,7 @@ class WC_Gateway_Barion extends WC_Payment_Gateway {
             $this->barion_client = new BarionClient($this->poskey, 2, $this->barion_environment, true);
             $callback_handler = new WC_Gateway_Barion_IPN_Handler($this->barion_client, $this->settings);
             $order_received_handler = new WC_Gateway_Barion_Return_From_Payment($this->barion_client, $this);
+            do_action('woocommerce_barion_init', $this->barion_client, $this);
         }
     }
 
@@ -117,6 +118,8 @@ class WC_Gateway_Barion extends WC_Payment_Gateway {
 
     function process_payment($order_id) {
         $order = new WC_Order($order_id);
+
+        do_action('woocommerce_barion_process_payment', $order);
 
         require_once('includes/class-wc-gateway-barion-request.php');
 

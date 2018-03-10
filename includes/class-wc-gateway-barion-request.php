@@ -11,6 +11,7 @@ class WC_Gateway_Barion_Request {
     }
 
     public function prepare_payment($order) {
+        $this->order = $order;
         $transaction = new PaymentTransactionModel();
         $transaction->POSTransactionId = $order->get_id();
         $transaction->Payee = $this->gateway->payee;
@@ -33,7 +34,11 @@ class WC_Gateway_Barion_Request {
         $paymentRequest->Currency = $order->get_currency();
         $paymentRequest->AddTransaction($transaction);
 
+        apply_filters('woocommerce_barion_prepare_payment', $paymentRequest, $order);
+
         $this->payment = $this->barion_client->PreparePayment($paymentRequest);
+
+        do_action('woocommerce_barion_prepare_payment_called', $this->payment, $order);
 
         if($this->payment->RequestSuccessful) {
             $this->gateway->set_barion_payment_id($order, $this->payment->PaymentId);
@@ -122,7 +127,7 @@ class WC_Gateway_Barion_Request {
         if(!$this->is_prepared)
             throw new Exception('`prepare_payment` should have been called before `get_redirect_url`.');
 
-        return $this->payment->PaymentRedirectUrl;
+        return apply_filters('woocommerce_barion_get_redirect_url', $this->payment->PaymentRedirectUrl, $this->order, $this->payment);
     }
 
     /**
