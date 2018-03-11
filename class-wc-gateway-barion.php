@@ -46,7 +46,7 @@ class WC_Gateway_Barion extends WC_Payment_Gateway {
             $this->enabled = 'no';
         } else {
             $this->barion_client = new BarionClient($this->poskey, 2, $this->barion_environment, true);
-            $callback_handler = new WC_Gateway_Barion_IPN_Handler($this->barion_client, $this->settings);
+            $callback_handler = new WC_Gateway_Barion_IPN_Handler($this->barion_client, $this);
             $order_received_handler = new WC_Gateway_Barion_Return_From_Payment($this->barion_client, $this);
             do_action('woocommerce_barion_init', $this->barion_client, $this);
         }
@@ -120,6 +120,15 @@ class WC_Gateway_Barion extends WC_Payment_Gateway {
         $order = new WC_Order($order_id);
 
         do_action('woocommerce_barion_process_payment', $order);
+
+        if($order->get_total() <= 0) {
+            $this->payment_complete($order);
+
+            return array(
+                'result' => 'success',
+                'redirect' => $this->get_return_url($order)
+            );
+        }
 
         require_once('includes/class-wc-gateway-barion-request.php');
 
@@ -196,5 +205,21 @@ class WC_Gateway_Barion extends WC_Payment_Gateway {
 
     public function set_barion_payment_id($order, $paymentId) {
         update_post_meta($order->get_id(), self::BARION_PAYMENT_ID_META_KEY, $paymentId);
+    }
+
+    public function payment_complete($order, $transaction_id = '') {
+        $order->payment_complete($transaction_id);
+        $this->update_order_status($order);
+    }
+
+    public function update_order_status($order) {
+        if(empty($this->settings) || empty($this->settings['order_status'])) {
+            WC_Gateway_Barion::log("settings['order_status'] is empty");
+            return;
+        }
+
+        if($this->settings['order_status'] != 'automatic') {
+            $order->update_status($this->settings['order_status'], __('Order status updated based on the settings.', 'pay-via-barion-for-woocommerce'));
+        }
     }
 }
