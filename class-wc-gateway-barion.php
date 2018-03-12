@@ -218,8 +218,13 @@ class WC_Gateway_Barion extends WC_Payment_Gateway {
             return;
         }
 
-        if($this->settings['order_status'] != 'automatic') {
-            $order->update_status($this->settings['order_status'], __('Order status updated based on the settings.', 'pay-via-barion-for-woocommerce'));
+        $should_update_status = $this->settings['order_status'] != 'automatic';
+        $should_update_status = apply_filters('woocommerce_barion_should_update_order_status', $should_update_status, $order);
+
+        if($should_update_status) {
+            $order_status = apply_filters('woocommerce_barion_order_status', $this->settings['order_status'], $order);
+
+            $order->update_status($order_status, __('Order status updated based on the settings.', 'pay-via-barion-for-woocommerce'));
         }
     }
 }
