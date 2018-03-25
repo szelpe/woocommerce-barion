@@ -29,7 +29,7 @@ $headers = @{
 
 $result = Invoke-RestMethod -Method Post -Uri "https://api.github.com/repos/szelpe/woocommerce-barion/releases" -Body (ConvertTo-Json $body) -Headers $headers
 
-$zipFile = [System.IO.File]::ReadAllBytes("woocommerce-barion.zip")
+$zipFile = [System.IO.File]::ReadAllBytes([System.IO.Path]::Combine($pwd, "woocommerce-barion.zip"))
 
 $headers = @{
     Authorization = $basicAuthValue

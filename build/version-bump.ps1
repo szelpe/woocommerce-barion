@@ -2,7 +2,10 @@ param (
     [string]$PartToIncrease
  )
 
-$indexContent = Get-Content 'index.php' -Encoding UTF8
+$indexFile = [System.IO.Path]::Combine($pwd, 'index.php')
+$readmeFile = [System.IO.Path]::Combine($pwd, 'readme.txt')
+
+$indexContent = Get-Content $indexFile -Encoding UTF8
 
 $i = -1;
 $versionRow = 0;
@@ -29,11 +32,11 @@ $newVersion = "$major.$minor.$build";
 $indexContent[$versionRow] = "Version: $newVersion"
 
 $encoding = New-Object System.Text.UTF8Encoding($False)
-[System.IO.File]::WriteAllLines('index.php', $indexContent, $encoding)
+[System.IO.File]::WriteAllLines($indexFile, $indexContent, $encoding)
 
-$readMeContent = Get-Content 'readme.txt' -Encoding UTF8 -Raw
+$readMeContent = Get-Content $readmeFile -Encoding UTF8 -Raw
 $readMeContent = $readMeContent -replace 'Stable tag: \d+.\d+.\d+', "Stable tag: $newVersion"
-[System.IO.File]::WriteAllText('readme.txt', $readMeContent, $encoding)
+[System.IO.File]::WriteAllText($readmeFile, $readMeContent, $encoding)
 
 git add index.php readme.txt
 git commit -m "Version number increased: $newVersion"
