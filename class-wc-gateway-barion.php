@@ -7,6 +7,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 require_once 'barion-library/library/BarionClient.php';
 require_once 'includes/class-wc-gateway-barion-ipn-handler.php';
 require_once 'includes/class-wc-gateway-barion-return-from-payment.php';
+require_once('includes/class-wc-gateway-barion-request.php');
 
 class WC_Gateway_Barion extends WC_Payment_Gateway {
 
@@ -129,8 +130,6 @@ class WC_Gateway_Barion extends WC_Payment_Gateway {
                 'redirect' => $this->get_return_url($order)
             );
         }
-
-        require_once('includes/class-wc-gateway-barion-request.php');
 
         $request = new WC_Gateway_Barion_Request($this->barion_client, $this);
 
