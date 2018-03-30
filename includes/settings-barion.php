@@ -64,5 +64,13 @@ return array(
         'description'     => sprintf(__('You can select the Test environment to test payments. You\'ll need to create a shop on the <a href="%s" target="_blank">Barion test site</a>.', 'pay-via-barion-for-woocommerce'), 'https://test.barion.com/'),
         'desc_tip'        => false,
         'class'           => 'wc-enhanced-select'
+    ),
+    'tracking_enabled' => array(
+        'title'           => __('Newsletter', 'pay-via-barion-for-woocommerce'),
+        'label'           => __('Get free emails on how to grow your business like crazy', 'pay-via-barion-for-woocommerce'),
+        'type'            => 'checkbox',
+        'default'         => 'yes',
+        'description'     => __('You may unsubscribe any time and we will never share your email address.', 'pay-via-barion-for-woocommerce'),
+        'desc_tip'        => false
     )
 );

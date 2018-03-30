@@ -1,59 +1,63 @@
-# Copyright (C) 2017 Peter Szel <szelpeter@szelpeter.hu>
+# Copyright (C) 2018 Peter Szel <szelpeter@szelpeter.hu>
 # This file is distributed under the GNU General Public License v3.0.
 msgid ""
 msgstr ""
-"Project-Id-Version: Barion Payment Gateway for WooCommerce 1.3.0\n"
+"Project-Id-Version: Barion Payment Gateway for WooCommerce 2.1.2\n"
 "Report-Msgid-Bugs-To: https://github.com/szelpe/woocommerce-barion/issues\n"
-"POT-Creation-Date: 2017-11-01 20:35:17+00:00\n"
+"POT-Creation-Date: 2018-03-30 19:41:15+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"PO-Revision-Date: 2017-MO-DA HO:MI+ZONE\n"
+"PO-Revision-Date: 2018-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
-"X-Generator: grunt-wp-i18n1.0.1\n"
+"X-Generator: grunt-wp-i18n1.0.2\n"
 
-#: class-wc-gateway-barion.php:14 includes/settings-barion.php:20
+#: class-wc-gateway-barion.php:16 includes/settings-barion.php:20
 msgid "Barion"
 msgstr ""
 
-#: class-wc-gateway-barion.php:15
+#: class-wc-gateway-barion.php:17
 msgid ""
 "Barion payment gateway sends customers to Barion to enter their payment "
 "information. Barion callback requires cURL support to update order statuses "
 "after payment. Check the %ssystem status%s page for more details."
 msgstr ""
 
-#: class-wc-gateway-barion.php:17
+#: class-wc-gateway-barion.php:19
 msgid "Proceed to Barion"
 msgstr ""
 
-#: class-wc-gateway-barion.php:84
+#: class-wc-gateway-barion.php:85
 msgid "Barion acceptance mark"
 msgstr ""
 
-#: class-wc-gateway-barion.php:107
+#: class-wc-gateway-barion.php:108
 msgid "Gateway Disabled"
 msgstr ""
 
-#: class-wc-gateway-barion.php:108
+#: class-wc-gateway-barion.php:109
 msgid "Barion does not support your store currency. Supported currencies: %s"
 msgstr ""
 
-#: class-wc-gateway-barion.php:136
+#: class-wc-gateway-barion.php:175
 msgid "User redirected to the Barion payment page."
 msgstr ""
 
-#: class-wc-gateway-barion.php:156
+#: class-wc-gateway-barion.php:195
 msgid "Refund Failed: No transaction ID"
 msgstr ""
 
-#: class-wc-gateway-barion.php:164
+#: class-wc-gateway-barion.php:203
 msgid "Refunded %s - Refund ID: %s"
 msgstr ""
 
-#: class-wc-gateway-barion.php:169
+#: class-wc-gateway-barion.php:208
 msgid "Barion refund failed."
+msgstr ""
+
+#: class-wc-gateway-barion.php:255
+msgid "Order status updated based on the settings."
 msgstr ""
 
 #: includes/class-wc-gateway-barion-ipn-handler.php:35
@@ -68,23 +72,19 @@ msgstr ""
 msgid "Payment succeeded via Barion."
 msgstr ""
 
-#: includes/class-wc-gateway-barion-ipn-handler.php:56
+#: includes/class-wc-gateway-barion-ipn-handler.php:54
 msgid "Payment canceled via Barion."
 msgstr ""
 
-#: includes/class-wc-gateway-barion-ipn-handler.php:61
+#: includes/class-wc-gateway-barion-ipn-handler.php:59
 msgid "Payment failed via Barion."
 msgstr ""
 
-#: includes/class-wc-gateway-barion-ipn-handler.php:80
-msgid "Order status updated based on the settings."
-msgstr ""
-
-#: includes/class-wc-gateway-barion-request.php:54
+#: includes/class-wc-gateway-barion-request.php:59
 msgid "piece"
 msgstr ""
 
-#: includes/class-wc-gateway-barion-request.php:61
+#: includes/class-wc-gateway-barion-request.php:66
 msgid "Coupon"
 msgstr ""
 
@@ -154,6 +154,18 @@ msgstr ""
 msgid ""
 "You can select the Test environment to test payments. You'll need to create "
 "a shop on the <a href=\"%s\" target=\"_blank\">Barion test site</a>."
+msgstr ""
+
+#: includes/settings-barion.php:69
+msgid "Newsletter"
+msgstr ""
+
+#: includes/settings-barion.php:70
+msgid "Get free emails on how to grow your business like crazy"
+msgstr ""
+
+#: includes/settings-barion.php:73
+msgid "You may unsubscribe any time and we will never share your email address."
 msgstr ""
 
 #. Plugin Name of the plugin/theme

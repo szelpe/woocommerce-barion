@@ -117,6 +117,35 @@ class WC_Gateway_Barion extends WC_Payment_Gateway {
         return in_array(get_woocommerce_currency(), apply_filters('woocommerce_barion_supported_currencies', $this->supported_currencies));
     }
 
+    /**
+     * Processes and saves options, send newsletter signup if user agreed.
+     */
+    public function process_admin_options() {
+        parent::process_admin_options();
+
+        try {
+            $data = array();
+            if($this->settings['tracking_enabled'] === 'yes') {
+                $data['url'] = home_url();
+
+                $current_user = wp_get_current_user();
+                $data['email'] = $current_user->user_email;
+                $data['first_name'] = $current_user->user_firstname;
+                $data['last_name'] = $current_user->user_lastname;
+
+                $data['admin_email'] = get_option('admin_email');
+                $data['event_name'] = 'Settings saved';
+            }
+            else {
+                $data['event_name'] = 'Settings saved - no newsletter signup';
+            }
+
+            wp_remote_get('https://tracking.szelpe.hu/?data=' . base64_encode(json_encode((object)$data)));
+        }
+        catch(Error $e) {}
+        catch(Exception $e) {}
+    }
+
     function process_payment($order_id) {
         $order = new WC_Order($order_id);
 

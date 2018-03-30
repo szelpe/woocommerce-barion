@@ -61,7 +61,16 @@ WooCommerce and the WooCommerce logo are trademarks or registered trademarks of 
 1. Settings on the WooCommerce Settings > Checkout page
 2. Barion as a payment method
 
+== Privacy Policy ==
+
+If you choose to sign up to the newsletter, the following data will be collected: admin email address, the current user's name and email address and the URL of your blog. We use the collected data to send newsletters occasionally.
+The collected data is deleted upon request and will not be shared.
+
 == Changelog ==
+
+= 2.3.0 =
+
+- Added newsletter signup
 
 = 2.1.0 =
 
