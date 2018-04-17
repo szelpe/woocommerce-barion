@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Barion Payment Gateway for WooCommerce 0.5.0\n"
 "Report-Msgid-Bugs-To: https://github.com/szelpe/woocommerce-barion/issues\n"
-"POT-Creation-Date: 2018-03-30 19:41:15+00:00\n"
-"PO-Revision-Date: 2018-03-30 21:48+0200\n"
+"POT-Creation-Date: 2018-04-17 20:06:12+00:00\n"
+"PO-Revision-Date: 2018-04-17 22:07+0200\n"
 "Last-Translator: \n"
 "Language-Team: EMAIL@ADDRESS\n"
 "Language: hu_HU\n"
@@ -46,23 +46,23 @@ msgstr ""
 msgid "Barion does not support your store currency. Supported currencies: %s"
 msgstr "A Barion nem támogatja az üzleted pénznemét. Támogatott pénznemek: %s"
 
-#: class-wc-gateway-barion.php:175
+#: class-wc-gateway-barion.php:194
 msgid "User redirected to the Barion payment page."
 msgstr "A felhasználó át lesz irányítva a Barion fizetési oldalára."
 
-#: class-wc-gateway-barion.php:195
+#: class-wc-gateway-barion.php:214
 msgid "Refund Failed: No transaction ID"
 msgstr "Visszatérítés sikertelen. Nincs transaction ID"
 
-#: class-wc-gateway-barion.php:203
+#: class-wc-gateway-barion.php:222
 msgid "Refunded %s - Refund ID: %s"
 msgstr "%s visszatérítve - Refund ID: %s"
 
-#: class-wc-gateway-barion.php:208
+#: class-wc-gateway-barion.php:227
 msgid "Barion refund failed."
 msgstr "Barion visszatérítés sikertelen."
 
-#: class-wc-gateway-barion.php:255
+#: class-wc-gateway-barion.php:274
 msgid "Order status updated based on the settings."
 msgstr "A rendelés állapota a beállításoknak megfelelően frissítve lett."
 
@@ -84,7 +84,15 @@ msgstr "Sikeres fizetés a Barionon keresztül."
 msgid "Payment canceled via Barion."
 msgstr "Visszamondott vásárlás a Barion oldalán."
 
-#: includes/class-wc-gateway-barion-ipn-handler.php:59
+#: includes/class-wc-gateway-barion-ipn-handler.php:60
+msgid ""
+"Payment is expired (customer progressed to Barion, but then left the page "
+"without paying)."
+msgstr ""
+"Fizetési ablak lejárt (a vásárló átkerült a Barion oldalára, de azt fizetés "
+"nélkül elhagyta)"
+
+#: includes/class-wc-gateway-barion-ipn-handler.php:65
 msgid "Payment failed via Barion."
 msgstr "Meghiúsult vásárlás a Barion oldalán."
 

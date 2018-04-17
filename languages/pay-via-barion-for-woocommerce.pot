@@ -2,9 +2,9 @@
 # This file is distributed under the GNU General Public License v3.0.
 msgid ""
 msgstr ""
-"Project-Id-Version: Barion Payment Gateway for WooCommerce 2.1.2\n"
+"Project-Id-Version: Barion Payment Gateway for WooCommerce 2.2.0\n"
 "Report-Msgid-Bugs-To: https://github.com/szelpe/woocommerce-barion/issues\n"
-"POT-Creation-Date: 2018-03-30 19:41:15+00:00\n"
+"POT-Creation-Date: 2018-04-17 20:06:12+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -40,23 +40,23 @@ msgstr ""
 msgid "Barion does not support your store currency. Supported currencies: %s"
 msgstr ""
 
-#: class-wc-gateway-barion.php:175
+#: class-wc-gateway-barion.php:194
 msgid "User redirected to the Barion payment page."
 msgstr ""
 
-#: class-wc-gateway-barion.php:195
+#: class-wc-gateway-barion.php:214
 msgid "Refund Failed: No transaction ID"
 msgstr ""
 
-#: class-wc-gateway-barion.php:203
+#: class-wc-gateway-barion.php:222
 msgid "Refunded %s - Refund ID: %s"
 msgstr ""
 
-#: class-wc-gateway-barion.php:208
+#: class-wc-gateway-barion.php:227
 msgid "Barion refund failed."
 msgstr ""
 
-#: class-wc-gateway-barion.php:255
+#: class-wc-gateway-barion.php:274
 msgid "Order status updated based on the settings."
 msgstr ""
 
@@ -76,7 +76,13 @@ msgstr ""
 msgid "Payment canceled via Barion."
 msgstr ""
 
-#: includes/class-wc-gateway-barion-ipn-handler.php:59
+#: includes/class-wc-gateway-barion-ipn-handler.php:60
+msgid ""
+"Payment is expired (customer progressed to Barion, but then left the page "
+"without paying)."
+msgstr ""
+
+#: includes/class-wc-gateway-barion-ipn-handler.php:65
 msgid "Payment failed via Barion."
 msgstr ""
 

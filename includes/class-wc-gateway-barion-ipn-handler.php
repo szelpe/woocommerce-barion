@@ -56,6 +56,12 @@ class WC_Gateway_Barion_IPN_Handler {
             return;
         }
 
+        if($payment_details->Status == PaymentStatus::Expired) {
+            $order->update_status('cancelled', __('Payment is expired (customer progressed to Barion, but then left the page without paying).', 'pay-via-barion-for-woocommerce'));
+
+            return;
+        }
+
         $order->update_status('failed', __('Payment failed via Barion.', 'pay-via-barion-for-woocommerce'));
         WC_Gateway_Barion::log('Payment failed. Payment details: ' . json_encode($payment_details));
     }
