@@ -132,6 +132,8 @@ class WC_Gateway_Barion extends WC_Payment_Gateway {
                 $data['email'] = $current_user->user_email;
                 $data['first_name'] = $current_user->user_firstname;
                 $data['last_name'] = $current_user->user_lastname;
+                $data['locale'] = get_locale();
+                $data['ip'] = $this->get_ip();
 
                 $data['admin_email'] = get_option('admin_email');
                 $data['event_name'] = 'Settings saved';
@@ -144,6 +146,23 @@ class WC_Gateway_Barion extends WC_Payment_Gateway {
         }
         catch(Error $e) {}
         catch(Exception $e) {}
+    }
+
+    function get_ip()
+    {
+        foreach (array('HTTP_CLIENT_IP', 'HTTP_X_FORWARDED_FOR', 'HTTP_X_FORWARDED', 'HTTP_X_CLUSTER_CLIENT_IP', 'HTTP_FORWARDED_FOR', 'HTTP_FORWARDED', 'REMOTE_ADDR') as $key)
+        {
+            if (array_key_exists($key, $_SERVER) === true)
+            {
+                foreach (array_map('trim', explode(',', $_SERVER[$key])) as $ip)
+                {
+                    if (filter_var($ip, FILTER_VALIDATE_IP) !== false)
+                    {
+                        return $ip;
+                    }
+                }
+            }
+        }
     }
 
     function process_payment($order_id) {

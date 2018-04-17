@@ -63,7 +63,7 @@ WooCommerce and the WooCommerce logo are trademarks or registered trademarks of 
 
 == Privacy Policy ==
 
-If you choose to sign up to the newsletter, the following data will be collected: admin email address, the current user's name and email address and the URL of your blog. We use the collected data to send newsletters occasionally.
+If you choose to sign up to the newsletter, the following data will be collected: admin email address, the current user's name and email address, the URL of your blog, the locale of the blog and the IP address of the currently logged in user. We use the collected data to send newsletters occasionally.
 The collected data is deleted upon request and will not be shared.
 
 == Changelog ==
