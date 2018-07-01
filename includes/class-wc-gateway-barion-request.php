@@ -87,6 +87,8 @@ class WC_Gateway_Barion_Request {
                 $itemModel->SKU = '';
             }
             elseif ('fee' === $item['type']) {
+                $itemModel->UnitPrice = $order->get_item_total($item, true);
+                $itemModel->ItemTotal = $order->get_line_total($item, true);
                 $itemModel->SKU = '';
             }
             else {
