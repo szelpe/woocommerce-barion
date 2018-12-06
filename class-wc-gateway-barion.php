@@ -80,7 +80,7 @@ class WC_Gateway_Barion extends WC_Payment_Gateway {
     * @return string
      */
     public function get_icon() {
-        $icon      = $this->plugin_url() . '/assets/barion-card-payment-banner-2016-300x35px.png';
+        $icon      = $this->plugin_url() . '/assets/barion-card-payment-mark-2017-300px.png';
         $info_link = $this->get_icon_info_link();
         $icon_html = '<a href="' . esc_attr( $info_link ) . '" target="_blank"><img src="' . esc_attr( $icon ) . '" alt="' . esc_attr__( 'Barion acceptance mark', 'pay-via-barion-for-woocommerce' ) . '" style="display: inline" /></a>';
         return apply_filters( 'woocommerce_gateway_icon', $icon_html, $this->id );
