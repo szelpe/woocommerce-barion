@@ -21,7 +21,7 @@ class WC_Gateway_Barion extends WC_Payment_Gateway {
             'products',
             'refunds'
         );
-        $this->supported_currencies = array('USD', 'EUR', 'HUF');
+        $this->supported_currencies = array('USD', 'EUR', 'HUF','CZK');
 
         $this->init_form_fields();
         $this->init_settings();
