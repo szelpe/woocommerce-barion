@@ -119,7 +119,8 @@ class WC_Gateway_Barion_Request {
                 return UILocale::SK;
             case "fr_FR":
                 return UILocale::FR;
-
+            case "cs_CZ":
+                return UILocale::CZ;
             default:
                 return UILocale::EN;
         }
