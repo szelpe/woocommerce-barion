@@ -2,9 +2,9 @@
 Contributors: szelpe
 Tags: woocommerce, barion, gateway, payment
 Requires at least: 4.0
-Tested up to: 4.9.4
+Tested up to: 5.1
 WC requires at least: 3.0.0
-WC tested up to: 3.3.3
+WC tested up to: 3.5.6
 Requires PHP: 5.6
 Stable tag: 2.4.0
 License: GPLv3 or later
@@ -67,6 +67,10 @@ If you choose to sign up to the newsletter, the following data will be collected
 The collected data is deleted upon request and will not be shared.
 
 == Changelog ==
+
+= 2.4.0 =
+
+- Added Czech language and CZK support
 
 = 2.3.0 =
 
