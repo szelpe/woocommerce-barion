@@ -76,6 +76,12 @@ msgstr ""
 "A Barion visszahívás figyelmen kívül lett hagyva, mivel a fizetés már "
 "befejeződött."
 
+#: includes/class-wc-gateway-barion-ipn-handler.php:43
+msgid "Barion callback ignored as the user has chosen another payment method."
+msgstr ""
+"A Barion visszahívás figyelmen kívül lett hagyva, mivel a fizetési mód "
+"idő közben meg lett változtatva."
+
 #: includes/class-wc-gateway-barion-ipn-handler.php:47
 msgid "Payment succeeded via Barion."
 msgstr "Sikeres fizetés a Barionon keresztül."

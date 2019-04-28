@@ -68,6 +68,10 @@ msgstr ""
 msgid "Barion callback ignored as the payment was already completed."
 msgstr ""
 
+#: includes/class-wc-gateway-barion-ipn-handler.php:43
+msgid "Barion callback ignored as the user has chosen another payment method."
+msgstr ""
+
 #: includes/class-wc-gateway-barion-ipn-handler.php:47
 msgid "Payment succeeded via Barion."
 msgstr ""
