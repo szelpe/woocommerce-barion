@@ -10,6 +10,9 @@ class WC_Gateway_Barion_Request {
         $this->gateway = $gateway;
     }
 
+    /**
+     * @param WC_Order $order
+     */
     public function prepare_payment($order) {
         $this->order = $order;
         $transaction = new PaymentTransactionModel();
@@ -135,9 +138,9 @@ class WC_Gateway_Barion_Request {
 
     /**
      * Round prices.
-     * @param  double $price
-     * @param  WC_Order $order
-     * @return double
+     * @param string $price
+     * @param string $currency
+     * @return string
      */
     protected function round($price, $currency) {
         $precision = 2;
@@ -145,7 +148,7 @@ class WC_Gateway_Barion_Request {
             $precision = 0;
         }
 
-        return round($price, $precision);
+        return number_format(round($price, $precision), $precision);
     }
 
     /**
