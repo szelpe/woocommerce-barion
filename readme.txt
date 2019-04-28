@@ -68,6 +68,11 @@ The collected data is deleted upon request and will not be shared.
 
 == Changelog ==
 
+= 2.5.0 =
+
+- Fixed floating point precision bug
+- Fixed bug in case of changed payment method
+
 = 2.4.0 =
 
 - Added Czech language and CZK support
