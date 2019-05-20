@@ -97,11 +97,13 @@ class WC_Gateway_Barion_Request {
             else {
                 $product = $order->get_product_from_item($item);
 
-                if($product->is_type('variable')) {
-                    $itemModel->Name .= ' (' . $product->get_formatted_variation_attributes(true) . ')';
-                }
+                if($product) {
+                    if($product->is_type('variable')) {
+                        $itemModel->Name .= ' (' . $product->get_formatted_variation_attributes(true) . ')';
+                    }
 
-                $itemModel->SKU = $product->get_sku();
+                    $itemModel->SKU = $product->get_sku();
+                }
             }
 
             $transaction->AddItem($itemModel);
