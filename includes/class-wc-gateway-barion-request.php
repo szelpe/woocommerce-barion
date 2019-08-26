@@ -31,8 +31,19 @@ class WC_Gateway_Barion_Request {
         $paymentRequest->PayerHint = $order->get_billing_email();
         $paymentRequest->Locale = $this->get_barion_locale();
         $paymentRequest->OrderNumber = $order->get_order_number();
-        $paymentRequest->ShippingAddress = $order->get_formatted_shipping_address();
-        $paymentRequest->RedirectUrl = add_query_arg('order-id', $order->get_id(), WC()->api_request_url('WC_Gateway_Barion_Return_From_Payment'));
+        
+				$shippingAddress = new ShippingAddressModel();
+				$shippingAddress->Country = $order->shipping_country;
+				$shippingAddress->Region = null;
+				$shippingAddress->City = $order->shipping_city;
+				$shippingAddress->Zip = $order->shipping_postcode;
+				$shippingAddress->Street = $order->shipping_address_1;
+				$shippingAddress->Street2 = $order->shipping_address_2;
+				$shippingAddress->Street3 = "";
+				$shippingAddress->FullName = $order->shipping_last_name." ".$order->shipping_first_name;
+				$paymentRequest->ShippingAddress = $shippingAddress;
+				
+				$paymentRequest->RedirectUrl = add_query_arg('order-id', $order->get_id(), WC()->api_request_url('WC_Gateway_Barion_Return_From_Payment'));
         $paymentRequest->CallbackUrl = WC()->api_request_url('WC_Gateway_Barion');
         $paymentRequest->Currency = $order->get_currency();
         $paymentRequest->AddTransaction($transaction);
