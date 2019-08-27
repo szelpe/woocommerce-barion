@@ -14,23 +14,38 @@ Domain Path: /languages
 
 */
 
-add_action('plugins_loaded', 'woocommerce_gateway_barion_init', 0);
+$plugin = new WooCommerce_Barion_Plugin();
 
-function woocommerce_gateway_barion_init() {
-    if (!class_exists('WC_Payment_Gateway'))
-        return;
+class WooCommerce_Barion_Plugin {
+    /**
+     * @var WC_Gateway_Barion_Profile_Monitor
+     */
+    private $profile_monitor;
 
-    load_plugin_textdomain('pay-via-barion-for-woocommerce', false, plugin_basename(dirname(__FILE__)) . "/languages");
+    public function __construct() {
+        add_action('plugins_loaded', [$this, 'init'], 0);
+    }
 
-    require_once('class-wc-gateway-barion.php');
+    function init() {
+        if (!class_exists('WC_Payment_Gateway'))
+            return;
+
+        load_plugin_textdomain('pay-via-barion-for-woocommerce', false, plugin_basename(dirname(__FILE__)) . "/languages");
+
+        require_once 'includes/class-wc-gateway-barion-profile-monitor.php';
+
+        $this->profile_monitor = new WC_Gateway_Barion_Profile_Monitor();
+
+        require_once 'class-wc-gateway-barion.php';
+
+        add_filter('woocommerce_payment_gateways', [$this, 'woocommerce_add_gateway_barion_gateway']);
+    }
 
     /**
      * Add the Gateway to WooCommerce
      **/
     function woocommerce_add_gateway_barion_gateway($methods) {
-        $methods[] = 'WC_Gateway_Barion';
+        $methods[] = new WC_Gateway_Barion($this->profile_monitor);
         return $methods;
     }
-
-    add_filter('woocommerce_payment_gateways', 'woocommerce_add_gateway_barion_gateway' );
 }

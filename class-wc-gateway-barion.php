@@ -7,11 +7,18 @@ if ( ! defined( 'ABSPATH' ) ) {
 require_once 'barion-library/library/BarionClient.php';
 require_once 'includes/class-wc-gateway-barion-ipn-handler.php';
 require_once 'includes/class-wc-gateway-barion-return-from-payment.php';
-require_once('includes/class-wc-gateway-barion-request.php');
+require_once 'includes/class-wc-gateway-barion-request.php';
 
 class WC_Gateway_Barion extends WC_Payment_Gateway {
 
-    public function __construct() {
+    /**
+     * @var WC_Gateway_Barion_Profile_Monitor
+     */
+    private $profile_monitor;
+
+    public function __construct($profile_monitor) {
+        $this->profile_monitor = $profile_monitor;
+
         $this->id                 = 'barion';
         $this->method_title       = __('Barion', 'pay-via-barion-for-woocommerce');
         $this->method_description = sprintf( __( 'Barion payment gateway sends customers to Barion to enter their payment information. Barion callback requires cURL support to update order statuses after payment. Check the %ssystem status%s page for more details.', 'pay-via-barion-for-woocommerce' ), '<a href="' . admin_url( 'admin.php?page=wc-status' ) . '">', '</a>' );
@@ -179,7 +186,7 @@ class WC_Gateway_Barion extends WC_Payment_Gateway {
             );
         }
 
-        $request = new WC_Gateway_Barion_Request($this->barion_client, $this);
+        $request = new WC_Gateway_Barion_Request($this->barion_client, $this, $this->profile_monitor);
 
         $request->prepare_payment($order);
 

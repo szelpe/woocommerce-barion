@@ -14,6 +14,8 @@ This plugin allows your customers to pay via [Barion Smart Gateway](https://www.
 
 ### Minimum Requirements
 
+- PHP 5.6
+- PHP cURL extension
 - WooCommerce 3.0 or later
 - WordPress 4.0 or later
 
