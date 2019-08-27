@@ -29,6 +29,7 @@ class WC_Gateway_Barion_Request {
         $paymentRequest->FundingSources = array(FundingSourceType::All);
         $paymentRequest->PaymentRequestId = $order->get_id();
         $paymentRequest->PayerHint = $order->get_billing_email();
+        $paymentRequest->PayerPhoneNumber = $order->get_billing_phone();
         $paymentRequest->Locale = $this->get_barion_locale();
         $paymentRequest->OrderNumber = $order->get_order_number();
         $paymentRequest->ShippingAddress = $order->get_formatted_shipping_address();
