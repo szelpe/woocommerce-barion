@@ -117,15 +117,15 @@ class WC_Gateway_Barion_Request {
             case "de_DE":
                 return UILocale::DE;
             case "sl_SI":
-                // This doesn't work due to a bug in the Barion library
-                //return UILocale::SL;
-                return "sl-SI";
+                return UILocale::SL;
             case "sk_SK":
                 return UILocale::SK;
             case "fr_FR":
                 return UILocale::FR;
             case "cs_CZ":
                 return UILocale::CZ;
+            case "el_GR":
+                return UILocale::GR;
             default:
                 return UILocale::EN;
         }
