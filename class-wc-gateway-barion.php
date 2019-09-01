@@ -15,6 +15,22 @@ class WC_Gateway_Barion extends WC_Payment_Gateway {
      * @var WC_Gateway_Barion_Profile_Monitor
      */
     private $profile_monitor;
+    /**
+     * @var string
+     */
+    private $barion_pixel_id;
+    /**
+     * @var BarionClient
+     */
+    private $barion_client;
+    /**
+     * @var string
+     */
+    private $poskey;
+    /**
+     * @var string
+     */
+    private $barion_environment;
 
     public function __construct($profile_monitor) {
         $this->profile_monitor = $profile_monitor;
@@ -47,6 +63,7 @@ class WC_Gateway_Barion extends WC_Payment_Gateway {
 
         $this->poskey = $this->settings['poskey'];
         $this->payee = $this->settings['payee'];
+        $this->barion_pixel_id = array_key_exists('barion_pixel_id', $this->settings) ? $this->settings['barion_pixel_id'] : '';
 
         add_action('woocommerce_update_options_payment_gateways_' . $this->id, array($this, 'process_admin_options'));
 
@@ -280,5 +297,9 @@ class WC_Gateway_Barion extends WC_Payment_Gateway {
 
             $order->update_status($order_status, __('Order status updated based on the settings.', 'pay-via-barion-for-woocommerce'));
         }
+    }
+
+    public function get_barion_pixel_id() {
+        return $this->barion_pixel_id;
     }
 }

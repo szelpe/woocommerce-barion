@@ -42,6 +42,12 @@ return array(
         'default'         => get_option('admin_email'),
         'placeholder'     => 'you@youremail.com'
     ),
+    'barion_pixel_id' => array(
+        'title'           => __('Barion Pixel Id', 'pay-via-barion-for-woocommerce'),
+        'type'            => 'text',
+        'description'     => __('Your Barion Pixel Id', 'pay-via-barion-for-woocommerce'),
+        'desc_tip'        => true
+    ),
     'order_status' => array(
         'title'           => __('Order status after payment', 'pay-via-barion-for-woocommerce'),
         'type'            => 'select',

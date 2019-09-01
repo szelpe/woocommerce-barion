@@ -21,6 +21,7 @@ class WooCommerce_Barion_Plugin {
      * @var WC_Gateway_Barion_Profile_Monitor
      */
     private $profile_monitor;
+    private $wc_gateway_barion;
 
     public function __construct() {
         add_action('plugins_loaded', [$this, 'init'], 0);
@@ -36,7 +37,12 @@ class WooCommerce_Barion_Plugin {
 
         $this->profile_monitor = new WC_Gateway_Barion_Profile_Monitor();
 
+
         require_once 'class-wc-gateway-barion.php';
+        $this->wc_gateway_barion = new WC_Gateway_Barion($this->profile_monitor);
+
+        require_once 'includes/class-wc-gateway-barion-pixel.php';
+        $barion_pixel = new WC_Gateway_Barion_Pixel($this->wc_gateway_barion->get_barion_pixel_id());
 
         add_filter('woocommerce_payment_gateways', [$this, 'woocommerce_add_gateway_barion_gateway']);
     }
@@ -45,7 +51,7 @@ class WooCommerce_Barion_Plugin {
      * Add the Gateway to WooCommerce
      **/
     function woocommerce_add_gateway_barion_gateway($methods) {
-        $methods[] = new WC_Gateway_Barion($this->profile_monitor);
+        $methods[] = $this->wc_gateway_barion;
         return $methods;
     }
 }
