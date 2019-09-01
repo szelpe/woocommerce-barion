@@ -68,6 +68,14 @@ The collected data is deleted upon request and will not be shared.
 
 == Changelog ==
 
+= 3.0.0 =
+
+- Added support for 3D Secure payment
+- Updated shipping address to match the new model
+- Added PayerPhoneNumber to the Barion request to enable "bank buttons" on Barion
+- Updated language support, added Greek language
+- Updated Barion library to v1.4.2
+
 = 2.5.0 =
 
 - Fixed floating point precision bug
