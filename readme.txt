@@ -71,6 +71,7 @@ The collected data is deleted upon request and will not be shared.
 = 3.0.0 =
 
 - Added support for 3D Secure payment
+- Added basic support for Barion Pixel
 - Updated shipping address to match the new model
 - Added PayerPhoneNumber to the Barion request to enable "bank buttons" on Barion
 - Updated language support, added Greek language
