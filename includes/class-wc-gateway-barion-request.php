@@ -257,7 +257,7 @@ class WC_Gateway_Barion_Request {
 
         $purchaseInfo = new PurchaseInformationModel();
         $purchaseInfo->DeliveryEmailAddress = $user->user_email;
-        $purchaseInfo->AvailabilityIndicator = AvailabilityIndicator::MerchandiseAvailable;
+        $this->set_availability_indicator($purchaseInfo, $order);
         $purchaseInfo->PurchaseType = PurchaseType::GoodsAndServicePurchase;
 
         // Not applicable
@@ -335,5 +335,31 @@ class WC_Gateway_Barion_Request {
 
     private function clean_phone_number($phone_number) {
         return str_replace(['+', ' ', '-'], '', $phone_number);
+    }
+
+    /**
+     * @param PurchaseInformationModel $purchaseInfo
+     * @param WC_Order $order
+     */
+    private function set_availability_indicator($purchaseInfo, $order) {
+        $purchaseInfo->AvailabilityIndicator = AvailabilityIndicator::MerchandiseAvailable;
+
+        /**
+         * @var $item WC_Order_Item_Product
+         */
+        foreach ($order->get_items(array('line_item')) as $item_id => $item) {
+            /**
+             * @var $product WC_Product
+             */
+            $product = $item->get_product();
+
+            if(!$product) {
+                continue;
+            }
+
+            if($product->is_on_backorder()) {
+                $purchaseInfo->AvailabilityIndicator = AvailabilityIndicator::FutureAvailability;
+            }
+        }
     }
 }
