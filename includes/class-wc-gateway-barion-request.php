@@ -183,7 +183,7 @@ class WC_Gateway_Barion_Request {
         $shippingAddress = new ShippingAddressModel();
 
         $shippingAddress->Country = $order->get_shipping_country();
-        $shippingAddress->Region = $order->get_shipping_state();
+        //$shippingAddress->Region = $order->get_shipping_state(); //TODO: must convert to codetable
         $shippingAddress->City = $order->get_shipping_city();
         $shippingAddress->Zip = $order->get_shipping_postcode();
         $shippingAddress->Street = $order->get_shipping_address_1();
@@ -202,7 +202,7 @@ class WC_Gateway_Barion_Request {
         $billingAddress = new BillingAddressModel();
 
         $billingAddress->Country = $order->get_billing_country();
-        $billingAddress->Region = $order->get_billing_state();
+        //$billingAddress->Region = $order->get_billing_state(); //TODO: must convert to codetable
         $billingAddress->City = $order->get_billing_city();
         $billingAddress->Zip = $order->get_billing_postcode();
         $billingAddress->Street = $order->get_billing_address_1();
