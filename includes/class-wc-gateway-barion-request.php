@@ -180,10 +180,23 @@ class WC_Gateway_Barion_Request {
      * @param PreparePaymentRequestModel $paymentRequest
      */
     public function set_shipping_address($order, $paymentRequest) {
+        $shipping_country = $order->get_shipping_country();
+
+        if (empty($shipping_country)) {
+            $paymentRequest->ShippingAddress = null;
+            return;
+        }
+
         $shippingAddress = new ShippingAddressModel();
 
-        $shippingAddress->Country = $order->get_shipping_country();
-        $shippingAddress->Region = $order->get_shipping_state();
+        $shippingAddress->Country = $shipping_country;
+        $shipping_state = $order->get_shipping_state();
+        if (!empty($shipping_state)) {
+            $shippingAddress->Region = $shipping_state;
+        }
+        else {
+            $shippingAddress->Region = null;
+        }
         $shippingAddress->City = $order->get_shipping_city();
         $shippingAddress->Zip = $order->get_shipping_postcode();
         $shippingAddress->Street = $order->get_shipping_address_1();
@@ -199,10 +212,23 @@ class WC_Gateway_Barion_Request {
      * @param PreparePaymentRequestModel $paymentRequest
      */
     public function set_billing_address($order, $paymentRequest) {
+        $billing_country = $order->get_billing_country();
+
+        if (empty($billing_country)) {
+            $paymentRequest->BillingAddress = null;
+            return;
+        }
+
         $billingAddress = new BillingAddressModel();
 
-        $billingAddress->Country = $order->get_billing_country();
-        $billingAddress->Region = $order->get_billing_state();
+        $billingAddress->Country = $billing_country;
+        $billing_state = $order->get_billing_state();
+        if (!empty($billing_state)) {
+            $billingAddress->Region = $billing_state;
+        }
+        else {
+            $billingAddress->Region = null;
+        }
         $billingAddress->City = $order->get_billing_city();
         $billingAddress->Zip = $order->get_billing_postcode();
         $billingAddress->Street = $order->get_billing_address_1();
@@ -353,11 +379,11 @@ class WC_Gateway_Barion_Request {
              */
             $product = $item->get_product();
 
-            if(!$product) {
+            if (!$product) {
                 continue;
             }
 
-            if($product->is_on_backorder()) {
+            if ($product->is_on_backorder()) {
                 $purchaseInfo->AvailabilityIndicator = AvailabilityIndicator::FutureAvailability;
             }
         }
