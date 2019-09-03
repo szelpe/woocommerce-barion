@@ -68,6 +68,10 @@ The collected data is deleted upon request and will not be shared.
 
 == Changelog ==
 
+= 3.0.2 =
+
+- Fixed the case when the shipping/billing address or region is empty
+
 = 3.0.0 =
 
 - Added support for 3D Secure payment
