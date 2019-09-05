@@ -13,7 +13,7 @@ class WC_Gateway_Barion_Profile_Monitor {
     public function __construct() {
         add_action('profile_update', [$this, 'check_profile_changes'], 10, 2);
         add_action('woocommerce_created_customer', [$this, 'save_customer_created'], 10, 3);
-        add_action('woocommerce_update_customer', [$this, 'save_customer_update'], 10, 2);
+        add_action('woocommerce_update_customer', [$this, 'save_customer_update'], 10, 1);
     }
 
     public function was_profile_just_created() {
@@ -40,7 +40,7 @@ class WC_Gateway_Barion_Profile_Monitor {
         $this->is_profile_just_created = true;
     }
 
-    public function save_customer_update($customer_id, $new_customer_data) {
+    public function save_customer_update($customer_id) {
         $this->is_profile_just_updated = true;
     }
 
