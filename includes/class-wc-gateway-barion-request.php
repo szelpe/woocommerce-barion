@@ -34,9 +34,9 @@ class WC_Gateway_Barion_Request {
         $paymentRequest->PaymentType = PaymentType::Immediate;
         $paymentRequest->FundingSources = array(FundingSourceType::All);
         $paymentRequest->PaymentRequestId = $order->get_id();
-        $paymentRequest->PayerHint = $order->get_billing_email();
+        $paymentRequest->PayerHint = $this->nullIfEmpty($order->get_billing_email());
         $paymentRequest->PayerPhoneNumber = $this->clean_phone_number($order->get_billing_phone());
-        $paymentRequest->CardHolderNameHint = $order->get_formatted_billing_full_name();
+        $paymentRequest->CardHolderNameHint = $this->nullIfEmpty($order->get_formatted_billing_full_name());
         $paymentRequest->Locale = $this->get_barion_locale();
         $paymentRequest->OrderNumber = $order->get_order_number();
         $this->set_shipping_address($order, $paymentRequest);
@@ -190,13 +190,9 @@ class WC_Gateway_Barion_Request {
         $shippingAddress = new ShippingAddressModel();
 
         $shippingAddress->Country = $shipping_country;
-        $shipping_state = $order->get_shipping_state();
-        if (!empty($shipping_state)) {
-            $shippingAddress->Region = $shipping_state;
-        }
-        else {
-            $shippingAddress->Region = null;
-        }
+
+        // Region code is not compatible with WooCommerce
+        $shippingAddress->Region = null;
         $shippingAddress->City = $order->get_shipping_city();
         $shippingAddress->Zip = $order->get_shipping_postcode();
         $shippingAddress->Street = $order->get_shipping_address_1();
@@ -222,13 +218,9 @@ class WC_Gateway_Barion_Request {
         $billingAddress = new BillingAddressModel();
 
         $billingAddress->Country = $billing_country;
-        $billing_state = $order->get_billing_state();
-        if (!empty($billing_state)) {
-            $billingAddress->Region = $billing_state;
-        }
-        else {
-            $billingAddress->Region = null;
-        }
+
+        // Region code is not compatible with WooCommerce
+        $billingAddress->Region = null;
         $billingAddress->City = $order->get_billing_city();
         $billingAddress->Zip = $order->get_billing_postcode();
         $billingAddress->Street = $order->get_billing_address_1();
@@ -360,7 +352,13 @@ class WC_Gateway_Barion_Request {
     }
 
     private function clean_phone_number($phone_number) {
-        return str_replace(['+', ' ', '-'], '', $phone_number);
+        $phone_number = str_replace(['+', ' ', '-'], '', $phone_number);
+
+        if(empty($phone_number)) {
+            return null;
+        }
+
+        return $phone_number;
     }
 
     /**
@@ -387,5 +385,13 @@ class WC_Gateway_Barion_Request {
                 $purchaseInfo->AvailabilityIndicator = AvailabilityIndicator::FutureAvailability;
             }
         }
+    }
+
+    private function nullIfEmpty($value) {
+        if (empty($value)) {
+            return null;
+        }
+
+        return $value;
     }
 }
