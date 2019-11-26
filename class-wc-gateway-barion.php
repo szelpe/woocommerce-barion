@@ -53,7 +53,7 @@ class WC_Gateway_Barion extends WC_Payment_Gateway {
         $this->description = $this->settings['description'];
         $this->barion_environment = BarionEnvironment::Prod;
 
-        if ( $this->settings['environment'] == 'test' ) {
+        if ( array_key_exists('environment', $this->settings) && $this->settings['environment'] == 'test' ) {
             $this->title .= ' [TEST MODE]';
             $this->description .= '<br/><br/>Test mode is <strong>active</strong>.' . "\n"
                                 . 'Test credit card details: <a href="https://docs.barion.com/Sandbox#Test_cards">https://docs.barion.com/Sandbox#Test_cards</a>';
