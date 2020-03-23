@@ -10,7 +10,10 @@ class WC_Gateway_Barion_Request {
      */
     private $profile_monitor;
 
+    public $is_prepared;
+
     public function __construct($barion_client, $gateway, $profile_monitor) {
+        $this->is_prepared = false;
         $this->barion_client = $barion_client;
         $this->gateway = $gateway;
         $this->profile_monitor = $profile_monitor;

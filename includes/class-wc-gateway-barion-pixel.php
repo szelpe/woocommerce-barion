@@ -10,11 +10,15 @@ class WC_Gateway_Barion_Pixel {
     public function __construct($barion_pixel_id) {
         $this->barion_pixel_id = $barion_pixel_id;
 
-        add_action('wp_head', [$this, 'add_barion_pixel']);
+        add_action('wp_head', [$this, 'add_barion_pixel'], 999999);
     }
 
     public function add_barion_pixel() {
         if (empty($this->barion_pixel_id)) {
+            return;
+        }
+
+        if ($this->disable_tracking()) {
             return;
         }
 
@@ -27,9 +31,22 @@ class WC_Gateway_Barion_Pixel {
     m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
     })(window, document, 'script', 'https://pixel.barion.com/bp.js', 'bp');
 
-    // send page view event
+    // Send init event
     bp('init', 'addBarionPixelId', '{$barion_pixel_id}');
 </script>
 EOL;
+    }
+
+    /**
+     * Check if tracking is disabled
+     *
+     * @return bool True if tracking for a certain setting is disabled
+     */
+    private function disable_tracking() {
+        if (apply_filters('woocommerce_barion_disable_tracking', false)) {
+            return true;
+        }
+
+        return false;
     }
 }

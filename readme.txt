@@ -2,9 +2,9 @@
 Contributors: szelpe
 Tags: woocommerce, barion, gateway, payment
 Requires at least: 4.0
-Tested up to: 5.2
+Tested up to: 5.3.2
 WC requires at least: 3.0.0
-WC tested up to: 3.6.1
+WC tested up to: 4.0.1
 Requires PHP: 5.6
 Stable tag: 3.1.0
 License: GPLv3 or later
@@ -66,7 +66,28 @@ WooCommerce and the WooCommerce logo are trademarks or registered trademarks of 
 If you choose to sign up to the newsletter, the following data will be collected: admin email address, the current user's name and email address, the URL of your blog, the locale of the blog and the IP address of the currently logged in user. We use the collected data to send newsletters occasionally.
 The collected data is deleted upon request and will not be shared.
 
+== Frequently Asked Questions ==
+
+= How to disable the Barion Pixel for certain pages? =
+
+You can use the `woocommerce_barion_disable_tracking` hook, like this:
+
+```php
+add_filter('woocommerce_barion_disable_tracking', 'disable_barion_pixel_for_editor');
+
+function disable_barion_pixel_for_editor() {
+	return current_user_can('edit_posts');
+}
+```
+
 == Changelog ==
+
+= 3.2.0 =
+
+- Compatible with WooCommerce 4
+- Added filter for disabling Barion Pixel
+- Fixed PHP Notice for missing property on the request class
+- Fixed PHP Notice in case 'environment' setting is not set
 
 = 3.0.2 =
 
