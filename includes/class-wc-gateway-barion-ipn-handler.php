@@ -34,11 +34,16 @@ class WC_Gateway_Barion_IPN_Handler {
 
         $order->add_order_note(__('Barion callback received.', 'pay-via-barion-for-woocommerce') . ' paymentId: "' . $_GET['paymentId'] . '"');
 
+        if(apply_filters('woocommerce_barion_custom_callback_handler', false, $order, $payment_details)) {
+            $order->add_order_note(__('Barion callback was handled by a custom handler.', 'pay-via-barion-for-woocommerce'));
+            return;
+        }
+
         if($order->has_status(array('processing', 'completed'))) {
             $order->add_order_note(__('Barion callback ignored as the payment was already completed.', 'pay-via-barion-for-woocommerce'));
             return;
         }
-        
+
         if($order->has_status(array('on-hold'))) {
             $order->add_order_note(__('Barion callback ignored as the user has chosen another payment method.', 'pay-via-barion-for-woocommerce'));
             return;
