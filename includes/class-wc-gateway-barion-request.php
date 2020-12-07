@@ -107,7 +107,7 @@ class WC_Gateway_Barion_Request {
                 $itemModel->ItemTotal = $order->get_line_total($item, true);
                 $itemModel->SKU = '';
             } else {
-                $product = $order->get_product_from_item($item);
+                $product = $item->get_product();
 
                 if ($product) {
                     if ($product->is_type('variable')) {

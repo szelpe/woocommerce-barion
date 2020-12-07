@@ -31,6 +31,10 @@ class WC_Gateway_Barion extends WC_Payment_Gateway {
      * @var string
      */
     private $barion_environment;
+    /**
+     * @var string[]
+     */
+    private $supported_currencies;
 
     public function __construct($profile_monitor) {
         $this->profile_monitor = $profile_monitor;
