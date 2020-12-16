@@ -2,9 +2,9 @@
 Contributors: szelpe
 Tags: woocommerce, barion, gateway, payment
 Requires at least: 4.0
-Tested up to: 5.5.3
+Tested up to: 5.6
 WC requires at least: 3.0.0
-WC tested up to: 4.7.1
+WC tested up to: 4.8.0
 Requires PHP: 5.6
 Stable tag: 3.3.0
 License: GPLv3 or later
