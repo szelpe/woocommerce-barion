@@ -53,7 +53,7 @@ class WC_Gateway_Barion_Request {
         $this->set_purchase_information($order, $paymentRequest);
         $paymentRequest->ChallengePreference = ChallengePreference::NoPreference;
 
-        apply_filters('woocommerce_barion_prepare_payment', $paymentRequest, $order);
+        $paymentRequest = apply_filters('woocommerce_barion_prepare_payment', $paymentRequest, $order);
 
         $this->payment = $this->barion_client->PreparePayment($paymentRequest);
 
