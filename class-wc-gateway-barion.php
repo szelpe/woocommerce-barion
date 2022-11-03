@@ -116,10 +116,10 @@ class WC_Gateway_Barion extends WC_Payment_Gateway {
 
     function get_icon_info_link() {
         if(get_locale() == "hu_HU") {
-            return 'https://www.barion.com/hu/tajekoztato-biztonsagos-online-fizetesrol';
+            return 'https://www.barion.com/hu/';
         }
 
-        return 'https://www.barion.com/en/about-secure-online-payment';
+        return 'https://www.barion.com/en/';
     }
 
     function init_form_fields() {
