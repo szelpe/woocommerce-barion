@@ -10,7 +10,7 @@ License: GNU General Public License v3.0
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
 WC requires at least: 3.0.0
-WC tested up to: 4.8.0
+WC tested up to: 7.0.1
 
 Text Domain: pay-via-barion-for-woocommerce
 Domain Path: /languages
