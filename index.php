@@ -48,6 +48,30 @@ class WooCommerce_Barion_Plugin {
         $barion_pixel = new WC_Gateway_Barion_Pixel($this->wc_gateway_barion->get_barion_pixel_id());
 
         add_filter('woocommerce_payment_gateways', [$this, 'woocommerce_add_gateway_barion_gateway']);
+
+        //Mark compatibility with checkout blocks
+        add_action( 'before_woocommerce_init', function() {
+            if ( class_exists( '\Automattic\WooCommerce\Utilities\FeaturesUtil' ) ) {
+                \Automattic\WooCommerce\Utilities\FeaturesUtil::declare_compatibility( 'custom_order_tables', __FILE__, true );
+                \Automattic\WooCommerce\Utilities\FeaturesUtil::declare_compatibility( 'cart_checkout_blocks', __FILE__, true );
+            }
+        } );
+
+        //Load checkout block class
+        add_action( 'woocommerce_blocks_loaded', function() {
+
+            if( ! class_exists( 'Automattic\WooCommerce\Blocks\Payments\Integrations\AbstractPaymentMethodType' ) ) {
+                return;
+            }
+        
+            require_once 'includes/class-wc-gateway-barion-block-checkout.php';
+            add_action(
+                'woocommerce_blocks_payment_method_type_registration',
+                function( Automattic\WooCommerce\Blocks\Payments\PaymentMethodRegistry $payment_method_registry ) {
+                    $payment_method_registry->register( new WC_Gateway_Barion_Blocks );
+            } );
+        
+        } );
     }
 
     /**
