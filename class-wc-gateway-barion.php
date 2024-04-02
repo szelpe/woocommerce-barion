@@ -54,13 +54,13 @@ class WC_Gateway_Barion extends WC_Payment_Gateway {
         $this->init_settings();
 
         $this->title = $this->settings['title'];
-        $this->description = $this->settings['description'];
+		$allowedTags = '<p><br><strong><b><i><em><ul><ol><li><h1><h2><h3><h4><h5><h6><blockquote><code><pre>';
+        $this->description =  strip_tags($this->settings['description'], $allowedTags);
         $this->barion_environment = BarionEnvironment::Prod;
 
         if ( array_key_exists('environment', $this->settings) && $this->settings['environment'] == 'test' ) {
             $this->title .= ' [TEST MODE]';
-            $this->description .= '<br/><br/>Test mode is <strong>active</strong>.' . "\n"
-                                . 'Test credit card details: <a href="https://docs.barion.com/Sandbox#Test_cards">https://docs.barion.com/Sandbox#Test_cards</a>';
+		$this->description .=sprintf( __(  '<br/><br/>Test mode is <strong>active</strong>.  Test credit card details: %s', 'pay-via-barion-for-woocommerce'), '<a href="https://docs.barion.com/Sandbox#Test_cards">https://docs.barion.com/Sandbox#Test_cards</a>');
 
             $this->barion_environment = BarionEnvironment::Test;
         }

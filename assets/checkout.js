@@ -1,8 +1,9 @@
 const settings = window.wc.wcSettings.getSetting( 'barion_data', {} );
 const label = window.wp.htmlEntities.decodeEntities( settings.title ) || window.wp.i18n.__( 'Barion', 'pay-via-barion-for-woocommerce' );
 const Content = () => {
-	return window.wp.htmlEntities.decodeEntities( settings.description || '' );
+    return React.createElement("div", { dangerouslySetInnerHTML: { __html: window.wp.htmlEntities.decodeEntities(settings.description || '') } });
 };
+
 const BarionCheckout = {
 	name: 'barion',
 	label: React.createElement('img', {
