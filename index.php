@@ -31,10 +31,11 @@ class WooCommerce_Barion_Plugin {
     }
 
     function init() {
+		load_plugin_textdomain('pay-via-barion-for-woocommerce', false, plugin_basename(dirname(__FILE__)) . "/languages");
         if (!class_exists('WC_Payment_Gateway'))
             return;
 
-        load_plugin_textdomain('pay-via-barion-for-woocommerce', false, plugin_basename(dirname(__FILE__)) . "/languages");
+        
 
         require_once 'includes/class-wc-gateway-barion-profile-monitor.php';
 
@@ -81,11 +82,4 @@ class WooCommerce_Barion_Plugin {
         $methods[] = $this->wc_gateway_barion;
         return $methods;
     }
-}
-add_filter( 'gettext', 'custom_paypal_button_text', 20, 3 );
-function custom_paypal_button_text( $translated_text, $text, $domain ) {
-    if ( 'Proceed to Barion' == $translated_text ) {
-        $translated_text = 'Pay with PayPal';
-    }
-    return $translated_text;
 }
