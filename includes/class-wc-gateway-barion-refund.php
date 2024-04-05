@@ -5,6 +5,19 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 class WC_Gateway_Barion_Refund {
+	 /**
+     * @var BarionClient
+     */
+    private $barion_client;
+    /**
+     * @var WCGateway
+     */
+    private $gateway;
+    
+    /**
+     * @var bool
+     */
+	 public $refund_succeeded;
     public function __construct($barion_client, $gateway) {
         $this->barion_client = $barion_client;
         $this->gateway = $gateway;
@@ -12,6 +25,7 @@ class WC_Gateway_Barion_Refund {
     }
 
     public function refund_order($order, $amount = null, $reason = '') {
+		$paymentId = $this->gateway->get_barion_payment_id($order);
         $transaction = new TransactionToRefundModel();
         $transaction->TransactionId = $order->get_transaction_id();
         $transaction->POSTransactionId = $order->get_id();
@@ -20,7 +34,7 @@ class WC_Gateway_Barion_Refund {
         // Comment must be at most 640 character long
         $transaction->Comment = substr($reason, 0, 640);
 
-        $paymentId = $this->gateway->get_barion_payment_id($order);
+        
         $refundRequest = new RefundRequestModel($paymentId);
         $refundRequest->AddTransaction($transaction);
 

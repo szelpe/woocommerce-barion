@@ -27,6 +27,10 @@ class WC_Gateway_Barion extends WC_Payment_Gateway {
      * @var string
      */
     private $poskey;
+	 /**
+     * @var string
+     */
+   	public $payee;
     /**
      * @var string
      */
@@ -74,7 +78,7 @@ class WC_Gateway_Barion extends WC_Payment_Gateway {
         if (!$this->is_selected_currency_supported()) {
             $this->enabled = 'no';
         } else {
-            $this->barion_client = new BarionClient($this->poskey, 2, $this->barion_environment, true);
+            $this->barion_client = new BarionClient($this->poskey, 2, $this->barion_environment);
             $callback_handler = new WC_Gateway_Barion_IPN_Handler($this->barion_client, $this);
             $order_received_handler = new WC_Gateway_Barion_Return_From_Payment($this->barion_client, $this);
             do_action('woocommerce_barion_init', $this->barion_client, $this);
@@ -275,7 +279,7 @@ class WC_Gateway_Barion extends WC_Payment_Gateway {
             return null;
         }
 
-        return $paymentMeta[0];
+        return $paymentMeta;
     }
 
     public function set_barion_payment_id($order, $paymentId) {

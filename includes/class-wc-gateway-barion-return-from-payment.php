@@ -5,6 +5,14 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 class WC_Gateway_Barion_Return_From_Payment {
+ /**
+     * @var BarionClient
+     */
+    private $barion_client;
+        /**
+     * @var WCGateway
+     */
+    private $gateway;
 
     public function __construct($barion_client, $gateway) {
         $this->barion_client = $barion_client;

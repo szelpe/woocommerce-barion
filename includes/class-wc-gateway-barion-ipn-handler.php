@@ -5,7 +5,15 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 class WC_Gateway_Barion_IPN_Handler {
-    public function __construct($barion_client, $gateway) {
+	 /**
+     * @var BarionClient
+     */
+    private $barion_client;
+    /**
+     * @var WCGateway
+     */
+    private $gateway;
+       public function __construct($barion_client, $gateway) {
         $this->barion_client = $barion_client;
         $this->gateway = $gateway;
         add_action('woocommerce_api_wc_gateway_barion', array($this, 'check_barion_ipn'));
