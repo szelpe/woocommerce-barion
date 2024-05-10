@@ -126,6 +126,10 @@ class WC_Gateway_Barion extends WC_Payment_Gateway {
         return 'https://www.barion.com/en/';
     }
 
+public function get_order_button_text() {
+	return $this->order_button_text;
+}
+
     function init_form_fields() {
         $this->form_fields = include('includes/settings-barion.php');
     }

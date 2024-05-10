@@ -43,7 +43,8 @@ final class WC_Gateway_Barion_Blocks extends AbstractPaymentMethodType {
 		return [
 			'title' => $this->gateway->title,
 			'description' => $this->gateway->description,
-            'logo' => $this->gateway->plugin_url().'/assets/barion-strip.svg'
+            'logo' => $this->gateway->plugin_url().'/assets/barion-strip.svg',
+			'order_button_label' =>$this->gateway->get_order_button_text()
 		];
 	}
 
