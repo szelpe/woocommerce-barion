@@ -62,7 +62,26 @@ return array(
         'desc_tip'        => true,
         'class'           => 'wc-enhanced-select'
     ),
-    'environment' => array(
+	 'rejected_status' => array(
+        'title'           => __('Order status after rejected payment', 'pay-via-barion-for-woocommerce'),
+        'type'            => 'select',
+        'options'         => array_merge(array("no" =>__("Default", "pay-via-barion-for-woocommerce")), wc_get_order_statuses()),
+		'default'         => 'no',
+        'description'     => __('Choose the status of the order after rejected Barion payment.', 'pay-via-barion-for-woocommerce'),
+        'desc_tip'        => true,
+        'class'           => 'wc-enhanced-select'
+    ),
+	 'expired_status' => array(
+        'title'           => __('Order status after expired payment', 'pay-via-barion-for-woocommerce'),
+        'type'            => 'select',
+        'options'         => array_merge(array("no" =>__("Default", "pay-via-barion-for-woocommerce")), wc_get_order_statuses()),
+		'default'         => 'no',
+        'description'     => __('Choose the status of the order after expired Barion payment.', 'pay-via-barion-for-woocommerce'),
+        'desc_tip'        => true,
+        'class'           => 'wc-enhanced-select'
+    ),
+    
+       'environment' => array(
         'title'           => __('Barion Environment', 'pay-via-barion-for-woocommerce'),
         'type'            => 'select',
         'options'         => array('test' => 'Test (https://test.barion.com/)', 'live' => 'Live'),

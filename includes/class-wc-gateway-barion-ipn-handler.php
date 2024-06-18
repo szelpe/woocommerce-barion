@@ -87,13 +87,22 @@ if ($orders) {
         }
 
         if($payment_details->Status == PaymentStatus::Canceled) {
+						if (empty($this->gateway->get_rejected_status()) ||$this->gateway->get_rejected_status() =='no') {
             $order->update_status('cancelled', __('Payment canceled via Barion.', 'pay-via-barion-for-woocommerce'));
+			} else {
+				$order->update_status($this->gateway->get_rejected_status(), __('Payment changed via Barion.', 'pay-via-barion-for-woocommerce'));
+			}
 
             exit;
         }
 
         if($payment_details->Status == PaymentStatus::Expired) {
+			if (empty($this->gateway->get_expired_status()) ||$this->gateway->get_expired_status() =='no') {
             $order->update_status('cancelled', __('Payment is expired (customer progressed to Barion, but then left the page without paying).', 'pay-via-barion-for-woocommerce'));
+			} else {
+				$order->update_status($this->gateway->get_expired_status(), __('Payment is expired (customer progressed to Barion, but then left the page without paying).', 'pay-via-barion-for-woocommerce'));
+			}
+            
 
             exit;
         }

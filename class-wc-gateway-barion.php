@@ -130,6 +130,13 @@ public function get_order_button_text() {
 	return $this->order_button_text;
 }
 
+public function get_rejected_status() {
+	return $this->settings["rejected_status"];
+}
+public function get_expired_status() {
+	return $this->settings["expired_status"];
+}
+
     function init_form_fields() {
         $this->form_fields = include('includes/settings-barion.php');
     }

@@ -30,7 +30,8 @@ class WC_Gateway_Barion_Return_From_Payment {
         }
 
         if($order->has_status('cancelled')) {
-            wp_redirect($order->get_cancel_order_url_raw());
+            //wp_redirect($order->get_cancel_order_url_raw());
+			wp_redirect($order->get_cancel_order_url());
             exit;
         }
 
@@ -44,7 +45,8 @@ class WC_Gateway_Barion_Return_From_Payment {
             }
 
             if($payment_details->Status == PaymentStatus::Canceled) {
-                wp_redirect($order->get_cancel_order_url_raw());
+                //wp_redirect($order->get_cancel_order_url_raw());
+				wp_redirect($order->get_cancel_order_url());
                 exit;
             }
         }
