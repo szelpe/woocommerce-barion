@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Barion Payment Gateway for WooCommerce 0.5.0\n"
 "Report-Msgid-Bugs-To: https://github.com/szelpe/woocommerce-barion/issues\n"
-"POT-Creation-Date: 2024-04-02 20:48:07+00:00\n"
-"PO-Revision-Date: 2024-04-02 23:01+0100\n"
+"POT-Creation-Date: 2024-06-18 16:52:11+00:00\n"
+"PO-Revision-Date: 2024-06-18 18:57+0100\n"
 "Last-Translator: \n"
 "Language-Team: EMAIL@ADDRESS\n"
 "Language: hu_HU\n"
@@ -15,11 +15,11 @@ msgstr ""
 "X-Generator: Poedit 1.6.4\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: class-wc-gateway-barion.php:43 includes/settings-barion.php:20
+#: class-wc-gateway-barion.php:47 includes/settings-barion.php:20
 msgid "Barion"
 msgstr "Barion"
 
-#: class-wc-gateway-barion.php:44
+#: class-wc-gateway-barion.php:48
 msgid ""
 "Barion payment gateway sends customers to Barion to enter their payment "
 "information. Barion callback requires cURL support to update order statuses "
@@ -30,83 +30,85 @@ msgstr ""
 "frissíteni tudja a rendelések állapotát, cURL támogatás szükséges. További "
 "információkért tekintsd meg a %srendszerállapot%s oldalt."
 
-#: class-wc-gateway-barion.php:46
+#: class-wc-gateway-barion.php:50
 msgid "Proceed to Barion"
 msgstr "Fizetés Barionnal"
 
-#: class-wc-gateway-barion.php:62
+#: class-wc-gateway-barion.php:66
 msgid " [TEST MODE]"
 msgstr " [TESZT MÓD]"
 
-#: class-wc-gateway-barion.php:63
+#: class-wc-gateway-barion.php:67
 msgid ""
 "<br/><br/>Test mode is <strong>active</strong>.  Test credit card details: %s"
 msgstr "<br/><br/>A teszt mód <strong>aktív</strong>.  Teszt kártyaadatok: %s"
 
-#: class-wc-gateway-barion.php:113
+#: class-wc-gateway-barion.php:117
 msgid "Barion acceptance mark"
 msgstr "Barion védjegy"
 
-#: class-wc-gateway-barion.php:136
+#: class-wc-gateway-barion.php:151
 msgid "Gateway Disabled"
 msgstr ""
 
-#: class-wc-gateway-barion.php:137
+#: class-wc-gateway-barion.php:152
 msgid "Barion does not support your store currency. Supported currencies: %s"
 msgstr "A Barion nem támogatja az üzleted pénznemét. Támogatott pénznemek: %s"
 
-#: class-wc-gateway-barion.php:222
+#: class-wc-gateway-barion.php:237
 msgid "User redirected to the Barion payment page."
 msgstr "A felhasználó át lesz irányítva a Barion fizetési oldalára."
 
-#: class-wc-gateway-barion.php:242
+#: class-wc-gateway-barion.php:257
 msgid "Refund Failed: No transaction ID"
 msgstr "Visszatérítés sikertelen. Nincs transaction ID"
 
-#: class-wc-gateway-barion.php:250
+#: class-wc-gateway-barion.php:265
 msgid "Refunded %s - Refund ID: %s"
 msgstr "%s visszatérítve - Refund ID: %s"
 
-#: class-wc-gateway-barion.php:255
+#: class-wc-gateway-barion.php:270
 msgid "Barion refund failed."
 msgstr "Barion visszatérítés sikertelen."
 
-#: class-wc-gateway-barion.php:303
+#: class-wc-gateway-barion.php:318
 msgid "Order status updated based on the settings."
 msgstr "A rendelés állapota a beállításoknak megfelelően frissítve lett."
 
-#: includes/class-wc-gateway-barion-ipn-handler.php:35
+#: includes/class-wc-gateway-barion-ipn-handler.php:61
 msgid "Barion callback received."
 msgstr "Barion visszahívás."
 
-#: includes/class-wc-gateway-barion-ipn-handler.php:38
-#, fuzzy
+#: includes/class-wc-gateway-barion-ipn-handler.php:64
 msgid "Barion callback was handled by a custom handler."
-msgstr ""
-"A Barion visszahívás figyelmen kívül lett hagyva, mivel a fizetés már "
-"befejeződött."
+msgstr "A Barion visszahívását egy egyedi hívás kezelte."
 
-#: includes/class-wc-gateway-barion-ipn-handler.php:43
+#: includes/class-wc-gateway-barion-ipn-handler.php:69
 msgid "Barion callback ignored as the payment was already completed."
 msgstr ""
 "A Barion visszahívás figyelmen kívül lett hagyva, mivel a fizetés már "
 "befejeződött."
 
-#: includes/class-wc-gateway-barion-ipn-handler.php:48
+#: includes/class-wc-gateway-barion-ipn-handler.php:74
 msgid "Barion callback ignored as the user has chosen another payment method."
 msgstr ""
 "A Barion visszahívás figyelmen kívül lett hagyva, mivel a fizetési mód idő "
 "közben meg lett változtatva."
 
-#: includes/class-wc-gateway-barion-ipn-handler.php:57
+#: includes/class-wc-gateway-barion-ipn-handler.php:83
 msgid "Payment succeeded via Barion."
 msgstr "Sikeres fizetés a Barionon keresztül."
 
-#: includes/class-wc-gateway-barion-ipn-handler.php:64
+#: includes/class-wc-gateway-barion-ipn-handler.php:91
 msgid "Payment canceled via Barion."
 msgstr "Visszamondott vásárlás a Barion oldalán."
 
-#: includes/class-wc-gateway-barion-ipn-handler.php:70
+#: includes/class-wc-gateway-barion-ipn-handler.php:93
+msgid "Payment changed via Barion."
+msgstr "A fizetés Barionon keresztül módosult"
+
+#: includes/class-wc-gateway-barion-ipn-handler.php:101
+#: includes/class-wc-gateway-barion-ipn-handler.php:103
 msgid ""
 "Payment is expired (customer progressed to Barion, but then left the page "
 "without paying)."
@@ -114,7 +116,7 @@ msgstr ""
 "Fizetési ablak lejárt (a vásárló átkerült a Barion oldalára, de azt fizetés "
 "nélkül elhagyta)"
 
-#: includes/class-wc-gateway-barion-ipn-handler.php:75
+#: includes/class-wc-gateway-barion-ipn-handler.php:110
 msgid "Payment failed via Barion."
 msgstr "Meghiúsult vásárlás a Barion oldalán."
 
@@ -178,9 +180,8 @@ msgid "Barion Pixel Id"
 msgstr ""
 
 #: includes/settings-barion.php:48
-#, fuzzy
 msgid "Your Barion Pixel Id"
-msgstr "Barionon regisztrált e-mail címed"
+msgstr "Barion pixel azonosítód"
 
 #: includes/settings-barion.php:52
 msgid "Order status after payment"
@@ -196,10 +197,34 @@ msgstr ""
 "Kiválaszthatod, hogy fizetés után milyen állapotba kerüljön a rendelés."
 
 #: includes/settings-barion.php:66
+msgid "Order status after rejected payment"
+msgstr "Rendelés állapota visszautasított fizetés után"
+
+#: includes/settings-barion.php:68 includes/settings-barion.php:77
+msgid "Default"
+msgstr ""
+
+#: includes/settings-barion.php:70
+msgid "Choose the status of the order after rejected Barion payment."
+msgstr ""
+"Kiválaszthatod, hogy visszautasított fizetés után milyen állapotba kerüljön "
+"a rendelés."
+
+#: includes/settings-barion.php:75
+msgid "Order status after expired payment"
+msgstr "Rendelés állapota lejárt fizetés után"
+
+#: includes/settings-barion.php:79
+msgid "Choose the status of the order after expired Barion payment."
+msgstr ""
+"Kiválaszthatod, hogy lejárt fizetés után milyen állapotba kerüljön a "
+"rendelés."
+
+#: includes/settings-barion.php:85
 msgid "Barion Environment"
 msgstr "Barion Környezet"
 
-#: includes/settings-barion.php:70
+#: includes/settings-barion.php:89
 msgid ""
 "You can select the Test environment to test payments. You'll need to create "
 "a shop on the <a href=\"%s\" target=\"_blank\">Barion test site</a>."
@@ -207,15 +232,15 @@ msgstr ""
 "A Test környezet választásával tesztelheted a fizetéseket. Ehhez boltot kell "
 "nyitnod a <a href=\"%s\" target=\"_blank\">Barion teszt oldalon</a>."
 
-#: includes/settings-barion.php:75
+#: includes/settings-barion.php:94
 msgid "Newsletter"
 msgstr "Hírlevél"
 
-#: includes/settings-barion.php:76
+#: includes/settings-barion.php:95
 msgid "Get free emails on how to grow your business like crazy"
 msgstr "Kérek ingyenes tippeket az üzletem robbanásszerű növeléséhez"
 
-#: includes/settings-barion.php:79
+#: includes/settings-barion.php:98
 msgid ""
 "You may unsubscribe any time and we will never share your email address."
 msgstr ""
@@ -234,11 +259,11 @@ msgid "Adds the ability to WooCommerce to pay via Barion"
 msgstr ""
 
 #. Author of the plugin/theme
-msgid "Peter Szel <szelpeter@szelpeter.hu>"
+msgid "Aron Ocsvari <ufgyfelszolgalat@bitron.hu>"
 msgstr ""
 
 #. Author URI of the plugin/theme
-msgid "http://szelpeter.hu"
+msgid "https://bitron.hu"
 msgstr ""
 
 #: includes/settings-barion.php:56
