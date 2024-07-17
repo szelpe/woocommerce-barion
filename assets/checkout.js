@@ -20,7 +20,7 @@ const BarionCheckout = {
   name: 'barion',
   label: createLabel(),
   content: Object(window.wp.element.createElement)(barionContent, null),
-  edit: Object(window.wp.element.createElement)(Content, null),
+  edit: Object(window.wp.element.createElement)(barionContent, null),
   canMakePayment: () => true,
   placeOrderButtonLabel: barionSettings.order_button_label,
   ariaLabel: window.wp.htmlEntities.decodeEntities(barionSettings.title || __('Barion', 'pay-via-barion-for-woocommerce')),
