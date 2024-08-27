@@ -198,8 +198,8 @@ class WC_Gateway_Barion_Request {
         $shippingAddress->Region = null;
         $shippingAddress->City = $order->get_shipping_city();
         $shippingAddress->Zip = $order->get_shipping_postcode();
-        $shippingAddress->Street = $order->get_shipping_address_1();
-        $shippingAddress->Street2 = $order->get_shipping_address_2();
+        $shippingAddress->Street = substr($order->get_shipping_address_1(), 0, 50);
+        $shippingAddress->Street2 =substr($order->get_shipping_address_2(), 0, 50);
         $shippingAddress->Street3 = "";
         $shippingAddress->FullName = $order->get_formatted_shipping_full_name();
 
@@ -226,8 +226,8 @@ class WC_Gateway_Barion_Request {
         $billingAddress->Region = null;
         $billingAddress->City = $order->get_billing_city();
         $billingAddress->Zip = $order->get_billing_postcode();
-        $billingAddress->Street = $order->get_billing_address_1();
-        $billingAddress->Street2 = $order->get_billing_address_2();
+        $billingAddress->Street =substr($order->get_billing_address_1(), 0, 50);
+        $billingAddress->Street2 = substr($order->get_billing_address_2(), 0, 50);
         $billingAddress->Street3 = "";
 
         $paymentRequest->BillingAddress = $billingAddress;
