@@ -4,7 +4,7 @@ Plugin Name: Barion Payment Gateway for WooCommerce
 Plugin URI: http://github.com/szelpe/woocommerce-barion
 Description: Adds the ability to WooCommerce to pay via Barion
 Version: 3.6.1
-Author: Aron Ocsvari <ufgyfelszolgalat@bitron.hu>
+Author: Aron Ocsvari <ugyfelszolgalat@bitron.hu>
 Author URI: https://bitron.hu
 License: GNU General Public License v3.0
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -73,8 +73,42 @@ class WooCommerce_Barion_Plugin {
             } );
         
         } );
+		//Adds notification to dashboard
+        add_action('admin_notices', array($this, 'custom_admin_ad_notice'));
+        add_action('wp_ajax_custom_admin_ad_dismiss', array($this, 'custom_admin_ad_dismiss'));
     }
+    /**
+    * Shows a notification about Full Barion pixel
+    **/
+    function custom_admin_ad_notice() {
+        if (get_user_meta(get_current_user_id(), 'custom_admin_ad_dismissed', true)) {
+            return; // Ha igen, nem jelenítjük meg az értesítést
+        }
 
+       ?>
+    <div class="notice notice-info is-dismissible custom-admin-ad-notice">
+        <p><?php _e('Reduce your Barion commission by using Full Pixel. Click here for more information: <a target ="_blank" href ="https://bitron.hu/barion-pixel-for-woocommerce">Full Barion Pixel for WooCommerce</a>', 'pay-via-barion-for-woocommerce'); ?></p>
+    </div>
+
+    <script>
+        jQuery(document).on('click', '.custom-admin-ad-notice .notice-dismiss', function() {
+					            // AJAX kérés az értesítés elrejtéséhez
+            jQuery.post(ajaxurl, {
+                action: 'custom_admin_ad_dismiss'
+            });
+			
+        });
+    </script>
+    <?php
+}
+
+/**
+* Saves the dismiss option
+**/
+function custom_admin_ad_dismiss() {
+        update_user_meta(get_current_user_id(), 'custom_admin_ad_dismissed', true);
+    wp_die();
+}
     /**
      * Add the Gateway to WooCommerce
      **/
