@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Barion Payment Gateway for WooCommerce 0.5.0\n"
 "Report-Msgid-Bugs-To: https://github.com/szelpe/woocommerce-barion/issues\n"
-"POT-Creation-Date: 2024-06-18 16:52:11+00:00\n"
-"PO-Revision-Date: 2024-06-18 18:57+0100\n"
+"POT-Creation-Date: 2024-08-27 13:25:36+00:00\n"
+"PO-Revision-Date: 2024-08-27 15:36+0100\n"
 "Last-Translator: \n"
 "Language-Team: EMAIL@ADDRESS\n"
 "Language: hu_HU\n"
@@ -130,7 +130,7 @@ msgstr ""
 
 #: includes/settings-barion.php:12
 msgid "Enable/Disable"
-msgstr ""
+msgstr "Engedélyezés/Letiltás"
 
 #: includes/settings-barion.php:14
 msgid "Enable Barion"
@@ -138,15 +138,15 @@ msgstr "Barion engedélyezése"
 
 #: includes/settings-barion.php:18
 msgid "Title"
-msgstr ""
+msgstr "Cím"
 
 #: includes/settings-barion.php:21
 msgid "This controls the title which the user sees during checkout."
-msgstr ""
+msgstr "Itt adható meg a fizetési mód címe, ami a pénztár oldalon jelenik meg."
 
 #: includes/settings-barion.php:25
 msgid "Description"
-msgstr ""
+msgstr "Leírás"
 
 #: includes/settings-barion.php:27
 msgid ""
@@ -158,6 +158,8 @@ msgstr ""
 #: includes/settings-barion.php:28
 msgid "This controls the description which the user sees during checkout."
 msgstr ""
+"Itt adható meg a fizetési módhoz tartozó leírás, amit a felhasználó a "
+"pénztár oldalon lát."
 
 #: includes/settings-barion.php:32
 msgid "Secret key (POSKey)"
@@ -169,7 +171,7 @@ msgstr "A Barionon regisztrált bolt titkos kulcsa (POSKey)"
 
 #: includes/settings-barion.php:38
 msgid "Barion Email"
-msgstr ""
+msgstr "Barion e-mail"
 
 #: includes/settings-barion.php:40
 msgid "Your Barion email address"
@@ -177,7 +179,7 @@ msgstr "Barionon regisztrált e-mail címed"
 
 #: includes/settings-barion.php:46
 msgid "Barion Pixel Id"
-msgstr ""
+msgstr "Barion Pixel azonosító"
 
 #: includes/settings-barion.php:48
 msgid "Your Barion Pixel Id"
@@ -246,6 +248,16 @@ msgid ""
 msgstr ""
 "Bármikor leiratkozhatsz és soha nem osztjuk meg senkivel az email címedet."
 
+#: index.php:90
+msgid ""
+"Reduce your Barion commission by using Full Pixel. Click here for more "
+"information: <a target =\"_blank\" href =\"https://bitron.hu/barion-pixel-"
+"for-woocommerce\">Full Barion Pixel for WooCommerce</a>"
+msgstr ""
+"Csökkentsük a Barion jutalékát a full pixel integrációval. Bővebb "
+"infórmációért katt ide:  <a target =\"_blank\" href =\"https://bitron.hu/"
+"barion-pixel-for-woocommerce\">Full Barion Pixel for WooCommerce</a>"
+
 #. Plugin Name of the plugin/theme
 msgid "Barion Payment Gateway for WooCommerce"
 msgstr ""
@@ -256,10 +268,10 @@ msgstr ""
 
 #. Description of the plugin/theme
 msgid "Adds the ability to WooCommerce to pay via Barion"
-msgstr ""
+msgstr "Bankkártyás fizetési lehetőséget biztosít a Barion használatával."
 
 #. Author of the plugin/theme
-msgid "Aron Ocsvari <ufgyfelszolgalat@bitron.hu>"
+msgid "Aron Ocsvari <ugyfelszolgalat@bitron.hu>"
 msgstr ""
 
 #. Author URI of the plugin/theme
