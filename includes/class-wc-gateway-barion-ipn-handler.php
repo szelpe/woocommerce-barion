@@ -64,6 +64,11 @@ if ($orders) {
             $order->add_order_note(__('Barion callback was handled by a custom handler.', 'pay-via-barion-for-woocommerce'));
             exit;
         }
+$payment_method = $order->get_payment_method();
+ if($payment_method !='barion') {
+            $order->add_order_note(__('Barion callback ignored as the user has chosen another payment method.', 'pay-via-barion-for-woocommerce'));
+            exit;
+        }
 
         if($order->has_status(array('processing', 'completed'))) {
             $order->add_order_note(__('Barion callback ignored as the payment was already completed.', 'pay-via-barion-for-woocommerce'));
