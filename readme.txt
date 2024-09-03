@@ -1,12 +1,12 @@
 === Barion Payment Gateway for WooCommerce ===
-Contributors: szelpe
+Contributors: szelpe, oaron
 Tags: woocommerce, barion, gateway, payment
 Requires at least: 4.0
-Tested up to: 6.1
+Tested up to: 6.5
 WC requires at least: 3.0.0
-WC tested up to: 7.0.1
+WC tested up to: 9.2.3
 Requires PHP: 5.6
-Stable tag: 3.5.1
+Stable tag: trunk
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -26,15 +26,22 @@ This plugin allows your customers to pay via [Barion Smart Gateway](https://www.
 
 = Feedback =
 
-I'd be happy to hear your feedback! Feel free to contact me at szelpeter@szelpeter.hu
+I'd be happy to hear your feedback! Feel free to contact me at ugyfelszolgalat@bitron.hu
 
 = Contribution =
 
 You're welcome to contribute to this open source plugin by creating pull-requests on [Github](https://github.com/szelpe/woocommerce-barion). To do this, you need to fork the repository, implement the changes and push them to your fork. After that you can create a pull request to merge changes from your fork the main repository.
 
+Note: Until April 2024, the plugin was developed by [Peter Szel](https://szelpe.hu). Subsequently, [Aron Ocsvari](https://bitron.hu) took over the maintenance and bug fixing of the plugin.
+
+= Premium Options =
+== Full Barion Pixel ==
+If you want to pay less commission on card payments, you need the full implementation of Barion Pixel. A paid extension is available for this purpose. More information can be found here: [Barion Pixel for WooCommerce](https://bitron.hu/barion-pixel-for-woocommerce)
+You can read more about Barion Pixel in the following blog post (in Hungarian): [Full Barion Pixel for WooCommerce Stores](https://bitron.hu/2023/08/03/full-barion-pixel-tamogatas-woocommerce-webaruhazhoz/).
+
 = Bugs =
 
-[Please report bugs as Github issues.](https://github.com/szelpe/woocommerce-barion/issues)
+[Please report bugs as Github issues.](https://github.com/szelpe/woocommerce-barion/issues), or send me an email to ugyfelszolgalat (at) bitron (dot) hu.
 
 Barion and the Barion logo are trademarks or registered trademarks of Sense/Net Inc.
 
@@ -81,7 +88,21 @@ function disable_barion_pixel_for_editor() {
 ```
 
 == Changelog ==
-
+= 3.7 =
+- Fixed labels on order buttons in checkout blocks;
+- Resolved issues with IPN failures;
+- Added support for Sequential Order Number for WooCommerce.
+- Handle rejected and expired statuses
+- Limit the length of Street fields to a maximum of 50 characters
+- Show notification about Full Barion pixel
+= 3.6.1 =
+- Display payment method name alongside the logo
+= 3.6 =
+- Added support for HPOS compatibility
+- Added support for checkout blocks
+- Small bug fixes
+= 3.5.2 =
+- Update cert file
 = 3.2.0 =
 
 - Compatible with WooCommerce 4
