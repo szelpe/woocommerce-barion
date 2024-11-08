@@ -51,13 +51,8 @@ return array(
     'order_status' => array(
         'title'           => __('Order status after payment', 'pay-via-barion-for-woocommerce'),
         'type'            => 'select',
-        'options'         => array(
-                                'automatic' => __('Automatic (recommended)', 'pay-via-barion-for-woocommerce'),
-                                'completed' => _x('Completed', 'Order status', 'woocommerce'),
-                                'processing' => _x('Processing', 'Order status', 'woocommerce'),
-                                'pending' => _x('Pending payment', 'Order status', 'woocommerce'),
-                             ),
-        'default'         => 'automatic',
+        'options'         => array_merge(array('automatic' => __('Automatic (recommended)', 'pay-via-barion-for-woocommerce')), array_combine(array_map(fn($key) => str_replace('wc-', '', $key), array_keys(wc_get_order_statuses())), wc_get_order_statuses()) ),
+		                                     'default'         => 'automatic',
         'description'     => __('Choose the status of the order after successful Barion payment.', 'pay-via-barion-for-woocommerce'),
         'desc_tip'        => true,
         'class'           => 'wc-enhanced-select'

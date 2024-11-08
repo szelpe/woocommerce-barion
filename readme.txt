@@ -2,9 +2,9 @@
 Contributors: szelpe, oaron
 Tags: woocommerce, barion, gateway, payment
 Requires at least: 4.0
-Tested up to: 6.5
+Tested up to: 6.6.2
 WC requires at least: 3.0.0
-WC tested up to: 9.2.3
+WC tested up to: 9.3.3
 Requires PHP: 5.6
 Stable tag: trunk
 License: GPLv3 or later
@@ -88,6 +88,8 @@ function disable_barion_pixel_for_editor() {
 ```
 
 == Changelog ==
+= 3.8 =
+- Fixed the successfull order statuses list.
 = 3.7 =
 - Fixed labels on order buttons in checkout blocks;
 - Resolved issues with IPN failures;

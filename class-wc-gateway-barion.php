@@ -129,6 +129,10 @@ class WC_Gateway_Barion extends WC_Payment_Gateway {
 public function get_order_button_text() {
 	return $this->order_button_text;
 }
+public function get_successfull_status() {
+	return $this->settings["order_status"];
+}
+
 
 public function get_rejected_status() {
 	return $this->settings["rejected_status"];

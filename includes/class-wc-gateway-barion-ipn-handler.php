@@ -81,7 +81,7 @@ $payment_method = $order->get_payment_method();
         }
 
         if($payment_details->Status == PaymentStatus::Succeeded) {
-            if($order->has_status('completed')) {
+            if($order->has_status($this->gateway->get_successfull_status())) {
                 exit;
             }
 
