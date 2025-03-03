@@ -74,10 +74,11 @@ class WC_Gateway_Barion_Request {
             $itemModel = new ItemModel();
             $itemModel->Name = $item['name'];
             $itemModel->Description = $itemModel->Name;
-            $itemModel->Unit = __('piece', 'pay-via-barion-for-woocommerce');
+$translated_text = __('piece', 'pay-via-barion-for-woocommerce');
+$itemModel->Unit = substr(empty($translated_text) ? 'piece' : (string)$translated_text, 0, 50);
             $itemModel->Quantity = empty($item['qty']) ? 1 : $item['qty'];
 
-            $itemModel->UnitPrice = $order->get_item_subtotal($item, true);
+            $itemModel->Price = $order->get_item_subtotal($item, true);
             $itemModel->ItemTotal = $order->get_line_subtotal($item, true);
 
             if ('coupon' === $item['type']) {
