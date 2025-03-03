@@ -27,7 +27,7 @@ class WooCommerce_Barion_Plugin {
     private $wc_gateway_barion;
 
     public function __construct() {
-        add_action('plugins_loaded', [$this, 'init'], 10);
+        add_action('init', [$this, 'init'], 10);
     }
 
     function init() {
