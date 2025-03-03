@@ -59,7 +59,10 @@ if ($orders) {
         }
 
         $order->add_order_note(__('Barion callback received.', 'pay-via-barion-for-woocommerce') . ' paymentId: "' . $_GET['paymentId'] . '"');
-
+if ($order->meta_exists('_barion_payment_close')) {
+	            $order->add_order_note(__('Barion callback ignored, the payment closed.', 'pay-via-barion-for-woocommerce'));
+            exit;
+}
         if(apply_filters('woocommerce_barion_custom_callback_handler', false, $order, $payment_details)) {
             $order->add_order_note(__('Barion callback was handled by a custom handler.', 'pay-via-barion-for-woocommerce'));
             exit;
@@ -87,7 +90,12 @@ $payment_method = $order->get_payment_method();
 
             $order->add_order_note(__('Payment succeeded via Barion.', 'pay-via-barion-for-woocommerce'));
             $this->gateway->payment_complete($order, $this->find_transaction_id($payment_details, $order));
-
+if ($order->meta_exists('_barion_payment_close')) {
+												$order->update_meta_data("_barion_payment_close", 1);						
+																							} else {
+						$order->add_meta_data("_barion_payment_close", 1);
+																	}
+				$order->save();
             exit;
         }
 
