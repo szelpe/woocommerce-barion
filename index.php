@@ -3,14 +3,14 @@
 Plugin Name: Barion Payment Gateway for WooCommerce
 Plugin URI: http://github.com/szelpe/woocommerce-barion
 Description: Adds the ability to WooCommerce to pay via Barion
-Version: 3.8.1
+Version: 3.8.2
 Author: Aron Ocsvari <ugyfelszolgalat@bitron.hu>
 Author URI: https://bitron.hu
 License: GNU General Public License v3.0
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
 WC requires at least: 3.0.0
-WC tested up to: 9.7.0
+WC tested up to: 9.3.3
 
 Text Domain: pay-via-barion-for-woocommerce
 Domain Path: /languages
@@ -29,6 +29,7 @@ class WooCommerce_Barion_Plugin {
     public function __construct() {
         add_action('init', [$this, 'translation_load'], 5);
 		add_action('init', [$this, 'init'], 10);
+		    add_action('before_woocommerce_init', [$this, 'declare_woocommerce_compatibility']);
 		add_action('woocommerce_blocks_loaded', [$this, 'register_checkout_blocks']);
     }
 function translation_load() {
@@ -54,17 +55,16 @@ function translation_load() {
 
         add_filter('woocommerce_payment_gateways', [$this, 'woocommerce_add_gateway_barion_gateway']);
 
-        //Mark compatibility with checkout blocks
-        add_action( 'before_woocommerce_init', function() {
-            if ( class_exists( '\Automattic\WooCommerce\Utilities\FeaturesUtil' ) ) {
-                \Automattic\WooCommerce\Utilities\FeaturesUtil::declare_compatibility( 'custom_order_tables', __FILE__, true );
-                \Automattic\WooCommerce\Utilities\FeaturesUtil::declare_compatibility( 'cart_checkout_blocks', __FILE__, true );
-            }
-        } );
-                //Adds notification to dashboard
+               //Adds notification to dashboard
         add_action('admin_notices', array($this, 'custom_admin_ad_notice'));
         add_action('wp_ajax_custom_admin_ad_dismiss', array($this, 'custom_admin_ad_dismiss'));
     }
+	public function declare_woocommerce_compatibility() {
+    if (class_exists('\Automattic\WooCommerce\Utilities\FeaturesUtil')) {
+        \Automattic\WooCommerce\Utilities\FeaturesUtil::declare_compatibility('custom_order_tables', __FILE__, true);
+        \Automattic\WooCommerce\Utilities\FeaturesUtil::declare_compatibility('cart_checkout_blocks', __FILE__, true);
+    }
+}
 	public function register_checkout_blocks() {
     if (!class_exists('Automattic\WooCommerce\Blocks\Payments\Integrations\AbstractPaymentMethodType')) {
         return;
