@@ -88,6 +88,10 @@ function disable_barion_pixel_for_editor() {
 ```
 
 == Changelog ==
+= 3.8.1 =
+- Fixed load translation issue
+- Fixed TranslatePress issue
+- Fixed IPN callback issue
 = 3.8 =
 - Fixed the successfull order statuses list.
 = 3.7 =

@@ -3,7 +3,7 @@
 Plugin Name: Barion Payment Gateway for WooCommerce
 Plugin URI: http://github.com/szelpe/woocommerce-barion
 Description: Adds the ability to WooCommerce to pay via Barion
-Version: 3.8
+Version: 3.8.1
 Author: Aron Ocsvari <ugyfelszolgalat@bitron.hu>
 Author URI: https://bitron.hu
 License: GNU General Public License v3.0
@@ -27,11 +27,15 @@ class WooCommerce_Barion_Plugin {
     private $wc_gateway_barion;
 
     public function __construct() {
-        add_action('init', [$this, 'init'], 10);
+        add_action('init', [$this, 'translation_load'], 5);
+		add_action('init', [$this, 'init'], 10);
+		add_action('woocommerce_blocks_loaded', [$this, 'register_checkout_blocks']);
     }
-
+function translation_load() {
+	load_plugin_textdomain('pay-via-barion-for-woocommerce', false, plugin_basename(dirname(__FILE__)) . "/languages");	
+}
     function init() {
-		load_plugin_textdomain('pay-via-barion-for-woocommerce', false, plugin_basename(dirname(__FILE__)) . "/languages");
+	
         if (!class_exists('WC_Payment_Gateway'))
             return;
 
@@ -57,26 +61,28 @@ class WooCommerce_Barion_Plugin {
                 \Automattic\WooCommerce\Utilities\FeaturesUtil::declare_compatibility( 'cart_checkout_blocks', __FILE__, true );
             }
         } );
-
-        //Load checkout block class
-        add_action( 'woocommerce_blocks_loaded', function() {
-
-            if( ! class_exists( 'Automattic\WooCommerce\Blocks\Payments\Integrations\AbstractPaymentMethodType' ) ) {
-                return;
-            }
-        
-            require_once 'includes/class-wc-gateway-barion-block-checkout.php';
-            add_action(
-                'woocommerce_blocks_payment_method_type_registration',
-                function( Automattic\WooCommerce\Blocks\Payments\PaymentMethodRegistry $payment_method_registry ) {
-                    $payment_method_registry->register( new WC_Gateway_Barion_Blocks );
-            } );
-        
-        } );
-		//Adds notification to dashboard
+                //Adds notification to dashboard
         add_action('admin_notices', array($this, 'custom_admin_ad_notice'));
         add_action('wp_ajax_custom_admin_ad_dismiss', array($this, 'custom_admin_ad_dismiss'));
     }
+	public function register_checkout_blocks() {
+    if (!class_exists('Automattic\WooCommerce\Blocks\Payments\Integrations\AbstractPaymentMethodType')) {
+        return;
+    }
+
+    // 🚀 **Először betöltjük a szükséges osztályokat** 🚀
+    require_once 'includes/class-wc-gateway-barion-profile-monitor.php';
+    require_once 'class-wc-gateway-barion.php';
+
+    require_once 'includes/class-wc-gateway-barion-block-checkout.php';
+
+    add_action(
+        'woocommerce_blocks_payment_method_type_registration',
+        function(Automattic\WooCommerce\Blocks\Payments\PaymentMethodRegistry $payment_method_registry) {
+            $payment_method_registry->register(new WC_Gateway_Barion_Blocks);
+        }
+    );
+}
     /**
     * Shows a notification about Full Barion pixel
     **/
