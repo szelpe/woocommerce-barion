@@ -27,16 +27,17 @@ class WooCommerce_Barion_Plugin {
     private $wc_gateway_barion;
 
     public function __construct() {
-        add_action('init', [$this, 'translation_load'], 5);
-		add_action('init', [$this, 'init'], 10);
-		    add_action('before_woocommerce_init', [$this, 'declare_woocommerce_compatibility']);
-		add_action('woocommerce_blocks_loaded', [$this, 'register_checkout_blocks']);
-    }
-function translation_load() {
-	load_plugin_textdomain('pay-via-barion-for-woocommerce', false, plugin_basename(dirname(__FILE__)) . "/languages");	
-}
-    function init() {
+		add_action('init', [$this, 'init']);
+		add_action('plugins_loaded', [$this, 'plugin_loaded']);
+        add_action('before_woocommerce_init', [$this, 'declare_woocommerce_compatibility']);
+add_action('woocommerce_blocks_loaded', [$this, 'register_checkout_blocks']);
+
+	}
 	
+   public function init() {
+	load_plugin_textdomain('pay-via-barion-for-woocommerce', false, plugin_basename(dirname(__FILE__)) . "/languages");	
+   }
+   public function plugin_loaded () {
         if (!class_exists('WC_Payment_Gateway'))
             return;
 
@@ -48,13 +49,12 @@ function translation_load() {
 
 
         require_once 'class-wc-gateway-barion.php';
-        $this->wc_gateway_barion = new WC_Gateway_Barion($this->profile_monitor);
+        
 
         require_once 'includes/class-wc-gateway-barion-pixel.php';
-        $barion_pixel = new WC_Gateway_Barion_Pixel($this->wc_gateway_barion->get_barion_pixel_id());
+        
 
-        add_filter('woocommerce_payment_gateways', [$this, 'woocommerce_add_gateway_barion_gateway']);
-
+   add_filter('woocommerce_payment_gateways', [$this, 'woocommerce_add_gateway_barion_gateway']);
                //Adds notification to dashboard
         add_action('admin_notices', array($this, 'custom_admin_ad_notice'));
         add_action('wp_ajax_custom_admin_ad_dismiss', array($this, 'custom_admin_ad_dismiss'));
@@ -118,6 +118,8 @@ function custom_admin_ad_dismiss() {
      * Add the Gateway to WooCommerce
      **/
     function woocommerce_add_gateway_barion_gateway($methods) {
+		$this->wc_gateway_barion = new WC_Gateway_Barion($this->profile_monitor);
+$barion_pixel = new WC_Gateway_Barion_Pixel($this->wc_gateway_barion->get_barion_pixel_id());		
         $methods[] = $this->wc_gateway_barion;
         return $methods;
     }
