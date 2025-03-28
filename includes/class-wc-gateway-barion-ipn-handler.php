@@ -23,11 +23,10 @@ class WC_Gateway_Barion_IPN_Handler {
         if(empty($_GET) || empty($_GET['paymentId']))
             exit;
 
-
         $payment_details = $this->barion_client->GetPaymentState($_GET['paymentId']);
 
         if(!empty($payment_details->Errors)) {
-            WC_Gateway_Barion::log('GetPaymentState returned errors. Payment details: ' . json_encode($payment_details));
+            $this->gateway::log('GetPaymentState returned errors. Payment details: ' . json_encode($payment_details));
 
             exit;
         }
@@ -50,18 +49,22 @@ if ($orders) {
 } else {
    $order = new WC_Order($payment_details->PaymentRequestId);
 }
-
-        
+        $this->gateway::log("IPN called, orderid: ".$order->get_id());
+		
+		if ($_GET['paymentId'] !=$this->gateway->get_barion_payment_id($order)) {
+						$this->gateway::log("IPN blocked, Barion id is not match.");
+			exit;
+		}
+				
         if(empty($order)) {
-            WC_Gateway_Barion::log('Invalid PaymentRequestId: ' . $_GET['paymentId'] . '. Payment details: ' . json_encode($payment_details));
-
+            $this->gateway::log('Invalid PaymentRequestId: ' . $_GET['paymentId'] . '. Payment details: ' . json_encode($payment_details));
             exit;
         }
-
         $order->add_order_note(__('Barion callback received.', 'pay-via-barion-for-woocommerce') . ' paymentId: "' . $_GET['paymentId'] . '"');
 if ($order->meta_exists('_barion_payment_close')) {
 	            $order->add_order_note(__('Barion callback ignored, the payment closed.', 'pay-via-barion-for-woocommerce'));
-            exit;
+				$this->gateway::log("IPN ignored, order closed");
+				            exit;
 }
         if(apply_filters('woocommerce_barion_custom_callback_handler', false, $order, $payment_details)) {
             $order->add_order_note(__('Barion callback was handled by a custom handler.', 'pay-via-barion-for-woocommerce'));
@@ -89,13 +92,14 @@ $payment_method = $order->get_payment_method();
             }
 
             $order->add_order_note(__('Payment succeeded via Barion.', 'pay-via-barion-for-woocommerce'));
-            $this->gateway->payment_complete($order, $this->find_transaction_id($payment_details, $order));
-if ($order->meta_exists('_barion_payment_close')) {
+			if ($order->meta_exists('_barion_payment_close')) {
 												$order->update_meta_data("_barion_payment_close", 1);						
 																							} else {
 						$order->add_meta_data("_barion_payment_close", 1);
 																	}
 				$order->save();
+
+            $this->gateway->payment_complete($order, $this->find_transaction_id($payment_details, $order));
             exit;
         }
 
@@ -121,7 +125,7 @@ if ($order->meta_exists('_barion_payment_close')) {
         }
 
         $order->update_status('failed', __('Payment failed via Barion.', 'pay-via-barion-for-woocommerce'));
-        WC_Gateway_Barion::log('Payment failed. Payment details: ' . json_encode($payment_details));
+        $this->gateway::log('Payment failed. Payment details: ' . json_encode($payment_details));
 		exit;
     }
 

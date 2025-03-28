@@ -88,6 +88,9 @@ function disable_barion_pixel_for_editor() {
 ```
 
 == Changelog ==
+= 3.8.5 =
+* Fix: Barion pixel load issue
+* Fix: Prevent order status changes from expired payments when successful payment exists
 = 3.8.2 =
 * Fix: HPOS compatibility issue
 = 3.8.1 =

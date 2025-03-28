@@ -7,8 +7,9 @@ class WC_Gateway_Barion_Pixel {
      * WC_Gateway_Barion_Pixel constructor.
      * @param $barion_pixel_id string
      */
-    public function __construct($barion_pixel_id) {
-        $this->barion_pixel_id = $barion_pixel_id;
+    public function __construct() {
+		$settings = get_option('woocommerce_barion_settings');
+        $this->barion_pixel_id = $settings["barion_pixel_id"];
 
         add_action('wp_head', [$this, 'add_barion_pixel'], 999999);
     }
