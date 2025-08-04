@@ -2,9 +2,9 @@
 Contributors: szelpe, oaron
 Tags: woocommerce, barion, gateway, payment
 Requires at least: 4.0
-Tested up to: 6.7.2
+Tested up to: 6.8.2
 WC requires at least: 3.0.0
-WC tested up to: 9.7.0
+WC tested up to: 10.0.4
 Requires PHP: 5.6
 Stable tag: trunk
 License: GPLv3 or later
@@ -88,6 +88,8 @@ function disable_barion_pixel_for_editor() {
 ```
 
 == Changelog ==
+= 3.8.6 =
+* Fix: Deprecated errors
 = 3.8.5 =
 * Fix: Barion pixel load issue
 * Fix: Prevent order status changes from expired payments when successful payment exists

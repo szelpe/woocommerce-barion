@@ -95,10 +95,10 @@ $itemModel->Unit = substr(empty($translated_text) ? 'piece' : (string)$translate
                 $itemModel->ItemTotal = -1 * $discount_amount;
                 $itemModel->SKU = '';
             } elseif ('shipping' === $item['type']) {
-                $shipping_cost = wc_get_order_item_meta($item_id, 'cost');
+                $shipping_cost = (float) wc_get_order_item_meta($item_id, 'cost');
                 $shipping_taxes = wc_get_order_item_meta($item_id, 'taxes');
-                if (!empty($shipping_taxes)) {
-                    $shipping_cost += array_sum($shipping_taxes);
+                if (!empty($shipping_taxes) && is_array($shipping_taxes)) {
+                    $shipping_cost = floatval($shipping_cost) + floatval(array_sum($shipping_taxes));
                 }
                 $itemModel->UnitPrice = $shipping_cost;
                 $itemModel->ItemTotal = $shipping_cost;
