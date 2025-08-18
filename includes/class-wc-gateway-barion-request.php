@@ -97,9 +97,27 @@ $itemModel->Unit = substr(empty($translated_text) ? 'piece' : (string)$translate
             } elseif ('shipping' === $item['type']) {
                 $shipping_cost = (float) wc_get_order_item_meta($item_id, 'cost');
                 $shipping_taxes = wc_get_order_item_meta($item_id, 'taxes');
+                
+                // Handle shipping taxes safely
+                $tax_amount = 0;
                 if (!empty($shipping_taxes) && is_array($shipping_taxes)) {
-                    $shipping_cost = floatval($shipping_cost) + floatval(array_sum($shipping_taxes));
+                    // Check if it's a multidimensional array with 'total' key
+                    if (isset($shipping_taxes['total']) && is_array($shipping_taxes['total'])) {
+                        // Sum the 'total' taxes
+                        foreach ($shipping_taxes['total'] as $tax) {
+                            $tax_amount += (float) $tax;
+                        }
+                    } elseif (!isset($shipping_taxes['total']) && !isset($shipping_taxes['subtotal'])) {
+                        // It's a simple array, sum directly
+                        foreach ($shipping_taxes as $tax) {
+                            if (is_numeric($tax)) {
+                                $tax_amount += (float) $tax;
+                            }
+                        }
+                    }
                 }
+                
+                $shipping_cost = floatval($shipping_cost) + floatval($tax_amount);
                 $itemModel->UnitPrice = $shipping_cost;
                 $itemModel->ItemTotal = $shipping_cost;
                 $itemModel->SKU = '';
