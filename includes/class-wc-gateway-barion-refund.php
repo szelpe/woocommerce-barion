@@ -32,7 +32,7 @@ class WC_Gateway_Barion_Refund {
         $transaction->AmountToRefund = $amount;
 
         // Comment must be at most 640 character long
-        $transaction->Comment = substr($reason, 0, 640);
+        $transaction->Comment = mb_substr($reason, 0, 640, 'UTF-8');
 
         
         $refundRequest = new RefundRequestModel($paymentId);

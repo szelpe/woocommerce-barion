@@ -75,7 +75,7 @@ class WC_Gateway_Barion_Request {
             $itemModel->Name = $item['name'];
             $itemModel->Description = $itemModel->Name;
 $translated_text = __('piece', 'pay-via-barion-for-woocommerce');
-$itemModel->Unit = substr(empty($translated_text) ? 'piece' : (string)$translated_text, 0, 50);
+$itemModel->Unit = mb_substr(empty($translated_text) ? 'piece' : (string)$translated_text, 0, 50, 'UTF-8');
             $itemModel->Quantity = empty($item['qty']) ? 1 : $item['qty'];
 
             $itemModel->Price = $order->get_item_subtotal($item, true);
@@ -217,8 +217,8 @@ $itemModel->Unit = substr(empty($translated_text) ? 'piece' : (string)$translate
         $shippingAddress->Region = null;
         $shippingAddress->City = $order->get_shipping_city();
         $shippingAddress->Zip = $order->get_shipping_postcode();
-        $shippingAddress->Street = substr($order->get_shipping_address_1(), 0, 50);
-        $shippingAddress->Street2 =substr($order->get_shipping_address_2(), 0, 50);
+        $shippingAddress->Street = mb_substr($order->get_shipping_address_1(), 0, 50, 'UTF-8');
+        $shippingAddress->Street2 = mb_substr($order->get_shipping_address_2(), 0, 50, 'UTF-8');
         $shippingAddress->Street3 = "";
         $shippingAddress->FullName = $order->get_formatted_shipping_full_name();
 
@@ -245,8 +245,8 @@ $itemModel->Unit = substr(empty($translated_text) ? 'piece' : (string)$translate
         $billingAddress->Region = null;
         $billingAddress->City = $order->get_billing_city();
         $billingAddress->Zip = $order->get_billing_postcode();
-        $billingAddress->Street =substr($order->get_billing_address_1(), 0, 50);
-        $billingAddress->Street2 = substr($order->get_billing_address_2(), 0, 50);
+        $billingAddress->Street = mb_substr($order->get_billing_address_1(), 0, 50, 'UTF-8');
+        $billingAddress->Street2 = mb_substr($order->get_billing_address_2(), 0, 50, 'UTF-8');
         $billingAddress->Street3 = "";
 
         $paymentRequest->BillingAddress = $billingAddress;
