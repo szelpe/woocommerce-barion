@@ -292,3 +292,7 @@ msgstr ""
 msgctxt "Order status"
 msgid "Pending payment"
 msgstr ""
+
+#: includes/class-wc-gateway-barion-return-from-payment.php:72
+msgid "Payment succeeded via Barion (confirmed on return)."
+msgstr "Sikeres fizetés a Barionon keresztül (visszatéréskor megerősítve)."

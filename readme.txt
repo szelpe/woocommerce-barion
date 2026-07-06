@@ -88,6 +88,11 @@ function disable_barion_pixel_for_editor() {
 ```
 
 == Changelog ==
+= 3.9 =
+* Fix: Finalize the order on return from a successful payment when the Barion IPN callback is delayed or missing
+* Fix: Successful Barion IPN callback is no longer ignored for orders in on-hold status
+* Fix: Hide the Full Barion Pixel admin notice when the Barion Pixel plugin is already active
+* Add: PLN currency support
 = 3.8.9 =
 * Fix: Display new  Barion logo on checkout blocks
 = 3.8.8 =

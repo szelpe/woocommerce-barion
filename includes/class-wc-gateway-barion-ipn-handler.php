@@ -81,11 +81,6 @@ $payment_method = $order->get_payment_method();
             exit;
         }
 
-        if($order->has_status(array('on-hold'))) {
-            $order->add_order_note(__('Barion callback ignored as the user has chosen another payment method.', 'pay-via-barion-for-woocommerce'));
-            exit;
-        }
-
         if($payment_details->Status == PaymentStatus::Succeeded) {
             if($order->has_status($this->gateway->get_successfull_status())) {
                 exit;
