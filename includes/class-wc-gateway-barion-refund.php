@@ -4,6 +4,9 @@ if ( ! defined( 'ABSPATH' ) ) {
     exit;
 }
 
+use Barion\Models\Payment\TransactionToRefundModel;
+use Barion\Models\Refund\RefundRequestModel;
+
 class WC_Gateway_Barion_Refund {
 	 /**
      * @var BarionClient
@@ -26,13 +29,16 @@ class WC_Gateway_Barion_Refund {
 
     public function refund_order($order, $amount = null, $reason = '') {
 		$paymentId = $this->gateway->get_barion_payment_id($order);
-        $transaction = new TransactionToRefundModel();
-        $transaction->TransactionId = $order->get_transaction_id();
-        $transaction->POSTransactionId = $order->get_id();
-        $transaction->AmountToRefund = $amount;
-
-        // Comment must be at most 640 character long
-        $transaction->Comment = mb_substr($reason, 0, 640, 'UTF-8');
+        // v2.1.0: TransactionToRefundModel has a required constructor
+        // (transactionId, posTransactionId, amountToRefund, comment); the old
+        // no-arg `new TransactionToRefundModel()` is now an ArgumentCountError.
+        // Comment must be at most 640 characters long.
+        $transaction = new TransactionToRefundModel(
+            $order->get_transaction_id(),
+            $order->get_id(),
+            (float) $amount,
+            mb_substr($reason, 0, 640, 'UTF-8')
+        );
 
         
         $refundRequest = new RefundRequestModel($paymentId);

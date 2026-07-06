@@ -4,6 +4,25 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
+use Barion\Models\Payment\PaymentTransactionModel;
+use Barion\Models\Payment\PreparePaymentRequestModel;
+use Barion\Models\Common\ItemModel;
+use Barion\Models\ThreeDSecure\ShippingAddressModel;
+use Barion\Models\ThreeDSecure\BillingAddressModel;
+use Barion\Models\ThreeDSecure\PayerAccountInformationModel;
+use Barion\Models\ThreeDSecure\PurchaseInformationModel;
+use Barion\Enumerations\Currency;
+use Barion\Enumerations\PaymentType;
+use Barion\Enumerations\FundingSourceType;
+use Barion\Enumerations\UILocale;
+use Barion\Enumerations\ThreeDSecure\ChallengePreference;
+use Barion\Enumerations\ThreeDSecure\PurchaseType;
+use Barion\Enumerations\ThreeDSecure\AvailabilityIndicator;
+use Barion\Enumerations\ThreeDSecure\AccountCreationIndicator;
+use Barion\Enumerations\ThreeDSecure\AccountChangeIndicator;
+use Barion\Enumerations\ThreeDSecure\PasswordChangeIndicator;
+use Barion\Enumerations\ThreeDSecure\SuspiciousActivityIndicator;
+
 class WC_Gateway_Barion_Request {
     /**
      * @var WC_Gateway_Barion_Profile_Monitor
@@ -46,7 +65,10 @@ class WC_Gateway_Barion_Request {
         $this->set_billing_address($order, $paymentRequest);
         $paymentRequest->RedirectUrl = add_query_arg('order-id', $order->get_id(), WC()->api_request_url('WC_Gateway_Barion_Return_From_Payment'));
         $paymentRequest->CallbackUrl = WC()->api_request_url('WC_Gateway_Barion');
-        $paymentRequest->Currency = $order->get_currency();
+        // v2.1.0: Currency is a backed enum, not a raw string. The gateway only
+        // reaches this code for a supported currency (USD/EUR/HUF/CZK/PLN), all
+        // of which exist as Currency enum cases.
+        $paymentRequest->Currency = Currency::from($order->get_currency());
         $paymentRequest->AddTransaction($transaction);
 
         $this->set_payer_account_information($order, $paymentRequest);
@@ -78,7 +100,10 @@ $translated_text = __('piece', 'pay-via-barion-for-woocommerce');
 $itemModel->Unit = mb_substr(empty($translated_text) ? 'piece' : (string)$translated_text, 0, 50, 'UTF-8');
             $itemModel->Quantity = empty($item['qty']) ? 1 : $item['qty'];
 
-            $itemModel->Price = $order->get_item_subtotal($item, true);
+            // ItemModel exposes UnitPrice (not Price) in the Barion SDK; the old
+            // `->Price` was an undeclared dynamic property that never reached the
+            // API and is a fatal-worthy deprecation on the v2.1.0 typed models.
+            $itemModel->UnitPrice = $order->get_item_subtotal($item, true);
             $itemModel->ItemTotal = $order->get_line_subtotal($item, true);
 
             if ('coupon' === $item['type']) {
@@ -181,7 +206,11 @@ $itemModel->Unit = mb_substr(empty($translated_text) ? 'piece' : (string)$transl
             $precision = 0;
         }
 
-        return number_format(round($price, $precision), $precision);
+        // Emit a plain numeric string (no thousands separator) so it coerces
+        // cleanly into the SDK's typed `float $Total`. number_format's default
+        // grouping (e.g. "9,990") is a non-numeric string and now throws a
+        // TypeError on the v2.1.0 typed models.
+        return number_format(round($price, $precision), $precision, '.', '');
     }
 
     /**
@@ -300,13 +329,13 @@ $itemModel->Unit = mb_substr(empty($translated_text) ? 'piece' : (string)$transl
         $this->set_availability_indicator($purchaseInfo, $order);
         $purchaseInfo->PurchaseType = PurchaseType::GoodsAndServicePurchase;
 
-        // Not applicable
-        $purchaseInfo->ShippingAddressIndicator = null;
-        $purchaseInfo->DeliveryTimeframe = null;
+        // Not applicable. The enum-typed fields (ShippingAddressIndicator,
+        // DeliveryTimeframe, ReOrderIndicator) stay at their Unspecified default
+        // set by the model constructor; assigning null to them would be a
+        // TypeError on the v2.1.0 non-nullable enum properties.
         $purchaseInfo->PreOrderDate = null;
-        $purchaseInfo->ReOrderIndicator = null;
         $purchaseInfo->RecurringExpiry = null;
-        $purchaseInfo->RecurringFrequency = "0";
+        $purchaseInfo->RecurringFrequency = 0;
         $purchaseInfo->GiftCardPurchase = null;
 
         $paymentRequest->PurchaseInformation = $purchaseInfo;
@@ -323,7 +352,7 @@ $itemModel->Unit = mb_substr(empty($translated_text) ? 'piece' : (string)$transl
         }
 
         $date = $customer->get_date_created();
-        return $this->get_indicator($date);
+        return AccountCreationIndicator::from($this->get_indicator($date));
     }
 
     /**
@@ -337,7 +366,7 @@ $itemModel->Unit = mb_substr(empty($translated_text) ? 'piece' : (string)$transl
         }
 
         $date = $customer->get_date_modified();
-        return $this->get_indicator($date);
+        return AccountChangeIndicator::from($this->get_indicator($date));
     }
 
     /**
@@ -353,24 +382,30 @@ $itemModel->Unit = mb_substr(empty($translated_text) ? 'piece' : (string)$transl
         }
 
         $payerAccountInfo->PasswordLastChanged = $date_password_changed->format(DateTime::ISO8601);
-        $payerAccountInfo->PasswordChangeIndicator = $this->get_indicator($date_password_changed);
+        $payerAccountInfo->PasswordChangeIndicator = PasswordChangeIndicator::from($this->get_indicator($date_password_changed));
     }
 
     /**
+     * Returns the shared 3DS "time since" bucket as a backing-string value.
+     * Callers convert it to their specific enum (AccountCreationIndicator /
+     * AccountChangeIndicator / PasswordChangeIndicator) via ::from(), because the
+     * v2.1.0 SDK types each of those properties with a distinct enum while they
+     * share the same case values.
+     *
      * @param DateTime $date
      * @return string
      * @throws Exception
      */
     private function get_indicator($date) {
         if ($date < new DateTime('@' . strtotime('-60 day'))) {
-            return AccountCreationIndicator::MoreThan60Days;
+            return 'MoreThan60Days';
         }
 
         if ($date < new DateTime('@' . strtotime('-30 day'))) {
-            return AccountCreationIndicator::Between30And60Days;
+            return 'Between30And60Days';
         }
 
-        return AccountChangeIndicator::LessThan30Days;
+        return 'LessThan30Days';
     }
 
     private function clean_phone_number($phone_number) {

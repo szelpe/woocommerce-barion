@@ -4,6 +4,12 @@ if ( ! defined( 'ABSPATH' ) ) {
     exit;
 }
 
+use Barion\BarionClient;
+use Barion\Enumerations\BarionEnvironment;
+
+// Barion PHP SDK v2.1.0 is PSR-4 namespaced (Barion\...). Requiring BarionClient
+// pulls in the whole SDK: the file self-loads the bundled autoloader (relative to
+// its own directory), which require_once's every model/enum/helper class.
 require_once 'barion-library/library/BarionClient.php';
 require_once 'includes/class-wc-gateway-barion-ipn-handler.php';
 require_once 'includes/class-wc-gateway-barion-return-from-payment.php';

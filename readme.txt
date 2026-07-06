@@ -88,6 +88,9 @@ function disable_barion_pixel_for_editor() {
 ```
 
 == Changelog ==
+= 3.10 =
+* Update: Upgraded the bundled Barion PHP library to version 2.1.0 (namespaced, native PHP enums)
+* Update: The plugin now requires PHP 8.2 or newer, following the updated Barion library
 = 3.9 =
 * Fix: Finalize the order on return from a successful payment when the Barion IPN callback is delayed or missing
 * Fix: Successful Barion IPN callback is no longer ignored for orders in on-hold status

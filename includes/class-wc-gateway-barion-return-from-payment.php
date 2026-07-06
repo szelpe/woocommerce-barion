@@ -4,6 +4,8 @@ if ( ! defined( 'ABSPATH' ) ) {
     exit;
 }
 
+use Barion\Enumerations\PaymentStatus;
+
 class WC_Gateway_Barion_Return_From_Payment {
  /**
      * @var BarionClient
