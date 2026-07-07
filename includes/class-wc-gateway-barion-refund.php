@@ -21,6 +21,17 @@ class WC_Gateway_Barion_Refund {
      * @var bool
      */
 	 public $refund_succeeded;
+
+    /**
+     * @var float
+     */
+    public $refund_amount;
+
+    /**
+     * @var string
+     */
+    public $refund_transaction_id;
+
     public function __construct($barion_client, $gateway) {
         $this->barion_client = $barion_client;
         $this->gateway = $gateway;

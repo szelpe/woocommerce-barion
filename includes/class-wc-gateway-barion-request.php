@@ -29,6 +29,26 @@ class WC_Gateway_Barion_Request {
      */
     private $profile_monitor;
 
+    /**
+     * @var BarionClient
+     */
+    private $barion_client;
+
+    /**
+     * @var WC_Gateway_Barion
+     */
+    private $gateway;
+
+    /**
+     * @var WC_Order
+     */
+    private $order;
+
+    /**
+     * @var \Barion\Models\Payment\PreparePaymentResponseModel
+     */
+    private $payment;
+
     public $is_prepared;
 
     public function __construct($barion_client, $gateway, $profile_monitor) {
@@ -94,11 +114,16 @@ class WC_Gateway_Barion_Request {
 
         foreach ($order->get_items(array('line_item', 'fee', 'shipping', 'coupon')) as $item_id => $item) {
             $itemModel = new ItemModel();
-            $itemModel->Name = $item['name'];
+            // Read order-item fields through getters instead of ArrayAccess: the
+            // WC_Order_Item::offsetGet legacy array access is deprecated since
+            // WooCommerce 4.4.0 and raises a notice on every read (e.g. coupon
+            // lines). The getters return the same values, so amounts are unchanged.
+            $itemModel->Name = $item->get_name();
             $itemModel->Description = $itemModel->Name;
 $translated_text = __('piece', 'pay-via-barion-for-woocommerce');
 $itemModel->Unit = mb_substr(empty($translated_text) ? 'piece' : (string)$translated_text, 0, 50, 'UTF-8');
-            $itemModel->Quantity = empty($item['qty']) ? 1 : $item['qty'];
+            $quantity = $item->get_quantity();
+            $itemModel->Quantity = empty($quantity) ? 1 : $quantity;
 
             // ItemModel exposes UnitPrice (not Price) in the Barion SDK; the old
             // `->Price` was an undeclared dynamic property that never reached the
@@ -106,8 +131,8 @@ $itemModel->Unit = mb_substr(empty($translated_text) ? 'piece' : (string)$transl
             $itemModel->UnitPrice = $order->get_item_subtotal($item, true);
             $itemModel->ItemTotal = $order->get_line_subtotal($item, true);
 
-            if ('coupon' === $item['type']) {
-                $itemModel->Name = __('Coupon', 'woocommerce') . ' (' . $item['name'] . ')';
+            if ('coupon' === $item->get_type()) {
+                $itemModel->Name = __('Coupon', 'woocommerce') . ' (' . $item->get_name() . ')';
 
                 $discount_amount = wc_get_order_item_meta($item_id, 'discount_amount');
                 $discount_amount_tax = wc_get_order_item_meta($item_id, 'discount_amount_tax');
@@ -119,7 +144,7 @@ $itemModel->Unit = mb_substr(empty($translated_text) ? 'piece' : (string)$transl
                 $itemModel->UnitPrice = -1 * $discount_amount;
                 $itemModel->ItemTotal = -1 * $discount_amount;
                 $itemModel->SKU = '';
-            } elseif ('shipping' === $item['type']) {
+            } elseif ('shipping' === $item->get_type()) {
                 $shipping_cost = (float) wc_get_order_item_meta($item_id, 'cost');
                 $shipping_taxes = wc_get_order_item_meta($item_id, 'taxes');
                 
@@ -146,7 +171,7 @@ $itemModel->Unit = mb_substr(empty($translated_text) ? 'piece' : (string)$transl
                 $itemModel->UnitPrice = $shipping_cost;
                 $itemModel->ItemTotal = $shipping_cost;
                 $itemModel->SKU = '';
-            } elseif ('fee' === $item['type']) {
+            } elseif ('fee' === $item->get_type()) {
                 $itemModel->UnitPrice = $order->get_item_total($item, true);
                 $itemModel->ItemTotal = $order->get_line_total($item, true);
                 $itemModel->SKU = '';

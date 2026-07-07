@@ -5,8 +5,8 @@ Requires at least: 4.0
 Tested up to: 6.8.2
 WC requires at least: 3.0.0
 WC tested up to: 10.0.4
-Requires PHP: 5.6
-Stable tag: 3.10
+Requires PHP: 8.2
+Stable tag: 3.10.1
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -88,6 +88,9 @@ function disable_barion_pixel_for_editor() {
 ```
 
 == Changelog ==
+= 3.10.1 =
+* Fix: Declare class properties explicitly to remove the PHP 8.2+ "Creation of dynamic property" deprecation notices raised during checkout and refunds
+* Fix: Read order item fields via getters instead of the deprecated array access, removing the WC_Order_Item::offsetGet deprecation notice (WooCommerce 4.4.0+) triggered on coupon and other line items during checkout
 = 3.10 =
 * Update: Upgraded the bundled Barion PHP library to version 2.1.0 (namespaced, native PHP enums)
 * Update: The plugin now requires PHP 8.2 or newer, following the updated Barion library
