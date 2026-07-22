@@ -32,8 +32,8 @@ class WC_Gateway_Barion_Return_From_Payment {
         }
 
         if($order->has_status('cancelled')) {
-            //wp_redirect($order->get_cancel_order_url_raw());
-			wp_redirect($order->get_cancel_order_url());
+            wc_add_notice( __( 'The card payment was cancelled or declined. Please try again.', 'pay-via-barion-for-woocommerce' ), 'error' );
+            wp_redirect( wc_get_cart_url() );
             exit;
         }
 
@@ -60,8 +60,8 @@ class WC_Gateway_Barion_Return_From_Payment {
             }
 
             if($payment_details->Status == PaymentStatus::Canceled) {
-                //wp_redirect($order->get_cancel_order_url_raw());
-				wp_redirect($order->get_cancel_order_url());
+                wc_add_notice( __( 'The card payment was cancelled or declined. Please try again.', 'pay-via-barion-for-woocommerce' ), 'error' );
+                wp_redirect( $order->get_cancel_order_url() );
                 exit;
             }
 
